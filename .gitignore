@@ -1,0 +1,7 @@
+bin/
+*.pyc
+.idea
+.settings
+.classpath
+.project
+.pydevproject
