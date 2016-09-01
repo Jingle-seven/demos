@@ -1,7 +1,6 @@
-package day_9_21;
+package com.xz.day_9_21;
 
 import java.sql.*;
-import java.util.*;
 
 import javax.sql.DataSource;
 

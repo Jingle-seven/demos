@@ -1,6 +1,5 @@
-package day_9_21;
+package com.xz.day_9_21;
 
-import java.sql.*;
 import java.util.*;
 
 public class Test {
@@ -46,9 +45,9 @@ public class Test {
 //			System.out.println(user);
 //		}
 //		list.clear();
-//		list.add(new User(5,"ÀòÀò","Å®"));
-//		list.add(new User(6,"°®ÀöË¿","Å®"));
-//		list.add(new User(7,"¿ËÀÍ¶û","Å®"));
+//		list.add(new User(5,"ï¿½ï¿½ï¿½ï¿½","Å®"));
+//		list.add(new User(6,"ï¿½ï¿½ï¿½ï¿½Ë¿","Å®"));
+//		list.add(new User(7,"ï¿½ï¿½ï¿½Í¶ï¿½","Å®"));
 //		d.insertSome(list);
 
 //		System.out.println("after");

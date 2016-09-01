@@ -4,7 +4,7 @@
  * Created on __DATE__, __TIME__
  */
 
-package day_9_21;
+package com.xz.day_9_21;
 
 import java.util.*;
 

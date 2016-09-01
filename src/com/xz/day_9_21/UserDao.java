@@ -1,4 +1,4 @@
-package day_9_21;
+package com.xz.day_9_21;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

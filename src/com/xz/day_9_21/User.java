@@ -1,4 +1,4 @@
-package day_9_21;
+package com.xz.day_9_21;
 
 public class User {
 
