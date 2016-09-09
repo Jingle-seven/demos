@@ -1,6 +1,6 @@
 package com.xz.demo;
 
-public class Reference {
+public class Pow {
 
 	public static void main(String[] args) {
 		int a = 1;

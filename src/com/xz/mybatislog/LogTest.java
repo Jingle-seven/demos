@@ -10,7 +10,7 @@ import org.apache.logging.log4j.Logger;
 public class LogTest {
 	public static void main(String[] args) {
 		
-		Logger logger = LogManager.getLogger(LogTest.class.getName());
+		Logger logger = LogManager.getLogger(LogTest.class);
 		logger = LogManager.getRootLogger();
 		logger.debug("输出debug");
 		logger.info("输出info");

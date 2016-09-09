@@ -1,5 +1,8 @@
 package com.xz.comfirm;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Test9x9 {
 
 	/**
@@ -39,5 +42,20 @@ public class Test9x9 {
 			}
 			System.out.println();
 		}
+	}
+	
+	/**
+	 * Created by Jinhua on 2016/8/22.
+	 */
+	public static class TestStream {
+		
+		public static void main(String[] args) {
+			List<String> l = new ArrayList<>();
+			l.add("a");
+			l.add("b");
+			l.add("c");
+			l.stream().forEach(System.out::println);
+		}
+		
 	}
 }

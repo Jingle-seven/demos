@@ -8,7 +8,7 @@ public class TestParseNull {
 	public static void main(String[] args) {
 		
 		String str = null;
-		Object dog1 = new Dog("����");
+		Object dog1 = new Dog("dog");
 		dog1 = null;
 		Dog dog2 = ((Dog)dog1);
 		dog2.setName("");

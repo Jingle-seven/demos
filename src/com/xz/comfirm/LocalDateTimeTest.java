@@ -1,15 +1,18 @@
 package com.xz.comfirm;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.TimeZone;
 
 /**
  * Created by Jinhua on 2016/8/25.
  */
 public class LocalDateTimeTest {
-	public static void main(String[] args) {
+	public static void main(String[] args) throws ParseException {
 		long current = System.currentTimeMillis();
 		System.out.println(LocalDateTime.now());
 		System.out.println(current);
@@ -22,5 +25,10 @@ public class LocalDateTimeTest {
 		System.out.println(todayZero);
 		System.out.println(todayZero-TimeZone.getDefault().getRawOffset());
 		System.out.println(date.atTime(0,0,0,0));
+		
+		String str1="2015-12-06 18:00:00";
+		SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd hh:mm");
+		Date date1 = sf.parse(str1);
+		System.out.println(date.toString());
 	}
 }
