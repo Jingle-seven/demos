@@ -1,4 +1,4 @@
-package com.xz.comfirm;
+package com.xz.jingle;
 
 import java.io.File;
 

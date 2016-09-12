@@ -1,4 +1,4 @@
-package com.xz.comfirm;
+package com.xz.jingle;
 
 public class TestToJson {
 

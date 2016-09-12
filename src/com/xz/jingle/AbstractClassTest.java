@@ -1,4 +1,4 @@
-package com.xz.comfirm;
+package com.xz.jingle;
 
 /**
  * Created by Jinhua on 2016/8/15.

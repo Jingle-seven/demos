@@ -1,7 +1,4 @@
-package com.xz.comfirm;
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.BufferedReader;
+package com.xz.jingle;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;

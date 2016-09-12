@@ -1,6 +1,4 @@
-package com.xz.comfirm;
-
-import java.rmi.UnexpectedException;
+package com.xz.jingle;
 
 public class MyMath {
 
