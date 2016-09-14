@@ -8,19 +8,19 @@ public class TestClassInitOrder {
 }
 class A{
 	static{
-		System.out.println("A static");
+		System.out.println("A3 static");
 	}
 	{
-		System.out.println("A block");
+		System.out.println("A3 block");
 	}
 	A(){
-		System.out.println("A constructor");
+		System.out.println("A3 constructor");
 	}
 	A(int a){
-		System.out.println("A constructor has paramter");
+		System.out.println("A3 constructor has paramter");
 	}
 }
-class B extends A{
+class B extends A3 {
 	static{
 		System.out.println("B static");
 	}
