@@ -1,4 +1,5 @@
 #coding=utf-8
+import os
 
 print("ok")
 file = open("G:/temp/test.txt","w", encoding="utf-8")
@@ -16,4 +17,15 @@ for line in open("G:/temp/test.txt"):
 print(open("G:/temp/test.txt").readlines())
 print(open("G:/temp/test.txt").read(100))
 file.close()
-print("finish")
+print("file finish")
+
+str1 = os.system('ls /')
+print(str1)
+
+f = file("G:/temp/test.txt")
+while True:
+    line = f.readline()
+    if len(line) == 0:
+        break
+    print(line) # notice comma
+f.close()

@@ -15,9 +15,10 @@
     </environments>
 
     <mappers>
-        <!-- 注册userMapper.xml文件，
+        <!-- 注册userMapper.xml文件，注册dao接口
         userMapper.xml位于me.gacl.mapping这个包下，所以resource写成me/gacl/mapping/userMapper.xml-->
         <mapper resource="com/xz/mybatislog/mapping/userMapper.xml"/>
+        <mapper class="com.xz.mybatislog.dao.IUserDao"/>
     </mappers>
 
 </configuration>
