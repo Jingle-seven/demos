@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface IUserDao {
 	/**
-	 * 用注解只写接口即可，不必写实现类（mybatis动态生成），神奇
+	 * 用注解只写接口即可，不必写实现类（mybatis动态生成），神奇,但是需要spring支持
 	 * @param user
 	 * @return
 	 */

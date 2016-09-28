@@ -15,6 +15,6 @@ for r in cur.fetchall():
            cur.close()
 conn.close()
 
-#Ô¤±àÒë?
+#é¢„ç¼–è¯‘?
 # sql = "INSERT INTO `users` (`email`, `password`) VALUES (%s, %s)"
 # cur.execute(sql, ('webmaster@python.org', 'very-secret'))

@@ -15,7 +15,8 @@ public class DaoTest {
 	}
 	@Test
 	public void testUserDao(){
-		UserDaoWithXml ud = new UserDaoWithXml();
+		UserDaoWithXml ud  = new UserDaoWithXml();
 		System.out.println(ud.findUserByAge(21));
+		System.out.println("");
 	}
 }

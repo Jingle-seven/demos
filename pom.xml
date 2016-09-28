@@ -63,7 +63,7 @@
                             <driver>org.mariadb.jdbc.Driver</driver>
                             <url>jdbc:mysql://localhost:3306/zipkin</url>
                             <user>root</user>
-                            <password />
+                            <password>123456</password>
                         </jdbc>
                         <generator>
                             <generate>
@@ -79,8 +79,8 @@
                                 <inputSchema>zipkin</inputSchema>
                             </database>
                             <target>
-                                <packageName>demos.src.com.xz.pojo</packageName>
-                                <directory>src/main/java</directory>
+                                <packageName>com.xz.pojo</packageName>
+                                <directory>src</directory>
                             </target>
                         </generator>
                     </configuration>
