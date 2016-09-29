@@ -1,4 +1,9 @@
-print('please')
+print('start')
+
+#除法,整数相除/得到浮点数,//得到整数
+print(1/2)
+print(1//2)
+print(2//3)
 
 # 数据存储
 list1 = [1, 2 , 3, 4, 5]
@@ -70,7 +75,7 @@ print('sum is not bigger than 10000 until %dth num' %count)
 def xz_add(a, b):
     # 可以返回多个值,实际上是返回一个tuple按顺序赋值到变量
     return a+b,a-b
-    pass#结束之意
+    pass#无意义
 a,b = xz_add(23,67)
 print(b,a)
 # 乘方递归实现,默认次数参数为2
@@ -94,10 +99,13 @@ print(add_some(1,2,3,))
 print(list1[1:3])
 print('abcde'[1:3])
 # 生成器generator,类似于延迟加载
-g = (x * x for x in range(1000))
+g = (x * x for x in range(10))
 for n in g:
     print(n)
 
 try:1/0
-except: print('错误')
+except ZeroDivisionError as e: print(e)
+finally: print('continue')
+try:1/0
+except: print('异常')
 finally: print('end')
