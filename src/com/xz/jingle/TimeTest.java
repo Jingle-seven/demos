@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 /**
  * Created by Jinhua on 2016/8/10.
  */
-public class FileTest2 {
+public class TimeTest {
 	public static void main(String[] args) {
 //		File f = new File("G:\\temp\\xjh.json");
 //		f.mkdirs();
