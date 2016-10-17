@@ -2,6 +2,10 @@ from urllib import request
 import re
 
 def getHtmlBytes(url):
+    req = request.Request(url)
+    req.add_header("Mozilla/5.0 (Windows NT 6.1; WOW64) "
+                   "AppleWebKit/537.36 (KHTML, like Gecko) "
+                   "Chrome/53.0.2785.116 Safari/537.36 OPR/40.0.2308.81")
     webData = request.urlopen(url).read()
     #print(webData)
     return webData
