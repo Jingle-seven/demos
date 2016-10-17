@@ -1,7 +1,9 @@
 bin/
+target/
+.settings
+*.iml
 *.pyc
 .idea
-.settings
 .classpath
 .project
 .pydevproject
