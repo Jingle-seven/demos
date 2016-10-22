@@ -1,26 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-
-    Copyright 2015-2016 The OpenZipkin Authors
-
-    Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
-    in compliance with the License. You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-    Unless required by applicable law or agreed to in writing, software distributed under the License
-    is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
-    or implied. See the License for the specific language governing permissions and limitations under
-    the License.
-
--->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>xz</groupId>
     <artifactId>demos</artifactId>
+    <packaging>pom</packaging>
     <name>demos</name>
     <version>0.1</version>
+
+    <modules>
+        <module>jingle-server</module>
+        <module>jingle-app</module>
+        <module>jingle-demo</module>
+    </modules>
 
     <properties>
         <main.basedir>${project.basedir}/../..</main.basedir>
@@ -29,63 +21,33 @@
     </properties>
 
     <dependencies>
-
         <dependency>
-            <groupId>org.jooq</groupId>
-            <artifactId>jooq</artifactId>
-            <version>3.7.3</version>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+            <version>2.7</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>2.7</version>
         </dependency>
 
+        <dependency>
+            <groupId>c3p0</groupId>
+            <artifactId>c3p0</artifactId>
+            <version>0.9.1.2</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.7</version>
+        </dependency>
     </dependencies>
 
-    <build>
-        <pluginManagement>
-            <plugins>
-                <plugin>
-                    <groupId>org.jooq</groupId>
-                    <artifactId>jooq-codegen-maven</artifactId>
-                    <executions>
-                        <execution>
-                            <goals>
-                                <goal>generate</goal>
-                            </goals>
-                        </execution>
-                    </executions>
-                    <dependencies>
-                        <dependency>
-                            <groupId>org.jooq</groupId>
-                            <artifactId>jooq</artifactId>
-                            <version>3.7.3</version>
-                        </dependency>
-                    </dependencies>
-                    <configuration>
-                        <jdbc>
-                            <driver>org.mariadb.jdbc.Driver</driver>
-                            <url>jdbc:mysql://localhost:3306/zipkin</url>
-                            <user>root</user>
-                            <password>123456</password>
-                        </jdbc>
-                        <generator>
-                            <generate>
-                                <relations>false</relations>
-                                <deprecated>false</deprecated>
-                                <records>false</records>
-                                <pojos>false</pojos>
-                            </generate>
-                            <database>
-                                <name>org.jooq.util.mysql.MySQLDatabase</name>
-                                <includes>.*</includes>
-                                <excludes />
-                                <inputSchema>zipkin</inputSchema>
-                            </database>
-                            <target>
-                                <packageName>com.xz.pojo</packageName>
-                                <directory>src</directory>
-                            </target>
-                        </generator>
-                    </configuration>
-                </plugin>
-            </plugins>
-        </pluginManagement>
-    </build>
+
 </project>

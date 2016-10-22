@@ -1,7 +1,9 @@
 bin/
 *.pyc
-.idea
-.settings
+.idea/
+.settings/
+log/
 .classpath
 .project
 .pydevproject
+test/com/xz/demo/ReadBlog.py
