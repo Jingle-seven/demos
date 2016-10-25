@@ -1,4 +1,6 @@
 bin/
+target/
+*.iml
 *.pyc
 .idea/
 .settings/
@@ -6,4 +8,3 @@ log/
 .classpath
 .project
 .pydevproject
-test/com/xz/demo/ReadBlog.py
