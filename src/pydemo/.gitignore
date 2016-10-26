@@ -1,9 +1,0 @@
-bin/
-target/
-.settings
-*.iml
-*.pyc
-.idea
-.classpath
-.project
-.pydevproject
