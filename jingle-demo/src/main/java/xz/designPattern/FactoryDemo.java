@@ -1,4 +1,4 @@
-package com.xz.designPattern;
+package xz.designPattern;
 
 /**
  * Created by Jinhua on 2016/10/25.
@@ -14,14 +14,17 @@ abstract class Coffee {
 	public String name = "Coffee";
 	public String getName(){return name;}
 }
+
 class Latte extends Coffee {
 	public String name = "latte";
 	public String getName(){return name;}
 }
+
 class Mocha extends Coffee {
 	public String name = "mocha";
 	public String getName(){return name;}
 }
+
 class Cappuccino extends Coffee {
 	public String name = "cappuccino";
 	public String getName(){return name;}

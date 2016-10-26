@@ -1,4 +1,4 @@
-package com.xz.jingle;
+package xz.jingle;
 
 /**
  * Created by Jinhua on 2016/10/19.

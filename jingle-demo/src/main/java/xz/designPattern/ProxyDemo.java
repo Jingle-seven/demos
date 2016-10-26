@@ -1,4 +1,4 @@
-package com.xz.designPattern;
+package xz.designPattern;
 
 /**
  * Created by Jinhua on 2016/10/25.
@@ -14,12 +14,14 @@ public class ProxyDemo {
 interface TicketSeller {
 	void sellTicket();
 }
+
 //火车站
 class RailwayStation implements TicketSeller {
 	public void sellTicket() {
 		System.out.println("A ticket was sold,");
 	}
 }
+
 //代售点
 class RailwayAgency implements TicketSeller {
 	RailwayStation station = new RailwayStation();

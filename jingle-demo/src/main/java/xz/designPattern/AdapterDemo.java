@@ -1,4 +1,4 @@
-package com.xz.designPattern;
+package xz.designPattern;
 
 /**
  * Created by Jinhua on 2016/10/25.
