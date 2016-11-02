@@ -31,4 +31,13 @@ public class YarnUtil {
 		cal.set(Calendar.MILLISECOND, 000);
 		return cal.getTimeInMillis();
 	}
+	static long jingleGetDayBegin() {
+		long dayBegin = YarnUtil.getDayBegin();
+		long now = System.currentTimeMillis();
+		long rest = now % (1000 * 3600* 24);
+		long myDayBegin = now - rest - (8 * 3600 * 1000);//time zone is east 8
+		System.out.println("myDaybegin: "+myDayBegin);
+		System.out.println("daybegin: "+dayBegin);
+		return myDayBegin;
+	}
 }
