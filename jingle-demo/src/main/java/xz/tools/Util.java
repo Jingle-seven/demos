@@ -13,7 +13,7 @@
  */
 package xz.tools;
 
-import com.sun.istack.internal.Nullable;
+
 
 import java.nio.charset.Charset;
 import java.util.*;
@@ -57,14 +57,6 @@ public final class Util {
     return reference;
   }
 
-  public static <T extends Comparable<? super T>> List<T> sortedList(@Nullable Collection<T> in) {
-    if (in == null || in.isEmpty()) return Collections.emptyList();
-    if (in.size() == 1) return Collections.singletonList(in.iterator().next());
-    Object[] array = in.toArray();
-    Arrays.sort(array);
-    List result = Arrays.asList(array);
-    return Collections.unmodifiableList(result);
-  }
 
   /** For bucketed data floored to the day. For example, dependency links. */
   public static long midnightUTC(long epochMillis) {
@@ -77,7 +69,7 @@ public final class Util {
     return day.getTimeInMillis();
   }
 
-  public static List<Date> getDays(long endTs, @Nullable Long lookback) {
+  public static List<Date> getDays(long endTs,  Long lookback) {
     long to = midnightUTC(endTs);
     long from = midnightUTC(endTs - (lookback != null ? lookback : endTs));
 
