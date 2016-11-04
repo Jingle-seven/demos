@@ -12,10 +12,17 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class MainController {
 	
 	@RequestMapping("/login")
-	public String login(ModelMap map) {
-		// 加入一个属性，用来在模板中读取
-		map.addAttribute("servant", "八傻卡");
-		// return模板文件的名称，对应src/main/resources/templates/index.html
+	public String login(@RequestParam(value = "uName",required = false) String uName,
+						@RequestParam(value = "uid",required = false) String uid,
+						ModelMap map) {
+		
+		if(uName==null || uid==null) {
+			map.addAttribute("servant", "参数错误");
+		}else {
+			map.addAttribute("servant", uName + uid);
+		}
+		String[] servants = {"saber","lancer","archer","caster","rider","basaker","assassin"};
+		map.addAttribute("allServant", servants);
 		return "userLogin";
 	}
 	
