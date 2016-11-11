@@ -57,7 +57,7 @@ def writeAllUserToDB(conditionUserName,targetUserName=""):
         writeUserToDB(allUser,conn,targetUserName)
     conn.close()
 
-writeAllUserToDB("美仪")
+writeAllUserToDB("默默")
 
 '''is_suicide: False
 loc_name: 北京
