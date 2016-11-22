@@ -39,16 +39,14 @@ class CatchingMachine implements Runnable{
             int i = new Random().nextInt(3);
             System.out.println(i);
             j = 2/i;
+			String name = j + " people";
+			System.out.println(name +" was catched");
+			killer.killMan(name);
         } catch (Exception e) {
             System.out.println("An exception occured and killer catch no one ");
             //throw a RuntimeException to end the thread
-            throw new RuntimeException("NO！NO！NO！！！I don't go to prison");
+//            throw new RuntimeException("NO！NO！NO！！！I don't go to prison");
         }
-
-
-        String name = j + " people";
-        System.out.println(name +" was catched");
-        killer.killMan(name);
     }
 }
 class KillingMachine implements Runnable{
