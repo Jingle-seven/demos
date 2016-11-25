@@ -1,6 +1,7 @@
 package xz.jingle;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 /**
@@ -23,6 +24,23 @@ public class MapTest {
 //		System.out.println(resMap.get("job_total_num"));
 		Long  stampNow= System.currentTimeMillis();
 		Long startTime  = stampNow/(1000*3600*24)*(1000*3600*24);
-		System.out.println(stampNow-startTime);
+//		System.out.println(stampNow-startTime);
+		
+		//ConcurrentModificationException
+//		for(Map.Entry<String,Integer> en: resMap.entrySet()){
+//			if("job_total_num".equals(en.getKey()))
+//				resMap.remove(en.getKey());
+//		}
+//		for(String k: resMap.keySet()){
+//			if("job_total_num".equals(k));
+//				resMap.remove(k);
+//		}
+		Iterator<String> it = resMap.keySet().iterator();
+		while(it.hasNext()){
+			String k = it.next();
+			if("job_total_num".equals(k))
+				it.remove();
+		}
+		System.out.println(resMap);
 	}
 }
