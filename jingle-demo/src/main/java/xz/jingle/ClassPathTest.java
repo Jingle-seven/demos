@@ -29,18 +29,23 @@ import static java.lang.Thread.currentThread;
 public class ClassPathTest {
 	
 	public static void main(String args[]){
+		ClassPathTest cpt = new ClassPathTest();
 		String s1 = new File("").getAbsolutePath();
-		String s2 = ClassPathTest.class.getResource("/").getPath();//classpath根路径
-		String s4 = ClassLoader.getSystemResource("").getPath();
-		String s3 =ClassPathTest.class.getClass().getClassLoader().getResource("/").getPath();
-		String s5 = Thread.currentThread().getContextClassLoader ().getResource("").getPath();
-		Object.class.getResourceAsStream("/");
-		String s6 = ClassPathTest.class.getClass().getResource("").getPath();//当前类路径
 		System.out.println(s1);
-		System.out.println(s2);
+//		String s2 = ClassPathTest.class.getResource("/").getPath();//classpath根路径 jar null ide ok
+//		System.out.println(s2);
+//		String s4 = ClassLoader.getSystemResource("").getPath();jar null ide ok
+//		System.out.println(s4);
+		ClassLoader l = new FileTest().getClass().getClassLoader();
+		System.out.println(l.toString());
+		String s3 = ClassPathTest.class.getClass().getClassLoader().getResource("./LICENSE.txt").getPath();
 		System.out.println(s3);
-		System.out.println(s4);
+		String s5 = Thread.currentThread().getContextClassLoader ().getResource("").getPath();
+		System.out.println(s5);
+		String s6 = ClassPathTest.class.getClass().getResource("").getPath();//当前类路径
+		
 		System.out.println(s5);
 		System.out.println(s6);
 	}
+	
 }
