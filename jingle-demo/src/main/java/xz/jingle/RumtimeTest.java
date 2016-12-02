@@ -11,6 +11,10 @@ public class RumtimeTest {
 	public static void main(String[] args) throws IOException {
 		Process process = Runtime.getRuntime().exec("tasklist /v");
 		BufferedReader br = new BufferedReader(new InputStreamReader(process.getInputStream(),"gbk"));
-		br.lines().forEach(System.out::print);
+		br.lines().forEach(System.out::println);
+		
+		System.out.println("");
+		System.out.println(System.getenv("os.name"));
+		System.out.println(System.getProperty("os.name"));
 	}
 }
