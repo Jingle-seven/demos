@@ -1,0 +1,52 @@
+Configuration:
+  status: warn
+
+  Appenders:
+    Console:  #输出到控制台
+      name: CONSOLE
+      target: SYSTEM_OUT
+      PatternLayout:
+        pattern: "[%d{yyyy-dd-MM HH:mm}] %p [%C{2}.%M: %L] %m %n"
+
+    JDBC:
+      name: DB
+      tableName: cloudins_log
+      ConnectionFactory:
+        class: zipkin.server.ConnectionFactory
+        method: getConn
+      Column:
+        name: id
+        pattern: "%d{yyyyMMddHHmmssSSS}"
+      Column:
+        name: level
+        pattern: "%p"
+      Column:
+        name: method
+        pattern: "%C.%M"
+      Column:
+        name: message
+        pattern: "%m"
+      Column:
+        name: time
+        pattern: "%d{UNIX_MILLIS}"
+#      Column:
+#        name: line
+#        pattern: "%L"
+#      Column:
+#        name: displayed
+#        pattern: "false"
+#      Column:
+#        name: read
+#        pattern: "false"
+
+  Loggers:
+    Root:
+      level: INFO
+      AppenderRef:
+        - ref: CONSOLE
+    Logger:
+        name: yarnLog
+        level: INFO
+        AppenderRef:
+          - ref: CONSOLE
+          - ref: DB
