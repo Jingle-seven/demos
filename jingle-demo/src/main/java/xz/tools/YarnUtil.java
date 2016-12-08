@@ -19,7 +19,7 @@ public class YarnUtil {
 		Properties pro = System.getProperties();
 		Map<String,String> map = System.getenv();
 		
-		String traceId = Util.toLowerHex(147590775859812063L);
+		String traceId = Util.toLowerHex(14759077585986559L);
 		System.out.println(traceId);
 		String f = new File("logs/conf.txt").getPath();
 		System.out.println(f);
