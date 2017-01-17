@@ -24,6 +24,9 @@ public class FileTest {
 //		OutputStream outs =  new BufferedOutputStream(new FileOutputStream(new File("conf/qwe*adf.txt")));
 		File dir = new File("/home/xjh/etc/");
 		System.out.println(dir.mkdirs());
+		File fileSize = new File("G:\\temp\\zipkin分解\\zipkin-server-1.13.1.jar");
+		int MB = 1024 *1024;
+		System.out.println(fileSize.length()/MB);
 	}
 	public static String checkFileName(String str) {
 		if (str != null && !str.isEmpty()) {
