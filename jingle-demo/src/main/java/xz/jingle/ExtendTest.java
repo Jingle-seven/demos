@@ -5,15 +5,36 @@ package xz.jingle;
  */
 public class ExtendTest {
 	public static void main(String[] args) {
-		Dog an = new Dog();
+		
+		Animal an = new Dog();
+		Dog dog = new Dog();
+		
 		System.out.println(an.name);
+		System.out.println(dog.name);
+		System.out.println(an.kind);
+		
+		an.name="cat";
+		System.out.println(an.name);
+		dog.show();
 	}
-	static class Animal{
-		static String kind = "moveAble";
-		String name = "animal";
+	
+}
+class Animal{
+	static String kind = "moveAble";
+	String name = "animal";
+}
+class Dog extends Animal{
+	Dog(){}
+	Dog(String name){
+		this.name=name;
 	}
-	static class Dog extends Animal{
-		static String kind = "move faster";
-//		String name = "dog";
+	static String kind = "move faster";
+	String name = "dog";
+	public void show(){
+		System.out.println(super.toString());
+		System.out.println(this.toString());
+	}
+	public String toString(){
+		return "Dog's name is "+ name;
 	}
 }
