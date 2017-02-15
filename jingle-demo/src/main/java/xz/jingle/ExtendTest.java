@@ -3,6 +3,7 @@ package xz.jingle;
 /**
  * Created by Jinhua on 2016/12/2.
  */
+//子类变量会将父类变量隐藏,但仍可以通过super访问
 public class ExtendTest {
 	public static void main(String[] args) {
 		
@@ -15,6 +16,9 @@ public class ExtendTest {
 		
 		an.name="cat";
 		System.out.println(an.name);
+		dog.changeName();
+		System.out.println(dog.toString());
+		
 		dog.show();
 	}
 	
@@ -34,7 +38,11 @@ class Dog extends Animal{
 		System.out.println(super.toString());
 		System.out.println(this.toString());
 	}
+	public void changeName(){
+		super.name = "name changed";
+	}
 	public String toString(){
+		System.out.println("super: "+super.name);
 		return "Dog's name is "+ name;
 	}
 }

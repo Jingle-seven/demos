@@ -39,6 +39,7 @@ public class OrmLiteDemo {
 		System.out.println(userDao.queryForAll());
 		ConnectionSource ds = userDao.getConnectionSource();
 		ds.close();
+		userDao.create(new User("Jack","1234"));
 		System.out.println(ds.isOpen());
 		System.out.println(cityDao.queryForAll());
 		System.out.println(ds.isOpen());
