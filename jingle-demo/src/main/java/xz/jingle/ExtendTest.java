@@ -1,5 +1,9 @@
 package xz.jingle;
 
+import com.google.gson.annotations.Expose;
+
+import java.beans.Transient;
+
 /**
  * Created by Jinhua on 2016/12/2.
  */
@@ -14,7 +18,7 @@ public class ExtendTest {
 		System.out.println(dog.name);
 		System.out.println(an.kind);
 		
-		an.name="cat";
+		an.name="Cat";
 		System.out.println(an.name);
 		dog.changeName();
 		System.out.println(dog.toString());
@@ -24,8 +28,16 @@ public class ExtendTest {
 	
 }
 class Animal{
+	public String name = "animal";
 	static String kind = "moveAble";
-	String name = "animal";
+	
+	@Override
+	public String toString() {
+		
+		return "Animal{" +
+				"name='" + name + '\'' +
+				'}';
+	}
 }
 class Dog extends Animal{
 	Dog(){}
