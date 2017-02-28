@@ -1,8 +1,8 @@
 import pymysql.cursors
 
 # Connect to the database
-conn = pymysql.connect(host='127.0.0.1',
-                       user='xjh',
+conn = pymysql.connect(host='10.17.36.55',
+                       user='root',
                        password='z',
                        db='cloudins',
                        charset='utf8',
@@ -10,11 +10,11 @@ conn = pymysql.connect(host='127.0.0.1',
 
 cur = conn.cursor()
 cur.execute("SELECT * FROM zipkin_spans")
-ids = set()
+traceIds = set()
 appIds = set()
 for r in cur.fetchall():
     traceId = int(r["trace_id"])
-    ids.add(traceId)
+    traceIds.add(traceId)
 
 '''application_1475907758598_12314'''
 cur.execute("SELECT * FROM yarn_app_result ")
@@ -25,10 +25,12 @@ for r in cur.fetchall():
 cur.close()
 conn.close()
 
-print(len(ids))
+print(len(traceIds))
 print(len(appIds))
+errorIds = set()
 for appId in appIds:
-    if appId not in ids:
+    if appId not in traceIds:
         print(appId)
+        errorIds.add(appId)
 
-
+print(len(errorIds))

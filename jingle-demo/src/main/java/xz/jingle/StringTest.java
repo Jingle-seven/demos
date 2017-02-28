@@ -9,5 +9,10 @@ public class StringTest {
 		String s2 = "12";
 		String[] sa1 = s2.split(",");
 		System.out.println(sa1.length);
+		
+		String str1 = "insert into `cloudins_field` (`id`, `name`, `company`, `remark`) " +
+				"values (?, ?, ?, ?)','20170222150406','141',FALSE,FALSE)";
+		;
+		System.out.println(str1.replace("`","").replace("\'",""));
 	}
 }
