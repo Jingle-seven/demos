@@ -19,6 +19,11 @@ public class LambdaTest {
 				.filter(e-> e%2 ==0)
 				.filter(e-> e%3 ==0)
 				.forEach(System.out::println);
+		list = list.stream()
+				.filter(e-> e%2 ==0)
+				.filter(e-> e%3 ==0)
+				.collect(Collectors.toList());
+		System.out.println(list);
 		
 		List<Integer> list2 = list.stream()
 				.map(e->e*(e+1))

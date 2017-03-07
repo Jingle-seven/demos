@@ -5,7 +5,7 @@ package xz.jingle;
  */
 public class ParseNumTest {
 	public static void main(String[] args) {
-		String str = "123e";
+		String str = "";
 		int i = Integer.parseInt(str);
 		
 		String str1 = "12";
