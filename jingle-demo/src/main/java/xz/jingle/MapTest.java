@@ -42,5 +42,6 @@ public class MapTest {
 				it.remove();
 		}
 		System.out.println(resMap);
+		resMap.remove("hahaha");
 	}
 }
