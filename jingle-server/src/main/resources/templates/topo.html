@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head lang="en">
+    <meta charset="UTF-8"/>
+    <title>拓扑图</title>
+    <script  th:inline="javascript" src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script  th:inline="javascript" th:src="@{/js/jtopo-0.4.8-min.js}"></script>
+    <script  th:inline="javascript" th:src="@{/js/tree.js}"></script>
+    <script  th:inline="javascript">
+        function message(){
+            alert("该提示框是通过 onload 事件调用的。")
+        }
+    </script>
+</head>
+<body>
+    <p th:text="${msg}">信息</p>
+    <script  th:inline="javascript">
+        ...
+        var msg = [[${session.msg}]];
+        document.write(msg)
+        ...
+    </script>
+    <canvas width="1200" height="640" id="canvas">your browser does not support the canvas tag </canvas>
+</body>
+</html>

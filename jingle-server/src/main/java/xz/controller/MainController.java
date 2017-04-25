@@ -8,10 +8,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-@RequestMapping("/user")
+@RequestMapping("/")
 public class MainController {
 	
-	@RequestMapping("/login")
+	@RequestMapping("login")
 	public String login(@RequestParam(value = "uName",required = false) String uName,
 						@RequestParam(value = "uid",required = false) String uid,
 						ModelMap map) {
@@ -27,9 +27,15 @@ public class MainController {
 	}
 	
 	@ResponseBody
-	@RequestMapping("/logout/{uName}")
-	public String index(@PathVariable String uName,
+	@RequestMapping("logout/{uName}")
+	public String logout(@PathVariable String uName,
 						@RequestParam(value = "uid",required = false) String uid) {
 		return uName+" has logout "+ uid;
+	}
+	
+	@RequestMapping("topo")
+	public String topo(ModelMap map) {
+		map.put("msg","拓扑图页面");
+		return "topo";
 	}
 }

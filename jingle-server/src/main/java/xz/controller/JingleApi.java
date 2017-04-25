@@ -46,12 +46,10 @@ public class JingleApi {
         l.info(port);
         return cacheResponse("hello,pathNum by num is " + num1);
     }
-    @RequestMapping(value = "/", method = RequestMethod.GET)
-    public ResponseEntity<String> add(
-            @RequestParam(required = false) int num1,
-            @RequestParam(required = false) int num2) {
-        num1 = num1/num2;
-        return cacheResponse("hello,num1 by num2 is " + num1);
+    @RequestMapping(value = "/topo", method = RequestMethod.GET)
+    public ResponseEntity<String[]> add() {
+        String[] leaves = {"leaf_1","leaf_2","leaf_3","leaf_4"};
+        return cacheResponse(leaves);
     }
     //缓存这个ResponseEntity300秒
     private <T> ResponseEntity<T> cacheResponse(T value) {
