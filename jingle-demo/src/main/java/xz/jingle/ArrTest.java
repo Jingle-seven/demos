@@ -3,6 +3,7 @@ package xz.jingle;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -33,5 +34,18 @@ public class ArrTest {
 //			list.set(i,(int)list.get(i)+1);
 //		}
 		System.out.println(list);
+	}
+	
+	@Test
+	public void testSubList(){
+		List list = new ArrayList(){{
+			add(0);
+			add(1);
+			add(2);
+			add(3);
+			add(4);
+			add(5);
+		}};
+		System.out.println(list.subList(0,5));
 	}
 }
