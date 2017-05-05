@@ -15,10 +15,12 @@ package xz.controller;
 
 import org.apache.commons.logging.Log;
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.CacheControl;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import xz.dao.ISpanDao;
 
 import java.util.*;
 import java.util.concurrent.TimeUnit;
@@ -34,8 +36,10 @@ import static com.sun.xml.internal.ws.api.model.wsdl.WSDLBoundOperation.ANONYMOU
 @RequestMapping("/api")
 public class JingleApi {
     
-    @Value("${jingle.ui.port}")
-    int port;
+//    @Value("${jingle.ui.port}")
+//    int port;
+    @Autowired
+    ISpanDao spanDao;
     
     @RequestMapping(value = "/{num1}", method = RequestMethod.GET)
     public ResponseEntity<String> getUiPort(
@@ -43,11 +47,16 @@ public class JingleApi {
             @RequestParam(required = false) int num) {
         num1 = num1/num;
         Logger l = Logger.getLogger("haha");
-        l.info(port);
+//        l.info(port);
         return cacheResponse("hello,pathNum by num is " + num1);
     }
     @RequestMapping(value = "/topo", method = RequestMethod.GET)
-    public ResponseEntity<String[]> add() {
+    public ResponseEntity<String[]> topo() {
+        String[] leaves = {"leaf_1","leaf_2","leaf_3","leaf_4"};
+        return cacheResponse(leaves);
+    }
+    @RequestMapping(value = "/test", method = RequestMethod.GET)
+    public ResponseEntity<String[]> test() {
         String[] leaves = {"leaf_1","leaf_2","leaf_3","leaf_4"};
         return cacheResponse(leaves);
     }
