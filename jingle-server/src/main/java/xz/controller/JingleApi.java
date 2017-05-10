@@ -13,19 +13,19 @@
  */
 package xz.controller;
 
-import org.apache.commons.logging.Log;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.CacheControl;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import xz.dao.ISpanDao;
+import xz.model.Span;
+import xz.model.TopoLink;
+import xz.model.TopoNode;
+import xz.util.Util;
 
 import java.util.*;
 import java.util.concurrent.TimeUnit;
-
-import static com.sun.xml.internal.ws.api.model.wsdl.WSDLBoundOperation.ANONYMOUS.required;
 
 
 /**
@@ -51,11 +51,33 @@ public class JingleApi {
         return cacheResponse("hello,pathNum by num is " + num1);
     }
     @RequestMapping(value = "/topo", method = RequestMethod.GET)
-    public ResponseEntity<String[]> topo() {
-        String[] leaves = {"leaf_1","leaf_2","leaf_3","leaf_4"};
-        return cacheResponse(leaves);
+    public ResponseEntity<Map<String,Object>> topo() {
+        List<Span> spans = spanDao.findAll();
+		Map<String,TopoNode> nodes = new HashMap<>(32);
+		Set<TopoLink> links = new HashSet<>(32);
+		for (Span span : spans) {
+			TopoNode child = new TopoNode(Util.intToIp(span.getEndpointIpv4()),span.getEndpointServiceName());
+			addNode(nodes, child);
+			if(span.getParentIp()!=null || span.getParentEndpointName()!=null) {
+				TopoNode parent = new TopoNode(Util.intToIp(span.getParentIp()), span.getParentEndpointName());
+//				addNode(nodeNames, parent);
+				TopoLink link = new TopoLink().setSource(parent.token).setTarget(child.token);
+				links.add(link);
+			}
+		}
+		
+        Map<String,Object> resMap = new HashMap<>();
+		resMap.put("node",nodes.values());
+		resMap.put("link",links);
+        return cacheResponse(resMap);
     }
-    @RequestMapping(value = "/test", method = RequestMethod.GET)
+	
+	private TopoNode addNode(Map<String, TopoNode> nodes, TopoNode parent) {
+		TopoNode node = nodes.get(parent.token);
+		return node==null ? nodes.put(parent.token,parent) : node.addOnce();
+	}
+	
+	@RequestMapping(value = "/test", method = RequestMethod.GET)
     public ResponseEntity<String[]> test() {
         String[] leaves = {"leaf_1","leaf_2","leaf_3","leaf_4"};
         return cacheResponse(leaves);

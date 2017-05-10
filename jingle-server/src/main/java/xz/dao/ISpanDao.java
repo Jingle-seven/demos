@@ -4,6 +4,7 @@ import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.type.JdbcType;
 import xz.model.Span;
 
+import java.lang.annotation.*;
 import java.util.List;
 
 public interface ISpanDao {
