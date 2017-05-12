@@ -27,7 +27,11 @@ public class TimeDateTest {
 		Long past = now - (1000 * 3600 * 24);
 		System.out.println(new Date(past));
 	}
-	
+	private static void testDayBegin() {
+		Long  stampNow= System.currentTimeMillis();
+		Long startTime  = stampNow/(1000*3600*24)*(1000*3600*24);
+		System.out.println(stampNow-startTime);
+	}
 	private static void testLocalDateTime() {
 		LocalDateTime dateTime = LocalDateTime.now();
 //		LocalDateTime dateTime2 = LocalDateTime.parse("2011-11-23",DateTimeFormatter.ofPattern("yyyy-MM-dd"));
