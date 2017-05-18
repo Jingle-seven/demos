@@ -8,6 +8,22 @@ import java.util.Objects;
 public class TopoLink {
 	String source;
 	String target;
+	int times ;
+	
+	public TopoLink(String source, String target) {
+		this.source = source;
+		this.target = target;
+		this.times = 1;
+	}
+	
+	public int getTimes() {
+		return times;
+	}
+	
+	public TopoLink setTimes(int times) {
+		this.times = times;
+		return this;
+	}
 	
 	public TopoLink setSource(String source) {
 		this.source = source;
@@ -27,6 +43,9 @@ public class TopoLink {
 		return target;
 	}
 	
+	public String genToken() {
+		return source + target;
+	}
 	@Override
 	public String toString() {
 		return "TopoLink{" +
@@ -47,5 +66,10 @@ public class TopoLink {
 	@Override
 	public int hashCode() {
 		return Objects.hash(source, target);
+	}
+	
+	public TopoLink addOnce() {
+		times++;
+		return this;
 	}
 }

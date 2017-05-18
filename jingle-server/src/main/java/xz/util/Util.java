@@ -44,13 +44,11 @@ public class Util {
 		return Util.cache(resMap);
 	}
 	
-	public static String intToIp(Integer ipInt) {
-		if(ipInt==null)
-			return "";
+	public static String longToIp(long ipInt) {
 		return new StringBuilder().append(((ipInt >> 24) & 0xff)).append('.').append((ipInt >> 16) & 0xff).append('.')
 				.append((ipInt >> 8) & 0xff).append('.').append((ipInt & 0xff)).toString();
 	}
-	public static long ipToInt(String ip) {
+	public static long ipToLong(String ip) {
 		try{
 			String[] ipArray = ip.split("\\.");
 			int sum = Integer.parseInt(ipArray[0]) << 8 << 8 << 8;

@@ -15,6 +15,7 @@ package xz.controller;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.CacheControl;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -36,8 +37,8 @@ import java.util.concurrent.TimeUnit;
 @RequestMapping("/api")
 public class JingleApi {
     
-//    @Value("${jingle.ui.port}")
-//    int port;
+    @Value("${jingle.ui.port}")
+    int port;
     @Autowired
     ISpanDao spanDao;
     
@@ -52,29 +53,38 @@ public class JingleApi {
     }
     @RequestMapping(value = "/topo", method = RequestMethod.GET)
     public ResponseEntity<Map<String,Object>> topo() {
-        List<Span> spans = spanDao.findAll();
+	
+		List<Span> spans = spanDao.findAll();
 		Map<String,TopoNode> nodes = new HashMap<>(32);
-		Set<TopoLink> links = new HashSet<>(32);
+		Map<String,TopoLink> links = new HashMap<>(32);
 		for (Span span : spans) {
-			TopoNode child = new TopoNode(Util.intToIp(span.getEndpointIpv4()),span.getEndpointServiceName());
+			TopoNode child = new TopoNode(Util.longToIp(span.getEndpointIpv4()),span.getEndpointServiceName());
 			addNode(nodes, child);
 			if(span.getParentIp()!=null || span.getParentEndpointName()!=null) {
-				TopoNode parent = new TopoNode(Util.intToIp(span.getParentIp()), span.getParentEndpointName());
+				TopoNode parent = new TopoNode(Util.longToIp(span.getParentIp()), span.getParentEndpointName());
 //				addNode(nodeNames, parent);
-				TopoLink link = new TopoLink().setSource(parent.token).setTarget(child.token);
-				links.add(link);
+				nodes.get(child.getToken()).setParent(nodes.get(parent.getToken()));
+				TopoLink link = new TopoLink(parent.token,child.token);
+				addLink(links,link);
+				//一个结点可以派生出多个结点,所以同一结点parent和child计数可能不一样
 			}
 		}
-		
-        Map<String,Object> resMap = new HashMap<>();
-		resMap.put("node",nodes.values());
-		resMap.put("link",links);
-        return cacheResponse(resMap);
+		nodes.values().forEach(TopoNode::genDepth);
+		Map<String,Object> dataMap = new HashMap<>();
+		dataMap.put("node",nodes.values());
+		dataMap.put("link",links.values());
+		String[] meta = {"node:"+nodes.size(),"link:"+links.size()};
+        return cacheResponse(dataMap);
     }
 	
 	private TopoNode addNode(Map<String, TopoNode> nodes, TopoNode parent) {
 		TopoNode node = nodes.get(parent.token);
 		return node==null ? nodes.put(parent.token,parent) : node.addOnce();
+	}
+	private TopoLink addLink(Map<String, TopoLink> links, TopoLink link) {
+		String linkToken = link.genToken();
+		TopoLink node = links.get(linkToken);
+		return node==null ? links.put(linkToken,link) : node.addOnce();
 	}
 	
 	@RequestMapping(value = "/test", method = RequestMethod.GET)
