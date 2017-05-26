@@ -38,11 +38,6 @@
             <version>3.14.2.1</version>
         </dependency>
         <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>5.1.39</version>
-        </dependency>
-        <dependency>
             <groupId>io.reactivex</groupId>
             <artifactId>rxjava</artifactId>
             <version>1.2.5</version>
@@ -92,6 +87,7 @@
                 </executions>
             </plugin>
             <plugin>
+                <!--生成mybatis pojo,dao类的命令-->
                 <!-- mvn mybatis-generator:generate -->
                 <groupId>org.mybatis.generator</groupId>
                 <artifactId>mybatis-generator-maven-plugin</artifactId>
