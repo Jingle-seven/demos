@@ -23,7 +23,7 @@ public class MainController {
 		}
 		String[] servants = {"saber","lancer","archer","caster","rider","basaker","assassin"};
 		map.addAttribute("allServant", servants);
-		return "userLogin";
+		return "user_login";
 	}
 	
 	@ResponseBody

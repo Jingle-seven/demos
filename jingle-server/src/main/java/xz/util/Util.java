@@ -15,6 +15,9 @@ package xz.util;
 
 import org.springframework.http.CacheControl;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
+import xz.controller.security.ButlerUserDetail;
+import xz.model.TUser;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
@@ -122,5 +125,63 @@ public class Util {
 	}
 	public static String checkNotNull(String str){
 		return str==null? "" :str;
+	}
+	
+	/** Parses a 1 to 16 character lower-hex string with no prefix int an unsigned long. */
+	public static long hexToLong(String lowerHex) {
+		char[] array = lowerHex.toCharArray();
+		if (array.length < 1 || array.length > 32) {
+			throw isntLowerHexLong(lowerHex);
+		}
+		long result = 0;
+		for (char c : array) {
+			result <<= 4;
+			if (c >= '0' && c <= '9') {
+				result |= c - '0';
+			} else if (c >= 'a' && c <= 'f') {
+				result |= c - 'a' + 10;
+			} else {
+				throw isntLowerHexLong(lowerHex);
+			}
+		}
+		return result;
+	}
+	static NumberFormatException isntLowerHexLong(String lowerHex) {
+		throw new NumberFormatException(
+				lowerHex + " should be a 1 to 32 character lower-hex string with no prefix");
+	}
+	/** Inspired by {@code okio.Buffer.writeLong} */
+	public static String toLowerHex(long v) {
+		char[] data = new char[16];
+		writeHexLong(data, 0, v);
+		return new String(data);
+	}
+	
+	/** Inspired by {@code okio.Buffer.writeLong} */
+	public static void writeHexLong(char[] data, int pos, long v) {
+		writeHexByte(data, pos + 0,  (byte) ((v >>> 56L) & 0xff));
+		writeHexByte(data, pos + 2,  (byte) ((v >>> 48L) & 0xff));
+		writeHexByte(data, pos + 4,  (byte) ((v >>> 40L) & 0xff));
+		writeHexByte(data, pos + 6,  (byte) ((v >>> 32L) & 0xff));
+		writeHexByte(data, pos + 8,  (byte) ((v >>> 24L) & 0xff));
+		writeHexByte(data, pos + 10, (byte) ((v >>> 16L) & 0xff));
+		writeHexByte(data, pos + 12, (byte) ((v >>> 8L) & 0xff));
+		writeHexByte(data, pos + 14, (byte)  (v & 0xff));
+	}
+	static final char[] HEX_DIGITS =
+			{'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
+	
+	static void writeHexByte(char[] data, int pos, byte b) {
+		data[pos + 0] = HEX_DIGITS[(b >> 4) & 0xf];
+		data[pos + 1] = HEX_DIGITS[b & 0xf];
+	}
+	
+	public static TUser getLoggedOnUser(){
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		TUser user = null;
+		if(principal instanceof ButlerUserDetail) {
+			user = ((ButlerUserDetail) principal).castToUser();
+		}
+		return user;
 	}
 }
