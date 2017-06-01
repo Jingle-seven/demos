@@ -1,5 +1,3 @@
-package jingle
-
 /**
   * Created by Jinhua on 2017/3/24.
   */
