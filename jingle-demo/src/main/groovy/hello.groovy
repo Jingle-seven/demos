@@ -62,6 +62,7 @@ println(xzList)
 xzClosure<<{println("hello,<<")}
 xzClosure(1,3)
 println("what's wrong with github?where's my contributions?")
+println("Is my email wrong?")
 
 //不写return的话,最后一行默认返回
 static def add(a, b){ a+b }
