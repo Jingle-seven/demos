@@ -56,6 +56,11 @@ s3.artist=null
 //?.的意思是,如果不为空,执行后面语句
 println(s3.artist?.toUpperCase())
 
+//"<<"可以是list,set的add方法,流的write方法,把闭包赋值给变量
+xzList << 2**3//幂运算
+println(xzList)
+xzClosure<<{println("hello,<<")}
+xzClosure(1,3)
 
 //不写return的话,最后一行默认返回
 static def add(a, b){ a+b }
