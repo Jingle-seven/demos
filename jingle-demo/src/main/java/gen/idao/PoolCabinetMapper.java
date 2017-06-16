@@ -18,12 +18,12 @@ public interface PoolCabinetMapper {
     int deleteByPrimaryKey(Long id);
 
     @Insert({
-        "insert into pool_cabinet (id, asset_id, ",
-        "type, owner, location, ",
+        "insert into pool_cabinet (id, type, ",
+        "owner, location, ",
         "create_time, update_time, ",
         "status)",
-        "values (#{id,jdbcType=BIGINT}, #{assetId,jdbcType=BIGINT}, ",
-        "#{type,jdbcType=VARCHAR}, #{owner,jdbcType=VARCHAR}, #{location,jdbcType=VARCHAR}, ",
+        "values (#{id,jdbcType=BIGINT}, #{type,jdbcType=VARCHAR}, ",
+        "#{owner,jdbcType=VARCHAR}, #{location,jdbcType=VARCHAR}, ",
         "#{createTime,jdbcType=BIGINT}, #{updateTime,jdbcType=BIGINT}, ",
         "#{status,jdbcType=VARCHAR})"
     })
@@ -31,13 +31,12 @@ public interface PoolCabinetMapper {
 
     @Select({
         "select",
-        "id, asset_id, type, owner, location, create_time, update_time, status",
+        "id, type, owner, location, create_time, update_time, status",
         "from pool_cabinet",
         "where id = #{id,jdbcType=BIGINT}"
     })
     @Results({
         @Result(column="id", property="id", jdbcType=JdbcType.BIGINT, id=true),
-        @Result(column="asset_id", property="assetId", jdbcType=JdbcType.BIGINT),
         @Result(column="type", property="type", jdbcType=JdbcType.VARCHAR),
         @Result(column="owner", property="owner", jdbcType=JdbcType.VARCHAR),
         @Result(column="location", property="location", jdbcType=JdbcType.VARCHAR),
@@ -49,12 +48,11 @@ public interface PoolCabinetMapper {
 
     @Select({
         "select",
-        "id, asset_id, type, owner, location, create_time, update_time, status",
+        "id, type, owner, location, create_time, update_time, status",
         "from pool_cabinet"
     })
     @Results({
         @Result(column="id", property="id", jdbcType=JdbcType.BIGINT, id=true),
-        @Result(column="asset_id", property="assetId", jdbcType=JdbcType.BIGINT),
         @Result(column="type", property="type", jdbcType=JdbcType.VARCHAR),
         @Result(column="owner", property="owner", jdbcType=JdbcType.VARCHAR),
         @Result(column="location", property="location", jdbcType=JdbcType.VARCHAR),
@@ -66,8 +64,7 @@ public interface PoolCabinetMapper {
 
     @Update({
         "update pool_cabinet",
-        "set asset_id = #{assetId,jdbcType=BIGINT},",
-          "type = #{type,jdbcType=VARCHAR},",
+        "set type = #{type,jdbcType=VARCHAR},",
           "owner = #{owner,jdbcType=VARCHAR},",
           "location = #{location,jdbcType=VARCHAR},",
           "create_time = #{createTime,jdbcType=BIGINT},",

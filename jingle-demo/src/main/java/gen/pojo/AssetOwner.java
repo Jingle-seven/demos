@@ -3,9 +3,7 @@ package gen.pojo;
 public class AssetOwner {
     private Long id;
 
-    private Long assetId;
-
-    private String assetNumber;
+    private Long assetNumber;
 
     private String owner;
 
@@ -27,19 +25,11 @@ public class AssetOwner {
         this.id = id;
     }
 
-    public Long getAssetId() {
-        return assetId;
-    }
-
-    public void setAssetId(Long assetId) {
-        this.assetId = assetId;
-    }
-
-    public String getAssetNumber() {
+    public Long getAssetNumber() {
         return assetNumber;
     }
 
-    public void setAssetNumber(String assetNumber) {
+    public void setAssetNumber(Long assetNumber) {
         this.assetNumber = assetNumber;
     }
 

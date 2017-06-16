@@ -3,8 +3,6 @@ package gen.pojo;
 public class PoolCabinet {
     private Long id;
 
-    private Long assetId;
-
     private String type;
 
     private String owner;
@@ -23,14 +21,6 @@ public class PoolCabinet {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Long getAssetId() {
-        return assetId;
-    }
-
-    public void setAssetId(Long assetId) {
-        this.assetId = assetId;
     }
 
     public String getType() {

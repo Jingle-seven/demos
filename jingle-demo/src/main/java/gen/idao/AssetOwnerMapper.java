@@ -18,30 +18,26 @@ public interface AssetOwnerMapper {
     int deleteByPrimaryKey(Long id);
 
     @Insert({
-        "insert into asset_owner (id, asset_id, ",
-        "asset_number, owner, ",
-        "acquire, aquire_time, ",
-        "create_time, update_time, ",
-        "status)",
-        "values (#{id,jdbcType=BIGINT}, #{assetId,jdbcType=BIGINT}, ",
-        "#{assetNumber,jdbcType=VARCHAR}, #{owner,jdbcType=VARCHAR}, ",
-        "#{acquire,jdbcType=VARCHAR}, #{aquireTime,jdbcType=VARCHAR}, ",
-        "#{createTime,jdbcType=BIGINT}, #{updateTime,jdbcType=BIGINT}, ",
-        "#{status,jdbcType=VARCHAR})"
+        "insert into asset_owner (id, asset_number, ",
+        "owner, acquire, ",
+        "aquire_time, create_time, ",
+        "update_time, status)",
+        "values (#{id,jdbcType=BIGINT}, #{assetNumber,jdbcType=BIGINT}, ",
+        "#{owner,jdbcType=VARCHAR}, #{acquire,jdbcType=VARCHAR}, ",
+        "#{aquireTime,jdbcType=VARCHAR}, #{createTime,jdbcType=BIGINT}, ",
+        "#{updateTime,jdbcType=BIGINT}, #{status,jdbcType=VARCHAR})"
     })
     int insert(AssetOwner record);
 
     @Select({
         "select",
-        "id, asset_id, asset_number, owner, acquire, aquire_time, create_time, update_time, ",
-        "status",
+        "id, asset_number, owner, acquire, aquire_time, create_time, update_time, status",
         "from asset_owner",
         "where id = #{id,jdbcType=BIGINT}"
     })
     @Results({
         @Result(column="id", property="id", jdbcType=JdbcType.BIGINT, id=true),
-        @Result(column="asset_id", property="assetId", jdbcType=JdbcType.BIGINT),
-        @Result(column="asset_number", property="assetNumber", jdbcType=JdbcType.VARCHAR),
+        @Result(column="asset_number", property="assetNumber", jdbcType=JdbcType.BIGINT),
         @Result(column="owner", property="owner", jdbcType=JdbcType.VARCHAR),
         @Result(column="acquire", property="acquire", jdbcType=JdbcType.VARCHAR),
         @Result(column="aquire_time", property="aquireTime", jdbcType=JdbcType.VARCHAR),
@@ -53,14 +49,12 @@ public interface AssetOwnerMapper {
 
     @Select({
         "select",
-        "id, asset_id, asset_number, owner, acquire, aquire_time, create_time, update_time, ",
-        "status",
+        "id, asset_number, owner, acquire, aquire_time, create_time, update_time, status",
         "from asset_owner"
     })
     @Results({
         @Result(column="id", property="id", jdbcType=JdbcType.BIGINT, id=true),
-        @Result(column="asset_id", property="assetId", jdbcType=JdbcType.BIGINT),
-        @Result(column="asset_number", property="assetNumber", jdbcType=JdbcType.VARCHAR),
+        @Result(column="asset_number", property="assetNumber", jdbcType=JdbcType.BIGINT),
         @Result(column="owner", property="owner", jdbcType=JdbcType.VARCHAR),
         @Result(column="acquire", property="acquire", jdbcType=JdbcType.VARCHAR),
         @Result(column="aquire_time", property="aquireTime", jdbcType=JdbcType.VARCHAR),
@@ -72,8 +66,7 @@ public interface AssetOwnerMapper {
 
     @Update({
         "update asset_owner",
-        "set asset_id = #{assetId,jdbcType=BIGINT},",
-          "asset_number = #{assetNumber,jdbcType=VARCHAR},",
+        "set asset_number = #{assetNumber,jdbcType=BIGINT},",
           "owner = #{owner,jdbcType=VARCHAR},",
           "acquire = #{acquire,jdbcType=VARCHAR},",
           "aquire_time = #{aquireTime,jdbcType=VARCHAR},",

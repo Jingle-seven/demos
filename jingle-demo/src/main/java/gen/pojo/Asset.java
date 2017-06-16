@@ -15,7 +15,11 @@ public class Asset {
 
     private String remark;
 
+    private String owner;
+
     private Long createTime;
+
+    private Long cabinetId;
 
     private Long updateTime;
 
@@ -77,12 +81,28 @@ public class Asset {
         this.remark = remark;
     }
 
+    public String getOwner() {
+        return owner;
+    }
+
+    public void setOwner(String owner) {
+        this.owner = owner;
+    }
+
     public Long getCreateTime() {
         return createTime;
     }
 
     public void setCreateTime(Long createTime) {
         this.createTime = createTime;
+    }
+
+    public Long getCabinetId() {
+        return cabinetId;
+    }
+
+    public void setCabinetId(Long cabinetId) {
+        this.cabinetId = cabinetId;
     }
 
     public Long getUpdateTime() {
