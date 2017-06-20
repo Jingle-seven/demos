@@ -11,8 +11,6 @@ public class PoolNetwork {
 
     private Long assetId;
 
-    private Long cabinetId;
-
     private Long expiredTime;
 
     private Long createTime;
@@ -59,14 +57,6 @@ public class PoolNetwork {
 
     public void setAssetId(Long assetId) {
         this.assetId = assetId;
-    }
-
-    public Long getCabinetId() {
-        return cabinetId;
-    }
-
-    public void setCabinetId(Long cabinetId) {
-        this.cabinetId = cabinetId;
     }
 
     public Long getExpiredTime() {

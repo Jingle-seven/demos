@@ -20,21 +20,18 @@ public interface PoolNetworkMapper {
     @Insert({
         "insert into pool_network (id, ip, owner, ",
         "purpose, asset_id, ",
-        "cabinet_id, expired_time, ",
-        "create_time, update_time, ",
-        "status)",
+        "expired_time, create_time, ",
+        "update_time, status)",
         "values (#{id,jdbcType=BIGINT}, #{ip,jdbcType=VARCHAR}, #{owner,jdbcType=VARCHAR}, ",
         "#{purpose,jdbcType=VARCHAR}, #{assetId,jdbcType=BIGINT}, ",
-        "#{cabinetId,jdbcType=BIGINT}, #{expiredTime,jdbcType=BIGINT}, ",
-        "#{createTime,jdbcType=BIGINT}, #{updateTime,jdbcType=BIGINT}, ",
-        "#{status,jdbcType=VARCHAR})"
+        "#{expiredTime,jdbcType=BIGINT}, #{createTime,jdbcType=BIGINT}, ",
+        "#{updateTime,jdbcType=BIGINT}, #{status,jdbcType=VARCHAR})"
     })
     int insert(PoolNetwork record);
 
     @Select({
         "select",
-        "id, ip, owner, purpose, asset_id, cabinet_id, expired_time, create_time, update_time, ",
-        "status",
+        "id, ip, owner, purpose, asset_id, expired_time, create_time, update_time, status",
         "from pool_network",
         "where id = #{id,jdbcType=BIGINT}"
     })
@@ -44,7 +41,6 @@ public interface PoolNetworkMapper {
         @Result(column="owner", property="owner", jdbcType=JdbcType.VARCHAR),
         @Result(column="purpose", property="purpose", jdbcType=JdbcType.VARCHAR),
         @Result(column="asset_id", property="assetId", jdbcType=JdbcType.BIGINT),
-        @Result(column="cabinet_id", property="cabinetId", jdbcType=JdbcType.BIGINT),
         @Result(column="expired_time", property="expiredTime", jdbcType=JdbcType.BIGINT),
         @Result(column="create_time", property="createTime", jdbcType=JdbcType.BIGINT),
         @Result(column="update_time", property="updateTime", jdbcType=JdbcType.BIGINT),
@@ -54,8 +50,7 @@ public interface PoolNetworkMapper {
 
     @Select({
         "select",
-        "id, ip, owner, purpose, asset_id, cabinet_id, expired_time, create_time, update_time, ",
-        "status",
+        "id, ip, owner, purpose, asset_id, expired_time, create_time, update_time, status",
         "from pool_network"
     })
     @Results({
@@ -64,7 +59,6 @@ public interface PoolNetworkMapper {
         @Result(column="owner", property="owner", jdbcType=JdbcType.VARCHAR),
         @Result(column="purpose", property="purpose", jdbcType=JdbcType.VARCHAR),
         @Result(column="asset_id", property="assetId", jdbcType=JdbcType.BIGINT),
-        @Result(column="cabinet_id", property="cabinetId", jdbcType=JdbcType.BIGINT),
         @Result(column="expired_time", property="expiredTime", jdbcType=JdbcType.BIGINT),
         @Result(column="create_time", property="createTime", jdbcType=JdbcType.BIGINT),
         @Result(column="update_time", property="updateTime", jdbcType=JdbcType.BIGINT),
@@ -78,7 +72,6 @@ public interface PoolNetworkMapper {
           "owner = #{owner,jdbcType=VARCHAR},",
           "purpose = #{purpose,jdbcType=VARCHAR},",
           "asset_id = #{assetId,jdbcType=BIGINT},",
-          "cabinet_id = #{cabinetId,jdbcType=BIGINT},",
           "expired_time = #{expiredTime,jdbcType=BIGINT},",
           "create_time = #{createTime,jdbcType=BIGINT},",
           "update_time = #{updateTime,jdbcType=BIGINT},",

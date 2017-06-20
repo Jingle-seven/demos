@@ -15,6 +15,8 @@ public class Asset {
 
     private String remark;
 
+    private String alias;
+
     private String owner;
 
     private Long createTime;
@@ -79,6 +81,14 @@ public class Asset {
 
     public void setRemark(String remark) {
         this.remark = remark;
+    }
+
+    public String getAlias() {
+        return alias;
+    }
+
+    public void setAlias(String alias) {
+        this.alias = alias;
     }
 
     public String getOwner() {
