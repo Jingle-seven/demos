@@ -1,5 +1,7 @@
 package xz.jingle;
 
+import org.junit.Test;
+
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -69,5 +71,22 @@ public class MapTest {
 		Integer value = resMap.get("job_total_num");
 		value = value + 10;
 		System.out.println(resMap);
+	}
+	
+	@Test
+	public void testComputeIfAbsent(){
+		Map<String,Integer> map = new HashMap<>();
+		map.put("0",0);
+		//如果不存在,那么执行lambda,lambda唯一参数是key
+		map.computeIfAbsent("1", (e)->{
+			System.out.println(e);
+			return 12;
+		});
+		//如果存在,那么执行lambda,lambda参数是key和value
+		map.computeIfPresent("0", (k,v)-> {
+			System.out.println(k+": "+v);
+			return 100;
+		});
+		System.out.println(map);
 	}
 }
