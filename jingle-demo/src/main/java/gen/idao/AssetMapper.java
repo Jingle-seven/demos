@@ -18,35 +18,38 @@ public interface AssetMapper {
     int deleteByPrimaryKey(Long id);
 
     @Insert({
-        "insert into asset (id, sn, type, ",
-        "brand, model, info, ",
-        "remark, alias, owner, ",
-        "create_time, cabinet_id, ",
-        "update_time, status)",
-        "values (#{id,jdbcType=BIGINT}, #{sn,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, ",
-        "#{brand,jdbcType=VARCHAR}, #{model,jdbcType=VARCHAR}, #{info,jdbcType=VARCHAR}, ",
-        "#{remark,jdbcType=VARCHAR}, #{alias,jdbcType=VARCHAR}, #{owner,jdbcType=VARCHAR}, ",
-        "#{createTime,jdbcType=BIGINT}, #{cabinetId,jdbcType=BIGINT}, ",
-        "#{updateTime,jdbcType=BIGINT}, #{status,jdbcType=VARCHAR})"
+        "insert into asset (id, sn, number, ",
+        "type, brand, model, ",
+        "info, remark, user, ",
+        "owner, create_time, ",
+        "cabinet_id, update_time, ",
+        "status)",
+        "values (#{id,jdbcType=BIGINT}, #{sn,jdbcType=VARCHAR}, #{number,jdbcType=BIGINT}, ",
+        "#{type,jdbcType=VARCHAR}, #{brand,jdbcType=VARCHAR}, #{model,jdbcType=VARCHAR}, ",
+        "#{info,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{user,jdbcType=VARCHAR}, ",
+        "#{owner,jdbcType=VARCHAR}, #{createTime,jdbcType=BIGINT}, ",
+        "#{cabinetId,jdbcType=BIGINT}, #{updateTime,jdbcType=BIGINT}, ",
+        "#{status,jdbcType=VARCHAR})"
     })
     int insert(Asset record);
 
     @Select({
         "select",
-        "id, sn, type, brand, model, info, remark, alias, owner, create_time, cabinet_id, ",
-        "update_time, status",
+        "id, sn, number, type, brand, model, info, remark, user, owner, create_time, ",
+        "cabinet_id, update_time, status",
         "from asset",
         "where id = #{id,jdbcType=BIGINT}"
     })
     @Results({
         @Result(column="id", property="id", jdbcType=JdbcType.BIGINT, id=true),
         @Result(column="sn", property="sn", jdbcType=JdbcType.VARCHAR),
+        @Result(column="number", property="number", jdbcType=JdbcType.BIGINT),
         @Result(column="type", property="type", jdbcType=JdbcType.VARCHAR),
         @Result(column="brand", property="brand", jdbcType=JdbcType.VARCHAR),
         @Result(column="model", property="model", jdbcType=JdbcType.VARCHAR),
         @Result(column="info", property="info", jdbcType=JdbcType.VARCHAR),
         @Result(column="remark", property="remark", jdbcType=JdbcType.VARCHAR),
-        @Result(column="alias", property="alias", jdbcType=JdbcType.VARCHAR),
+        @Result(column="user", property="user", jdbcType=JdbcType.VARCHAR),
         @Result(column="owner", property="owner", jdbcType=JdbcType.VARCHAR),
         @Result(column="create_time", property="createTime", jdbcType=JdbcType.BIGINT),
         @Result(column="cabinet_id", property="cabinetId", jdbcType=JdbcType.BIGINT),
@@ -57,19 +60,20 @@ public interface AssetMapper {
 
     @Select({
         "select",
-        "id, sn, type, brand, model, info, remark, alias, owner, create_time, cabinet_id, ",
-        "update_time, status",
+        "id, sn, number, type, brand, model, info, remark, user, owner, create_time, ",
+        "cabinet_id, update_time, status",
         "from asset"
     })
     @Results({
         @Result(column="id", property="id", jdbcType=JdbcType.BIGINT, id=true),
         @Result(column="sn", property="sn", jdbcType=JdbcType.VARCHAR),
+        @Result(column="number", property="number", jdbcType=JdbcType.BIGINT),
         @Result(column="type", property="type", jdbcType=JdbcType.VARCHAR),
         @Result(column="brand", property="brand", jdbcType=JdbcType.VARCHAR),
         @Result(column="model", property="model", jdbcType=JdbcType.VARCHAR),
         @Result(column="info", property="info", jdbcType=JdbcType.VARCHAR),
         @Result(column="remark", property="remark", jdbcType=JdbcType.VARCHAR),
-        @Result(column="alias", property="alias", jdbcType=JdbcType.VARCHAR),
+        @Result(column="user", property="user", jdbcType=JdbcType.VARCHAR),
         @Result(column="owner", property="owner", jdbcType=JdbcType.VARCHAR),
         @Result(column="create_time", property="createTime", jdbcType=JdbcType.BIGINT),
         @Result(column="cabinet_id", property="cabinetId", jdbcType=JdbcType.BIGINT),
@@ -81,12 +85,13 @@ public interface AssetMapper {
     @Update({
         "update asset",
         "set sn = #{sn,jdbcType=VARCHAR},",
+          "number = #{number,jdbcType=BIGINT},",
           "type = #{type,jdbcType=VARCHAR},",
           "brand = #{brand,jdbcType=VARCHAR},",
           "model = #{model,jdbcType=VARCHAR},",
           "info = #{info,jdbcType=VARCHAR},",
           "remark = #{remark,jdbcType=VARCHAR},",
-          "alias = #{alias,jdbcType=VARCHAR},",
+          "user = #{user,jdbcType=VARCHAR},",
           "owner = #{owner,jdbcType=VARCHAR},",
           "create_time = #{createTime,jdbcType=BIGINT},",
           "cabinet_id = #{cabinetId,jdbcType=BIGINT},",

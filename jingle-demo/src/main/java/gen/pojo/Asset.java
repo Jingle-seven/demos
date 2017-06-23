@@ -5,6 +5,8 @@ public class Asset {
 
     private String sn;
 
+    private Long number;
+
     private String type;
 
     private String brand;
@@ -15,7 +17,7 @@ public class Asset {
 
     private String remark;
 
-    private String alias;
+    private String user;
 
     private String owner;
 
@@ -41,6 +43,14 @@ public class Asset {
 
     public void setSn(String sn) {
         this.sn = sn;
+    }
+
+    public Long getNumber() {
+        return number;
+    }
+
+    public void setNumber(Long number) {
+        this.number = number;
     }
 
     public String getType() {
@@ -83,12 +93,12 @@ public class Asset {
         this.remark = remark;
     }
 
-    public String getAlias() {
-        return alias;
+    public String getUser() {
+        return user;
     }
 
-    public void setAlias(String alias) {
-        this.alias = alias;
+    public void setUser(String user) {
+        this.user = user;
     }
 
     public String getOwner() {
