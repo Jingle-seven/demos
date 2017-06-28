@@ -59,4 +59,16 @@ public class TUser {
         this.authority = authority;
         return this;
     }
+    
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("TUser{");
+        sb.append("id=").append(id);
+        sb.append(", name='").append(name).append('\'');
+        sb.append(", account='").append(account).append('\'');
+        sb.append(", password='").append(password).append('\'');
+        sb.append(", authority=").append(authority);
+        sb.append('}');
+        return sb.toString();
+    }
 }
