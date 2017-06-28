@@ -9,6 +9,8 @@ public class Asset {
 
     private String type;
 
+    private String assetType;
+
     private String brand;
 
     private String model;
@@ -21,9 +23,9 @@ public class Asset {
 
     private String owner;
 
-    private Long createTime;
-
     private Long cabinetId;
+
+    private Long createTime;
 
     private Long updateTime;
 
@@ -59,6 +61,14 @@ public class Asset {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public String getAssetType() {
+        return assetType;
+    }
+
+    public void setAssetType(String assetType) {
+        this.assetType = assetType;
     }
 
     public String getBrand() {
@@ -109,20 +119,20 @@ public class Asset {
         this.owner = owner;
     }
 
-    public Long getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(Long createTime) {
-        this.createTime = createTime;
-    }
-
     public Long getCabinetId() {
         return cabinetId;
     }
 
     public void setCabinetId(Long cabinetId) {
         this.cabinetId = cabinetId;
+    }
+
+    public Long getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Long createTime) {
+        this.createTime = createTime;
     }
 
     public Long getUpdateTime() {

@@ -3,7 +3,7 @@ package gen.pojo;
 public class PoolCabinet {
     private Long id;
 
-    private String type;
+    private String number;
 
     private String owner;
 
@@ -23,12 +23,12 @@ public class PoolCabinet {
         this.id = id;
     }
 
-    public String getType() {
-        return type;
+    public String getNumber() {
+        return number;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setNumber(String number) {
+        this.number = number;
     }
 
     public String getOwner() {
