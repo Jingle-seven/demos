@@ -9,10 +9,13 @@ import java.util.List;
 public class PageSize {
     private Integer page;
     private Integer size;
+    private Boolean all;
     private int resPage;
     private int resSize;
     
     public<T> List<T> getSubList(List<T> data) {
+        if(all!=null && all)
+            return data;
         resPage= page!=null&&page>0?page:1;
         resSize = size!=null&&size>0?size:10;
         int begin = (resPage - 1)*resSize;
@@ -37,7 +40,14 @@ public class PageSize {
         return this;
     }
     
+    public PageSize setAll(Boolean all) {
+        this.all = all;
+        return this;
+    }
+    
     public String[] toMeta(){
+        if(all!=null && all)
+            return new String[0];
         return new String[]{"page:"+resPage,"size:"+resSize};
     }
     
