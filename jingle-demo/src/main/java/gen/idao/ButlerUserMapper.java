@@ -20,16 +20,18 @@ public interface ButlerUserMapper {
     @Insert({
         "insert into butler_user (id, name, ",
         "account, password, ",
-        "authority)",
+        "authority, create_time, ",
+        "update_time, status)",
         "values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, ",
         "#{account,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, ",
-        "#{authority,jdbcType=TINYINT})"
+        "#{authority,jdbcType=TINYINT}, #{createTime,jdbcType=BIGINT}, ",
+        "#{updateTime,jdbcType=BIGINT}, #{status,jdbcType=VARCHAR})"
     })
     int insert(ButlerUser record);
 
     @Select({
         "select",
-        "id, name, account, password, authority",
+        "id, name, account, password, authority, create_time, update_time, status",
         "from butler_user",
         "where id = #{id,jdbcType=BIGINT}"
     })
@@ -38,13 +40,16 @@ public interface ButlerUserMapper {
         @Result(column="name", property="name", jdbcType=JdbcType.VARCHAR),
         @Result(column="account", property="account", jdbcType=JdbcType.VARCHAR),
         @Result(column="password", property="password", jdbcType=JdbcType.VARCHAR),
-        @Result(column="authority", property="authority", jdbcType=JdbcType.TINYINT)
+        @Result(column="authority", property="authority", jdbcType=JdbcType.TINYINT),
+        @Result(column="create_time", property="createTime", jdbcType=JdbcType.BIGINT),
+        @Result(column="update_time", property="updateTime", jdbcType=JdbcType.BIGINT),
+        @Result(column="status", property="status", jdbcType=JdbcType.VARCHAR)
     })
     ButlerUser selectByPrimaryKey(Long id);
 
     @Select({
         "select",
-        "id, name, account, password, authority",
+        "id, name, account, password, authority, create_time, update_time, status",
         "from butler_user"
     })
     @Results({
@@ -52,7 +57,10 @@ public interface ButlerUserMapper {
         @Result(column="name", property="name", jdbcType=JdbcType.VARCHAR),
         @Result(column="account", property="account", jdbcType=JdbcType.VARCHAR),
         @Result(column="password", property="password", jdbcType=JdbcType.VARCHAR),
-        @Result(column="authority", property="authority", jdbcType=JdbcType.TINYINT)
+        @Result(column="authority", property="authority", jdbcType=JdbcType.TINYINT),
+        @Result(column="create_time", property="createTime", jdbcType=JdbcType.BIGINT),
+        @Result(column="update_time", property="updateTime", jdbcType=JdbcType.BIGINT),
+        @Result(column="status", property="status", jdbcType=JdbcType.VARCHAR)
     })
     List<ButlerUser> selectAll();
 
@@ -61,7 +69,10 @@ public interface ButlerUserMapper {
         "set name = #{name,jdbcType=VARCHAR},",
           "account = #{account,jdbcType=VARCHAR},",
           "password = #{password,jdbcType=VARCHAR},",
-          "authority = #{authority,jdbcType=TINYINT}",
+          "authority = #{authority,jdbcType=TINYINT},",
+          "create_time = #{createTime,jdbcType=BIGINT},",
+          "update_time = #{updateTime,jdbcType=BIGINT},",
+          "status = #{status,jdbcType=VARCHAR}",
         "where id = #{id,jdbcType=BIGINT}"
     })
     int updateByPrimaryKey(ButlerUser record);
