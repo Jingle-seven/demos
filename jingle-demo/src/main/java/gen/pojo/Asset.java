@@ -5,7 +5,7 @@ public class Asset {
 
     private String sn;
 
-    private Long number;
+    private String number;
 
     private String type;
 
@@ -47,11 +47,11 @@ public class Asset {
         this.sn = sn;
     }
 
-    public Long getNumber() {
+    public String getNumber() {
         return number;
     }
 
-    public void setNumber(Long number) {
+    public void setNumber(String number) {
         this.number = number;
     }
 

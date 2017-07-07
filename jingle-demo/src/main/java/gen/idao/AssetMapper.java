@@ -24,7 +24,7 @@ public interface AssetMapper {
         "remark, user, owner, ",
         "cabinet_id, create_time, ",
         "update_time, status)",
-        "values (#{id,jdbcType=BIGINT}, #{sn,jdbcType=VARCHAR}, #{number,jdbcType=BIGINT}, ",
+        "values (#{id,jdbcType=BIGINT}, #{sn,jdbcType=VARCHAR}, #{number,jdbcType=VARCHAR}, ",
         "#{type,jdbcType=VARCHAR}, #{assetType,jdbcType=VARCHAR}, ",
         "#{brand,jdbcType=VARCHAR}, #{model,jdbcType=VARCHAR}, #{info,jdbcType=VARCHAR}, ",
         "#{remark,jdbcType=VARCHAR}, #{user,jdbcType=VARCHAR}, #{owner,jdbcType=VARCHAR}, ",
@@ -43,7 +43,7 @@ public interface AssetMapper {
     @Results({
         @Result(column="id", property="id", jdbcType=JdbcType.BIGINT, id=true),
         @Result(column="sn", property="sn", jdbcType=JdbcType.VARCHAR),
-        @Result(column="number", property="number", jdbcType=JdbcType.BIGINT),
+        @Result(column="number", property="number", jdbcType=JdbcType.VARCHAR),
         @Result(column="type", property="type", jdbcType=JdbcType.VARCHAR),
         @Result(column="asset_type", property="assetType", jdbcType=JdbcType.VARCHAR),
         @Result(column="brand", property="brand", jdbcType=JdbcType.VARCHAR),
@@ -68,7 +68,7 @@ public interface AssetMapper {
     @Results({
         @Result(column="id", property="id", jdbcType=JdbcType.BIGINT, id=true),
         @Result(column="sn", property="sn", jdbcType=JdbcType.VARCHAR),
-        @Result(column="number", property="number", jdbcType=JdbcType.BIGINT),
+        @Result(column="number", property="number", jdbcType=JdbcType.VARCHAR),
         @Result(column="type", property="type", jdbcType=JdbcType.VARCHAR),
         @Result(column="asset_type", property="assetType", jdbcType=JdbcType.VARCHAR),
         @Result(column="brand", property="brand", jdbcType=JdbcType.VARCHAR),
@@ -87,7 +87,7 @@ public interface AssetMapper {
     @Update({
         "update asset",
         "set sn = #{sn,jdbcType=VARCHAR},",
-          "number = #{number,jdbcType=BIGINT},",
+          "number = #{number,jdbcType=VARCHAR},",
           "type = #{type,jdbcType=VARCHAR},",
           "asset_type = #{assetType,jdbcType=VARCHAR},",
           "brand = #{brand,jdbcType=VARCHAR},",
