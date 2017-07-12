@@ -3,7 +3,7 @@ package xz.jingle;
 /**
  * 字符串判空性能大比较
  */
-public class IsEmptyTest {
+public class IsStrEmptyTest {
 
     String s = "";
     long n = 10000000;
@@ -49,7 +49,7 @@ public class IsEmptyTest {
     }
 
     public static void main(String[] args) {
-        IsEmptyTest test = new IsEmptyTest();
+        IsStrEmptyTest test = new IsStrEmptyTest();
         test.function1();
         test.function2();
         test.function3();

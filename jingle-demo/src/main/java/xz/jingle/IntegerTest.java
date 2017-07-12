@@ -5,6 +5,8 @@ package xz.jingle;
  */
 public class IntegerTest {
 	public static void main(String[] args) {
+		int c = 1470724335;
+		long b = 1470724335313241345L;
 		Integer in1 = 0;
 		Integer in2 = 10010;
 		Integer in3 = 10010;
