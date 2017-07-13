@@ -1,0 +1,68 @@
+﻿
+#### hadoop节点hosts配置
+172.17.0.2	master
+172.17.0.3	slave1
+172.17.0.4	slave2
+
+#### docker保存镜像  
+docker commit 3a09b2588478 ubuntu:mynewimage
+docker save -o ubuntu14.04_tomcat.tar.gz tomcat:7.0.55
+docker export 6c5563 > ./ubuntu_tomcat.tar.gz
+
+#### 带端口映射的启动  
+docker run -di -p 50010:50010 -p 50075:50075 -p 50070:50070 -p 50020:50020 -p 8032:8032 -p 8030:8030 -p 8031:8031 -p 8033:8033 -p 8088:8088 -p 8040:8040 -p 8042:8042 -p 8041:8041 -p 10020:10020 -p 19888:19888 -p 9083:9083 -p 10000:10000 ubuntu:yarn
+
+#### 执行wc  
+hadoop  jar /opt/cloudera/parcels/CDH/jars/hadoop-examples.jar wordcount /wc.txt  /output
+
+#### 安装ping  
+apt-get install -yqq inetutils-ping
+
+#### gitlab到jenkins的webhook  
+http://192.168.16.183:8080/job/test_gitlab/build?delay=0sec
+
+#### 端口映射  
+iptables -t nat -A PREROUTING -i eth0 -p tcp --dport 50070 -j DNAT --to 172.31.0.23:80
+
+#### linux配置文件执行顺序  
+/etc/profile -> (~/.bash_profile | ~/.bash_login | ~/.profile) -> ~/.bashrc ->/etc/bashrc -> ~/.bash_logout
+
+#### mysqlload语法
+load data infile 'G:/temp/users.json' into table zipkin_test.user_test fields terminated by ',';
+
+#### annotation的a_value
+select count(*) ,annotation_value from zipkin_binary_annotations group by annotation_value
+
+#### git 缓存大小
+git config http.postBuffer 524288000
+
+#### 定时执行远程主机下载文件任务
+#!/bin/bash
+
+user=yunjing
+host=10.17.35.69
+rec_day=$(date +"%d")
+
+while true; do
+  pre_day=$(date +"%d" -d "-1 days")
+  cur_hour=$(date +"%H")
+
+  if [ $rec_day -ne $pre_day ] && [ $cur_hour -eq 12 ] ;then
+    sub_dir=$(date +"%Y/%m/%d/" -d "-1 days")
+    the_command="hadoop fs -get /user/yunjing/data/job-history-data/"$sub_dir" ~/cloudins/"${sub_dir}
+    echo "the_command: "${the_command}
+    ssh -t $user@$host "mkdir -p ~/cloudins/"${sub_dir}
+    ssh -t $user@$host ${the_command}
+    rec_day=${pre_day}
+  else
+    echo "same day"
+
+  fi
+
+  sleep 10
+done
+
+#### 杂乱的命令
+
+ssh -t $user@$host "mkdir xjh_test_remote_exec"
+mvn versions:set -DnewVersion=1.0.1-SNAPSHOT
