@@ -5,8 +5,6 @@ public class PoolCabinet {
 
     private String number;
 
-    private String owner;
-
     private String location;
 
     private Long createTime;
@@ -29,14 +27,6 @@ public class PoolCabinet {
 
     public void setNumber(String number) {
         this.number = number;
-    }
-
-    public String getOwner() {
-        return owner;
-    }
-
-    public void setOwner(String owner) {
-        this.owner = owner;
     }
 
     public String getLocation() {

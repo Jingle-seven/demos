@@ -5,10 +5,6 @@ public class PoolNetwork {
 
     private String ip;
 
-    private String owner;
-
-    private String purpose;
-
     private Long assetId;
 
     private Long expiredTime;
@@ -33,22 +29,6 @@ public class PoolNetwork {
 
     public void setIp(String ip) {
         this.ip = ip;
-    }
-
-    public String getOwner() {
-        return owner;
-    }
-
-    public void setOwner(String owner) {
-        this.owner = owner;
-    }
-
-    public String getPurpose() {
-        return purpose;
-    }
-
-    public void setPurpose(String purpose) {
-        this.purpose = purpose;
     }
 
     public Long getAssetId() {
