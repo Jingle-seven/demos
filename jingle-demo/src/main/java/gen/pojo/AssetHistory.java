@@ -1,6 +1,6 @@
 package gen.pojo;
 
-public class Asset {
+public class AssetHistory {
     private Long id;
 
     private String sn;
@@ -16,8 +16,6 @@ public class Asset {
     private String model;
 
     private String info;
-
-    private String purpose;
 
     private String remark;
 
@@ -95,14 +93,6 @@ public class Asset {
 
     public void setInfo(String info) {
         this.info = info;
-    }
-
-    public String getPurpose() {
-        return purpose;
-    }
-
-    public void setPurpose(String purpose) {
-        this.purpose = purpose;
     }
 
     public String getRemark() {

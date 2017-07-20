@@ -1,6 +1,6 @@
 package gen.idao;
 
-import gen.pojo.Asset;
+import gen.pojo.AssetHistory;
 import java.util.List;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
@@ -10,36 +10,34 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 import org.apache.ibatis.type.JdbcType;
 
-public interface AssetMapper {
+public interface AssetHistoryMapper {
     @Delete({
-        "delete from asset",
+        "delete from asset_history",
         "where id = #{id,jdbcType=BIGINT}"
     })
     int deleteByPrimaryKey(Long id);
 
     @Insert({
-        "insert into asset (id, sn, number, ",
+        "insert into asset_history (id, sn, number, ",
         "type, asset_type, ",
         "brand, model, info, ",
-        "purpose, remark, ",
-        "user, owner, cabinet_id, ",
-        "create_time, update_time, ",
-        "status)",
+        "remark, user, owner, ",
+        "cabinet_id, create_time, ",
+        "update_time, status)",
         "values (#{id,jdbcType=BIGINT}, #{sn,jdbcType=VARCHAR}, #{number,jdbcType=VARCHAR}, ",
         "#{type,jdbcType=VARCHAR}, #{assetType,jdbcType=VARCHAR}, ",
         "#{brand,jdbcType=VARCHAR}, #{model,jdbcType=VARCHAR}, #{info,jdbcType=VARCHAR}, ",
-        "#{purpose,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, ",
-        "#{user,jdbcType=VARCHAR}, #{owner,jdbcType=VARCHAR}, #{cabinetId,jdbcType=BIGINT}, ",
-        "#{createTime,jdbcType=BIGINT}, #{updateTime,jdbcType=BIGINT}, ",
-        "#{status,jdbcType=VARCHAR})"
+        "#{remark,jdbcType=VARCHAR}, #{user,jdbcType=VARCHAR}, #{owner,jdbcType=VARCHAR}, ",
+        "#{cabinetId,jdbcType=BIGINT}, #{createTime,jdbcType=BIGINT}, ",
+        "#{updateTime,jdbcType=BIGINT}, #{status,jdbcType=VARCHAR})"
     })
-    int insert(Asset record);
+    int insert(AssetHistory record);
 
     @Select({
         "select",
-        "id, sn, number, type, asset_type, brand, model, info, purpose, remark, user, ",
-        "owner, cabinet_id, create_time, update_time, status",
-        "from asset",
+        "id, sn, number, type, asset_type, brand, model, info, remark, user, owner, cabinet_id, ",
+        "create_time, update_time, status",
+        "from asset_history",
         "where id = #{id,jdbcType=BIGINT}"
     })
     @Results({
@@ -51,7 +49,6 @@ public interface AssetMapper {
         @Result(column="brand", property="brand", jdbcType=JdbcType.VARCHAR),
         @Result(column="model", property="model", jdbcType=JdbcType.VARCHAR),
         @Result(column="info", property="info", jdbcType=JdbcType.VARCHAR),
-        @Result(column="purpose", property="purpose", jdbcType=JdbcType.VARCHAR),
         @Result(column="remark", property="remark", jdbcType=JdbcType.VARCHAR),
         @Result(column="user", property="user", jdbcType=JdbcType.VARCHAR),
         @Result(column="owner", property="owner", jdbcType=JdbcType.VARCHAR),
@@ -60,13 +57,13 @@ public interface AssetMapper {
         @Result(column="update_time", property="updateTime", jdbcType=JdbcType.BIGINT),
         @Result(column="status", property="status", jdbcType=JdbcType.VARCHAR)
     })
-    Asset selectByPrimaryKey(Long id);
+    AssetHistory selectByPrimaryKey(Long id);
 
     @Select({
         "select",
-        "id, sn, number, type, asset_type, brand, model, info, purpose, remark, user, ",
-        "owner, cabinet_id, create_time, update_time, status",
-        "from asset"
+        "id, sn, number, type, asset_type, brand, model, info, remark, user, owner, cabinet_id, ",
+        "create_time, update_time, status",
+        "from asset_history"
     })
     @Results({
         @Result(column="id", property="id", jdbcType=JdbcType.BIGINT, id=true),
@@ -77,7 +74,6 @@ public interface AssetMapper {
         @Result(column="brand", property="brand", jdbcType=JdbcType.VARCHAR),
         @Result(column="model", property="model", jdbcType=JdbcType.VARCHAR),
         @Result(column="info", property="info", jdbcType=JdbcType.VARCHAR),
-        @Result(column="purpose", property="purpose", jdbcType=JdbcType.VARCHAR),
         @Result(column="remark", property="remark", jdbcType=JdbcType.VARCHAR),
         @Result(column="user", property="user", jdbcType=JdbcType.VARCHAR),
         @Result(column="owner", property="owner", jdbcType=JdbcType.VARCHAR),
@@ -86,10 +82,10 @@ public interface AssetMapper {
         @Result(column="update_time", property="updateTime", jdbcType=JdbcType.BIGINT),
         @Result(column="status", property="status", jdbcType=JdbcType.VARCHAR)
     })
-    List<Asset> selectAll();
+    List<AssetHistory> selectAll();
 
     @Update({
-        "update asset",
+        "update asset_history",
         "set sn = #{sn,jdbcType=VARCHAR},",
           "number = #{number,jdbcType=VARCHAR},",
           "type = #{type,jdbcType=VARCHAR},",
@@ -97,7 +93,6 @@ public interface AssetMapper {
           "brand = #{brand,jdbcType=VARCHAR},",
           "model = #{model,jdbcType=VARCHAR},",
           "info = #{info,jdbcType=VARCHAR},",
-          "purpose = #{purpose,jdbcType=VARCHAR},",
           "remark = #{remark,jdbcType=VARCHAR},",
           "user = #{user,jdbcType=VARCHAR},",
           "owner = #{owner,jdbcType=VARCHAR},",
@@ -107,5 +102,5 @@ public interface AssetMapper {
           "status = #{status,jdbcType=VARCHAR}",
         "where id = #{id,jdbcType=BIGINT}"
     })
-    int updateByPrimaryKey(Asset record);
+    int updateByPrimaryKey(AssetHistory record);
 }
