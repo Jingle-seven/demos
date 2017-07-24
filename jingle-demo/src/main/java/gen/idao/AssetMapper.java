@@ -21,24 +21,24 @@ public interface AssetMapper {
         "insert into asset (id, sn, number, ",
         "type, asset_type, ",
         "brand, model, info, ",
-        "purpose, remark, ",
-        "user, owner, cabinet_id, ",
-        "create_time, update_time, ",
-        "status)",
+        "power, manage_info, ",
+        "remark, user, owner, ",
+        "cabinet_id, create_time, ",
+        "update_time, status)",
         "values (#{id,jdbcType=BIGINT}, #{sn,jdbcType=VARCHAR}, #{number,jdbcType=VARCHAR}, ",
         "#{type,jdbcType=VARCHAR}, #{assetType,jdbcType=VARCHAR}, ",
         "#{brand,jdbcType=VARCHAR}, #{model,jdbcType=VARCHAR}, #{info,jdbcType=VARCHAR}, ",
-        "#{purpose,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, ",
-        "#{user,jdbcType=VARCHAR}, #{owner,jdbcType=VARCHAR}, #{cabinetId,jdbcType=BIGINT}, ",
-        "#{createTime,jdbcType=BIGINT}, #{updateTime,jdbcType=BIGINT}, ",
-        "#{status,jdbcType=VARCHAR})"
+        "#{power,jdbcType=BIGINT}, #{manageInfo,jdbcType=VARCHAR}, ",
+        "#{remark,jdbcType=VARCHAR}, #{user,jdbcType=VARCHAR}, #{owner,jdbcType=VARCHAR}, ",
+        "#{cabinetId,jdbcType=BIGINT}, #{createTime,jdbcType=BIGINT}, ",
+        "#{updateTime,jdbcType=BIGINT}, #{status,jdbcType=VARCHAR})"
     })
     int insert(Asset record);
 
     @Select({
         "select",
-        "id, sn, number, type, asset_type, brand, model, info, purpose, remark, user, ",
-        "owner, cabinet_id, create_time, update_time, status",
+        "id, sn, number, type, asset_type, brand, model, info, power, manage_info, remark, ",
+        "user, owner, cabinet_id, create_time, update_time, status",
         "from asset",
         "where id = #{id,jdbcType=BIGINT}"
     })
@@ -51,7 +51,8 @@ public interface AssetMapper {
         @Result(column="brand", property="brand", jdbcType=JdbcType.VARCHAR),
         @Result(column="model", property="model", jdbcType=JdbcType.VARCHAR),
         @Result(column="info", property="info", jdbcType=JdbcType.VARCHAR),
-        @Result(column="purpose", property="purpose", jdbcType=JdbcType.VARCHAR),
+        @Result(column="power", property="power", jdbcType=JdbcType.BIGINT),
+        @Result(column="manage_info", property="manageInfo", jdbcType=JdbcType.VARCHAR),
         @Result(column="remark", property="remark", jdbcType=JdbcType.VARCHAR),
         @Result(column="user", property="user", jdbcType=JdbcType.VARCHAR),
         @Result(column="owner", property="owner", jdbcType=JdbcType.VARCHAR),
@@ -64,8 +65,8 @@ public interface AssetMapper {
 
     @Select({
         "select",
-        "id, sn, number, type, asset_type, brand, model, info, purpose, remark, user, ",
-        "owner, cabinet_id, create_time, update_time, status",
+        "id, sn, number, type, asset_type, brand, model, info, power, manage_info, remark, ",
+        "user, owner, cabinet_id, create_time, update_time, status",
         "from asset"
     })
     @Results({
@@ -77,7 +78,8 @@ public interface AssetMapper {
         @Result(column="brand", property="brand", jdbcType=JdbcType.VARCHAR),
         @Result(column="model", property="model", jdbcType=JdbcType.VARCHAR),
         @Result(column="info", property="info", jdbcType=JdbcType.VARCHAR),
-        @Result(column="purpose", property="purpose", jdbcType=JdbcType.VARCHAR),
+        @Result(column="power", property="power", jdbcType=JdbcType.BIGINT),
+        @Result(column="manage_info", property="manageInfo", jdbcType=JdbcType.VARCHAR),
         @Result(column="remark", property="remark", jdbcType=JdbcType.VARCHAR),
         @Result(column="user", property="user", jdbcType=JdbcType.VARCHAR),
         @Result(column="owner", property="owner", jdbcType=JdbcType.VARCHAR),
@@ -97,7 +99,8 @@ public interface AssetMapper {
           "brand = #{brand,jdbcType=VARCHAR},",
           "model = #{model,jdbcType=VARCHAR},",
           "info = #{info,jdbcType=VARCHAR},",
-          "purpose = #{purpose,jdbcType=VARCHAR},",
+          "power = #{power,jdbcType=BIGINT},",
+          "manage_info = #{manageInfo,jdbcType=VARCHAR},",
           "remark = #{remark,jdbcType=VARCHAR},",
           "user = #{user,jdbcType=VARCHAR},",
           "owner = #{owner,jdbcType=VARCHAR},",

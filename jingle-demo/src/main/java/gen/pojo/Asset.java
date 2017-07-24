@@ -17,7 +17,9 @@ public class Asset {
 
     private String info;
 
-    private String purpose;
+    private Long power;
+
+    private String manageInfo;
 
     private String remark;
 
@@ -97,12 +99,20 @@ public class Asset {
         this.info = info;
     }
 
-    public String getPurpose() {
-        return purpose;
+    public Long getPower() {
+        return power;
     }
 
-    public void setPurpose(String purpose) {
-        this.purpose = purpose;
+    public void setPower(Long power) {
+        this.power = power;
+    }
+
+    public String getManageInfo() {
+        return manageInfo;
+    }
+
+    public void setManageInfo(String manageInfo) {
+        this.manageInfo = manageInfo;
     }
 
     public String getRemark() {
