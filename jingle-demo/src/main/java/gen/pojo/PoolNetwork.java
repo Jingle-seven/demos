@@ -7,6 +7,8 @@ public class PoolNetwork {
 
     private Long assetId;
 
+    private Long userId;
+
     private Long expiredTime;
 
     private Long createTime;
@@ -37,6 +39,14 @@ public class PoolNetwork {
 
     public void setAssetId(Long assetId) {
         this.assetId = assetId;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     public Long getExpiredTime() {
