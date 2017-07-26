@@ -3,6 +3,8 @@ package gen.pojo;
 public class ItemType {
     private Long id;
 
+    private Long number;
+
     private String tableName;
 
     private String itemName;
@@ -19,6 +21,14 @@ public class ItemType {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Long getNumber() {
+        return number;
+    }
+
+    public void setNumber(Long number) {
+        this.number = number;
     }
 
     public String getTableName() {

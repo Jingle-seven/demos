@@ -5,15 +5,7 @@ public class Workbench {
 
     private String number;
 
-    private Long user;
-
     private String description;
-
-    private Long startTime;
-
-    private Long expireTime;
-
-    private String remark;
 
     private String status;
 
@@ -33,44 +25,12 @@ public class Workbench {
         this.number = number;
     }
 
-    public Long getUser() {
-        return user;
-    }
-
-    public void setUser(Long user) {
-        this.user = user;
-    }
-
     public String getDescription() {
         return description;
     }
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public Long getStartTime() {
-        return startTime;
-    }
-
-    public void setStartTime(Long startTime) {
-        this.startTime = startTime;
-    }
-
-    public Long getExpireTime() {
-        return expireTime;
-    }
-
-    public void setExpireTime(Long expireTime) {
-        this.expireTime = expireTime;
-    }
-
-    public String getRemark() {
-        return remark;
-    }
-
-    public void setRemark(String remark) {
-        this.remark = remark;
     }
 
     public String getStatus() {

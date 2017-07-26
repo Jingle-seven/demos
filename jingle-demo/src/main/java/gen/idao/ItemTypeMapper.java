@@ -18,23 +18,26 @@ public interface ItemTypeMapper {
     int deleteByPrimaryKey(Long id);
 
     @Insert({
-        "insert into item_type (id, table_name, ",
-        "item_name, title, ",
-        "comment, status)",
-        "values (#{id,jdbcType=BIGINT}, #{tableName,jdbcType=VARCHAR}, ",
-        "#{itemName,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, ",
-        "#{comment,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR})"
+        "insert into item_type (id, number, ",
+        "table_name, item_name, ",
+        "title, comment, ",
+        "status)",
+        "values (#{id,jdbcType=BIGINT}, #{number,jdbcType=BIGINT}, ",
+        "#{tableName,jdbcType=VARCHAR}, #{itemName,jdbcType=VARCHAR}, ",
+        "#{title,jdbcType=VARCHAR}, #{comment,jdbcType=VARCHAR}, ",
+        "#{status,jdbcType=VARCHAR})"
     })
     int insert(ItemType record);
 
     @Select({
         "select",
-        "id, table_name, item_name, title, comment, status",
+        "id, number, table_name, item_name, title, comment, status",
         "from item_type",
         "where id = #{id,jdbcType=BIGINT}"
     })
     @Results({
         @Result(column="id", property="id", jdbcType=JdbcType.BIGINT, id=true),
+        @Result(column="number", property="number", jdbcType=JdbcType.BIGINT),
         @Result(column="table_name", property="tableName", jdbcType=JdbcType.VARCHAR),
         @Result(column="item_name", property="itemName", jdbcType=JdbcType.VARCHAR),
         @Result(column="title", property="title", jdbcType=JdbcType.VARCHAR),
@@ -45,11 +48,12 @@ public interface ItemTypeMapper {
 
     @Select({
         "select",
-        "id, table_name, item_name, title, comment, status",
+        "id, number, table_name, item_name, title, comment, status",
         "from item_type"
     })
     @Results({
         @Result(column="id", property="id", jdbcType=JdbcType.BIGINT, id=true),
+        @Result(column="number", property="number", jdbcType=JdbcType.BIGINT),
         @Result(column="table_name", property="tableName", jdbcType=JdbcType.VARCHAR),
         @Result(column="item_name", property="itemName", jdbcType=JdbcType.VARCHAR),
         @Result(column="title", property="title", jdbcType=JdbcType.VARCHAR),
@@ -60,7 +64,8 @@ public interface ItemTypeMapper {
 
     @Update({
         "update item_type",
-        "set table_name = #{tableName,jdbcType=VARCHAR},",
+        "set number = #{number,jdbcType=BIGINT},",
+          "table_name = #{tableName,jdbcType=VARCHAR},",
           "item_name = #{itemName,jdbcType=VARCHAR},",
           "title = #{title,jdbcType=VARCHAR},",
           "comment = #{comment,jdbcType=VARCHAR},",
