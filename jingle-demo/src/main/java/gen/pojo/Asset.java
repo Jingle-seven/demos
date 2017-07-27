@@ -7,11 +7,11 @@ public class Asset {
 
     private String number;
 
-    private String type;
+    private Long typeId;
 
-    private String assetType;
+    private Long assetTypeId;
 
-    private String brand;
+    private Long brandId;
 
     private String model;
 
@@ -23,9 +23,9 @@ public class Asset {
 
     private String remark;
 
-    private String user;
+    private Long userId;
 
-    private String owner;
+    private Long ownerId;
 
     private Long cabinetId;
 
@@ -33,7 +33,11 @@ public class Asset {
 
     private Long updateTime;
 
-    private String status;
+    private Long startTime;
+
+    private Long expireTime;
+
+    private Long status;
 
     public Long getId() {
         return id;
@@ -59,28 +63,28 @@ public class Asset {
         this.number = number;
     }
 
-    public String getType() {
-        return type;
+    public Long getTypeId() {
+        return typeId;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setTypeId(Long typeId) {
+        this.typeId = typeId;
     }
 
-    public String getAssetType() {
-        return assetType;
+    public Long getAssetTypeId() {
+        return assetTypeId;
     }
 
-    public void setAssetType(String assetType) {
-        this.assetType = assetType;
+    public void setAssetTypeId(Long assetTypeId) {
+        this.assetTypeId = assetTypeId;
     }
 
-    public String getBrand() {
-        return brand;
+    public Long getBrandId() {
+        return brandId;
     }
 
-    public void setBrand(String brand) {
-        this.brand = brand;
+    public void setBrandId(Long brandId) {
+        this.brandId = brandId;
     }
 
     public String getModel() {
@@ -123,20 +127,20 @@ public class Asset {
         this.remark = remark;
     }
 
-    public String getUser() {
-        return user;
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setUser(String user) {
-        this.user = user;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
-    public String getOwner() {
-        return owner;
+    public Long getOwnerId() {
+        return ownerId;
     }
 
-    public void setOwner(String owner) {
-        this.owner = owner;
+    public void setOwnerId(Long ownerId) {
+        this.ownerId = ownerId;
     }
 
     public Long getCabinetId() {
@@ -163,11 +167,27 @@ public class Asset {
         this.updateTime = updateTime;
     }
 
-    public String getStatus() {
+    public Long getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(Long startTime) {
+        this.startTime = startTime;
+    }
+
+    public Long getExpireTime() {
+        return expireTime;
+    }
+
+    public void setExpireTime(Long expireTime) {
+        this.expireTime = expireTime;
+    }
+
+    public Long getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(Long status) {
         this.status = status;
     }
 }
