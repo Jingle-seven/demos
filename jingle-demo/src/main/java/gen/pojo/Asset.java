@@ -37,7 +37,7 @@ public class Asset {
 
     private Long expireTime;
 
-    private Long status;
+    private String status;
 
     public Long getId() {
         return id;
@@ -183,11 +183,11 @@ public class Asset {
         this.expireTime = expireTime;
     }
 
-    public Long getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(Long status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 }

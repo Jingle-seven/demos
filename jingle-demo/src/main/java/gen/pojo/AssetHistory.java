@@ -3,25 +3,31 @@ package gen.pojo;
 public class AssetHistory {
     private Long id;
 
+    private Long assetId;
+
     private String sn;
 
     private String number;
 
-    private String type;
+    private Long typeId;
 
-    private String assetType;
+    private Long assetTypeId;
 
-    private String brand;
+    private Long brandId;
 
     private String model;
 
     private String info;
 
+    private Long power;
+
+    private String manageInfo;
+
     private String remark;
 
-    private String user;
+    private Long userId;
 
-    private String owner;
+    private Long ownerId;
 
     private Long cabinetId;
 
@@ -29,7 +35,13 @@ public class AssetHistory {
 
     private Long updateTime;
 
+    private Long startTime;
+
+    private Long expireTime;
+
     private String status;
+
+    private String operation;
 
     public Long getId() {
         return id;
@@ -37,6 +49,14 @@ public class AssetHistory {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Long getAssetId() {
+        return assetId;
+    }
+
+    public void setAssetId(Long assetId) {
+        this.assetId = assetId;
     }
 
     public String getSn() {
@@ -55,28 +75,28 @@ public class AssetHistory {
         this.number = number;
     }
 
-    public String getType() {
-        return type;
+    public Long getTypeId() {
+        return typeId;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setTypeId(Long typeId) {
+        this.typeId = typeId;
     }
 
-    public String getAssetType() {
-        return assetType;
+    public Long getAssetTypeId() {
+        return assetTypeId;
     }
 
-    public void setAssetType(String assetType) {
-        this.assetType = assetType;
+    public void setAssetTypeId(Long assetTypeId) {
+        this.assetTypeId = assetTypeId;
     }
 
-    public String getBrand() {
-        return brand;
+    public Long getBrandId() {
+        return brandId;
     }
 
-    public void setBrand(String brand) {
-        this.brand = brand;
+    public void setBrandId(Long brandId) {
+        this.brandId = brandId;
     }
 
     public String getModel() {
@@ -95,6 +115,22 @@ public class AssetHistory {
         this.info = info;
     }
 
+    public Long getPower() {
+        return power;
+    }
+
+    public void setPower(Long power) {
+        this.power = power;
+    }
+
+    public String getManageInfo() {
+        return manageInfo;
+    }
+
+    public void setManageInfo(String manageInfo) {
+        this.manageInfo = manageInfo;
+    }
+
     public String getRemark() {
         return remark;
     }
@@ -103,20 +139,20 @@ public class AssetHistory {
         this.remark = remark;
     }
 
-    public String getUser() {
-        return user;
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setUser(String user) {
-        this.user = user;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
-    public String getOwner() {
-        return owner;
+    public Long getOwnerId() {
+        return ownerId;
     }
 
-    public void setOwner(String owner) {
-        this.owner = owner;
+    public void setOwnerId(Long ownerId) {
+        this.ownerId = ownerId;
     }
 
     public Long getCabinetId() {
@@ -143,11 +179,35 @@ public class AssetHistory {
         this.updateTime = updateTime;
     }
 
+    public Long getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(Long startTime) {
+        this.startTime = startTime;
+    }
+
+    public Long getExpireTime() {
+        return expireTime;
+    }
+
+    public void setExpireTime(Long expireTime) {
+        this.expireTime = expireTime;
+    }
+
     public String getStatus() {
         return status;
     }
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getOperation() {
+        return operation;
+    }
+
+    public void setOperation(String operation) {
+        this.operation = operation;
     }
 }

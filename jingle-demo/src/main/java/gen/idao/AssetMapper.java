@@ -33,7 +33,7 @@ public interface AssetMapper {
         "#{remark,jdbcType=VARCHAR}, #{userId,jdbcType=BIGINT}, #{ownerId,jdbcType=BIGINT}, ",
         "#{cabinetId,jdbcType=BIGINT}, #{createTime,jdbcType=BIGINT}, ",
         "#{updateTime,jdbcType=BIGINT}, #{startTime,jdbcType=BIGINT}, ",
-        "#{expireTime,jdbcType=BIGINT}, #{status,jdbcType=BIGINT})"
+        "#{expireTime,jdbcType=BIGINT}, #{status,jdbcType=VARCHAR})"
     })
     int insert(Asset record);
 
@@ -64,7 +64,7 @@ public interface AssetMapper {
         @Result(column="update_time", property="updateTime", jdbcType=JdbcType.BIGINT),
         @Result(column="start_time", property="startTime", jdbcType=JdbcType.BIGINT),
         @Result(column="expire_time", property="expireTime", jdbcType=JdbcType.BIGINT),
-        @Result(column="status", property="status", jdbcType=JdbcType.BIGINT)
+        @Result(column="status", property="status", jdbcType=JdbcType.VARCHAR)
     })
     Asset selectByPrimaryKey(Long id);
 
@@ -94,7 +94,7 @@ public interface AssetMapper {
         @Result(column="update_time", property="updateTime", jdbcType=JdbcType.BIGINT),
         @Result(column="start_time", property="startTime", jdbcType=JdbcType.BIGINT),
         @Result(column="expire_time", property="expireTime", jdbcType=JdbcType.BIGINT),
-        @Result(column="status", property="status", jdbcType=JdbcType.BIGINT)
+        @Result(column="status", property="status", jdbcType=JdbcType.VARCHAR)
     })
     List<Asset> selectAll();
 
@@ -117,7 +117,7 @@ public interface AssetMapper {
           "update_time = #{updateTime,jdbcType=BIGINT},",
           "start_time = #{startTime,jdbcType=BIGINT},",
           "expire_time = #{expireTime,jdbcType=BIGINT},",
-          "status = #{status,jdbcType=BIGINT}",
+          "status = #{status,jdbcType=VARCHAR}",
         "where id = #{id,jdbcType=BIGINT}"
     })
     int updateByPrimaryKey(Asset record);
