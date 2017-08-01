@@ -9,11 +9,15 @@ public class PoolNetwork {
 
     private Long userId;
 
+    private Long startTime;
+
     private Long expiredTime;
 
     private Long createTime;
 
     private Long updateTime;
+
+    private Byte isExpired;
 
     private String status;
 
@@ -49,6 +53,14 @@ public class PoolNetwork {
         this.userId = userId;
     }
 
+    public Long getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(Long startTime) {
+        this.startTime = startTime;
+    }
+
     public Long getExpiredTime() {
         return expiredTime;
     }
@@ -71,6 +83,14 @@ public class PoolNetwork {
 
     public void setUpdateTime(Long updateTime) {
         this.updateTime = updateTime;
+    }
+
+    public Byte getIsExpired() {
+        return isExpired;
+    }
+
+    public void setIsExpired(Byte isExpired) {
+        this.isExpired = isExpired;
     }
 
     public String getStatus() {
