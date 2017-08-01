@@ -25,7 +25,8 @@ public interface AssetMapper {
         "remark, user_id, owner_id, ",
         "cabinet_id, create_time, ",
         "update_time, start_time, ",
-        "expire_time, status)",
+        "expire_time, is_expired, ",
+        "status)",
         "values (#{id,jdbcType=BIGINT}, #{sn,jdbcType=VARCHAR}, #{number,jdbcType=VARCHAR}, ",
         "#{typeId,jdbcType=BIGINT}, #{assetTypeId,jdbcType=BIGINT}, ",
         "#{brandId,jdbcType=BIGINT}, #{model,jdbcType=VARCHAR}, #{info,jdbcType=VARCHAR}, ",
@@ -33,7 +34,8 @@ public interface AssetMapper {
         "#{remark,jdbcType=VARCHAR}, #{userId,jdbcType=BIGINT}, #{ownerId,jdbcType=BIGINT}, ",
         "#{cabinetId,jdbcType=BIGINT}, #{createTime,jdbcType=BIGINT}, ",
         "#{updateTime,jdbcType=BIGINT}, #{startTime,jdbcType=BIGINT}, ",
-        "#{expireTime,jdbcType=BIGINT}, #{status,jdbcType=VARCHAR})"
+        "#{expireTime,jdbcType=BIGINT}, #{isExpired,jdbcType=TINYINT}, ",
+        "#{status,jdbcType=VARCHAR})"
     })
     int insert(Asset record);
 
@@ -41,7 +43,7 @@ public interface AssetMapper {
         "select",
         "id, sn, number, type_id, asset_type_id, brand_id, model, info, power, manage_info, ",
         "remark, user_id, owner_id, cabinet_id, create_time, update_time, start_time, ",
-        "expire_time, status",
+        "expire_time, is_expired, status",
         "from asset",
         "where id = #{id,jdbcType=BIGINT}"
     })
@@ -64,6 +66,7 @@ public interface AssetMapper {
         @Result(column="update_time", property="updateTime", jdbcType=JdbcType.BIGINT),
         @Result(column="start_time", property="startTime", jdbcType=JdbcType.BIGINT),
         @Result(column="expire_time", property="expireTime", jdbcType=JdbcType.BIGINT),
+        @Result(column="is_expired", property="isExpired", jdbcType=JdbcType.TINYINT),
         @Result(column="status", property="status", jdbcType=JdbcType.VARCHAR)
     })
     Asset selectByPrimaryKey(Long id);
@@ -72,7 +75,7 @@ public interface AssetMapper {
         "select",
         "id, sn, number, type_id, asset_type_id, brand_id, model, info, power, manage_info, ",
         "remark, user_id, owner_id, cabinet_id, create_time, update_time, start_time, ",
-        "expire_time, status",
+        "expire_time, is_expired, status",
         "from asset"
     })
     @Results({
@@ -94,6 +97,7 @@ public interface AssetMapper {
         @Result(column="update_time", property="updateTime", jdbcType=JdbcType.BIGINT),
         @Result(column="start_time", property="startTime", jdbcType=JdbcType.BIGINT),
         @Result(column="expire_time", property="expireTime", jdbcType=JdbcType.BIGINT),
+        @Result(column="is_expired", property="isExpired", jdbcType=JdbcType.TINYINT),
         @Result(column="status", property="status", jdbcType=JdbcType.VARCHAR)
     })
     List<Asset> selectAll();
@@ -117,6 +121,7 @@ public interface AssetMapper {
           "update_time = #{updateTime,jdbcType=BIGINT},",
           "start_time = #{startTime,jdbcType=BIGINT},",
           "expire_time = #{expireTime,jdbcType=BIGINT},",
+          "is_expired = #{isExpired,jdbcType=TINYINT},",
           "status = #{status,jdbcType=VARCHAR}",
         "where id = #{id,jdbcType=BIGINT}"
     })

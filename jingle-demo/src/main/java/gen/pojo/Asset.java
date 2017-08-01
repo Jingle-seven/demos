@@ -37,6 +37,8 @@ public class Asset {
 
     private Long expireTime;
 
+    private Byte isExpired;
+
     private String status;
 
     public Long getId() {
@@ -181,6 +183,14 @@ public class Asset {
 
     public void setExpireTime(Long expireTime) {
         this.expireTime = expireTime;
+    }
+
+    public Byte getIsExpired() {
+        return isExpired;
+    }
+
+    public void setIsExpired(Byte isExpired) {
+        this.isExpired = isExpired;
     }
 
     public String getStatus() {
