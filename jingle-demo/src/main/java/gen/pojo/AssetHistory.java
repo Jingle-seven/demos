@@ -37,7 +37,7 @@ public class AssetHistory {
 
     private Long startTime;
 
-    private Long expireTime;
+    private Long expiredTime;
 
     private String status;
 
@@ -187,12 +187,12 @@ public class AssetHistory {
         this.startTime = startTime;
     }
 
-    public Long getExpireTime() {
-        return expireTime;
+    public Long getExpiredTime() {
+        return expiredTime;
     }
 
-    public void setExpireTime(Long expireTime) {
-        this.expireTime = expireTime;
+    public void setExpiredTime(Long expiredTime) {
+        this.expiredTime = expiredTime;
     }
 
     public String getStatus() {

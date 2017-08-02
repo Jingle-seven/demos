@@ -9,7 +9,7 @@ public class IpSection {
 
     private Long startTime;
 
-    private Long expireTime;
+    private Long expiredTime;
 
     private String remark;
 
@@ -47,12 +47,12 @@ public class IpSection {
         this.startTime = startTime;
     }
 
-    public Long getExpireTime() {
-        return expireTime;
+    public Long getExpiredTime() {
+        return expiredTime;
     }
 
-    public void setExpireTime(Long expireTime) {
-        this.expireTime = expireTime;
+    public void setExpiredTime(Long expiredTime) {
+        this.expiredTime = expiredTime;
     }
 
     public String getRemark() {

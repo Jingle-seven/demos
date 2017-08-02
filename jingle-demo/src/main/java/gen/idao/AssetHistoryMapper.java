@@ -25,7 +25,7 @@ public interface AssetHistoryMapper {
         "manage_info, remark, ",
         "user_id, owner_id, cabinet_id, ",
         "create_time, update_time, ",
-        "start_time, expire_time, ",
+        "start_time, expired_time, ",
         "status, operation)",
         "values (#{id,jdbcType=BIGINT}, #{assetId,jdbcType=BIGINT}, ",
         "#{sn,jdbcType=VARCHAR}, #{number,jdbcType=VARCHAR}, #{typeId,jdbcType=BIGINT}, ",
@@ -34,7 +34,7 @@ public interface AssetHistoryMapper {
         "#{manageInfo,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, ",
         "#{userId,jdbcType=BIGINT}, #{ownerId,jdbcType=BIGINT}, #{cabinetId,jdbcType=BIGINT}, ",
         "#{createTime,jdbcType=BIGINT}, #{updateTime,jdbcType=BIGINT}, ",
-        "#{startTime,jdbcType=BIGINT}, #{expireTime,jdbcType=BIGINT}, ",
+        "#{startTime,jdbcType=BIGINT}, #{expiredTime,jdbcType=BIGINT}, ",
         "#{status,jdbcType=VARCHAR}, #{operation,jdbcType=VARCHAR})"
     })
     int insert(AssetHistory record);
@@ -43,7 +43,7 @@ public interface AssetHistoryMapper {
         "select",
         "id, asset_id, sn, number, type_id, asset_type_id, brand_id, model, info, power, ",
         "manage_info, remark, user_id, owner_id, cabinet_id, create_time, update_time, ",
-        "start_time, expire_time, status, operation",
+        "start_time, expired_time, status, operation",
         "from asset_history",
         "where id = #{id,jdbcType=BIGINT}"
     })
@@ -66,7 +66,7 @@ public interface AssetHistoryMapper {
         @Result(column="create_time", property="createTime", jdbcType=JdbcType.BIGINT),
         @Result(column="update_time", property="updateTime", jdbcType=JdbcType.BIGINT),
         @Result(column="start_time", property="startTime", jdbcType=JdbcType.BIGINT),
-        @Result(column="expire_time", property="expireTime", jdbcType=JdbcType.BIGINT),
+        @Result(column="expired_time", property="expiredTime", jdbcType=JdbcType.BIGINT),
         @Result(column="status", property="status", jdbcType=JdbcType.VARCHAR),
         @Result(column="operation", property="operation", jdbcType=JdbcType.VARCHAR)
     })
@@ -76,7 +76,7 @@ public interface AssetHistoryMapper {
         "select",
         "id, asset_id, sn, number, type_id, asset_type_id, brand_id, model, info, power, ",
         "manage_info, remark, user_id, owner_id, cabinet_id, create_time, update_time, ",
-        "start_time, expire_time, status, operation",
+        "start_time, expired_time, status, operation",
         "from asset_history"
     })
     @Results({
@@ -98,7 +98,7 @@ public interface AssetHistoryMapper {
         @Result(column="create_time", property="createTime", jdbcType=JdbcType.BIGINT),
         @Result(column="update_time", property="updateTime", jdbcType=JdbcType.BIGINT),
         @Result(column="start_time", property="startTime", jdbcType=JdbcType.BIGINT),
-        @Result(column="expire_time", property="expireTime", jdbcType=JdbcType.BIGINT),
+        @Result(column="expired_time", property="expiredTime", jdbcType=JdbcType.BIGINT),
         @Result(column="status", property="status", jdbcType=JdbcType.VARCHAR),
         @Result(column="operation", property="operation", jdbcType=JdbcType.VARCHAR)
     })
@@ -123,7 +123,7 @@ public interface AssetHistoryMapper {
           "create_time = #{createTime,jdbcType=BIGINT},",
           "update_time = #{updateTime,jdbcType=BIGINT},",
           "start_time = #{startTime,jdbcType=BIGINT},",
-          "expire_time = #{expireTime,jdbcType=BIGINT},",
+          "expired_time = #{expiredTime,jdbcType=BIGINT},",
           "status = #{status,jdbcType=VARCHAR},",
           "operation = #{operation,jdbcType=VARCHAR}",
         "where id = #{id,jdbcType=BIGINT}"
