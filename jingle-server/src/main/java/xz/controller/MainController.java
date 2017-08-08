@@ -1,11 +1,19 @@
 package xz.controller;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
+import java.util.Map;
+
+import static xz.util.XKit.cacheColumnAffected;
 
 @Controller
 @RequestMapping("/")
@@ -37,5 +45,42 @@ public class MainController {
 	public String topo(ModelMap map) {
 		map.put("msg","拓扑图页面");
 		return "topo";
+	}
+	@RequestMapping(value = "test1", method = RequestMethod.POST)
+	public ResponseEntity<?> test(HttpServletRequest req, HttpServletResponse resp) {
+//        System.out.println(req.getQueryString());
+//        req.getParameterMap().forEach((k, v) -> System.out.println(k + ": " + v[0]));
+		BufferedReader br;
+		try {
+			br = new BufferedReader(new InputStreamReader(req.getInputStream(), "utf-8"));
+//            br = req.getReader();
+			String str;
+			StringBuilder wholeStr = new StringBuilder();
+			while ((str = br.readLine()) != null) {
+				wholeStr.append(str);
+			}
+			System.out.println("reader"+wholeStr);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return cacheColumnAffected(req.getRequestURL().toString());
+	}
+	
+	@RequestMapping(value = "test2", method = RequestMethod.POST)
+	public ResponseEntity<?> test(@ModelAttribute Map<String, String> map) {
+		map.forEach((k, v) -> System.out.println(k + ": " + v));
+		return cacheColumnAffected("");
+	}
+	
+	@RequestMapping(value = "test3", method = RequestMethod.POST)
+	public ResponseEntity<?> test(@RequestBody byte[] data){
+		try {
+			System.out.println(new String(data,"utf-8"));
+			System.out.println(new String(data,"gbk"));
+			System.out.println(new String(data,"gb2312"));
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		return cacheColumnAffected("");
 	}
 }
