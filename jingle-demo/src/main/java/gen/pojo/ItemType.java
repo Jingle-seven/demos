@@ -15,6 +15,8 @@ public class ItemType {
 
     private String status;
 
+    private Byte deletable;
+
     public Long getId() {
         return id;
     }
@@ -69,5 +71,13 @@ public class ItemType {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public Byte getDeletable() {
+        return deletable;
+    }
+
+    public void setDeletable(Byte deletable) {
+        this.deletable = deletable;
     }
 }

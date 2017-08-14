@@ -77,7 +77,7 @@ public class MapTest {
 	public void testComputeIfAbsent(){
 		Map<String,Integer> map = new HashMap<>();
 		map.put("0",0);
-		//如果不存在,那么执行lambda,lambda唯一参数是key
+		//如果不存在,那么执行lambda,lambda唯一参数是map的key
 		map.computeIfAbsent("1", (e)->{
 			System.out.println(e);
 			return 12;

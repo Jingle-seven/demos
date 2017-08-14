@@ -1,5 +1,6 @@
 package xz.jingle;
 
+//早期作品,编码已损坏
 public class MyMath {
 
 	public static void main(String[] args) {
