@@ -30,19 +30,26 @@ public class ExtendTest {
 class Animal{
 	public String name = "animal";
 	static String kind = "moveAble";
+	
 	public void run(){
 		System.out.println("Animal running!!!!");
 	}
 	
-	public static void setKind(String kind) {
-		Animal.kind = kind;
+	public String getName() {
+		return name;
 	}
-	public static String getKind() {
-		return kind;
-	}
+	
 	public Animal setName(String name) {
 		this.name = name;
 		return this;
+	}
+	
+	public static String getKind() {
+		return kind;
+	}
+	
+	public static void setKind(String kind) {
+		Animal.kind = kind;
 	}
 	
 	@Override
@@ -53,37 +60,29 @@ class Animal{
 	}
 }
 class Dog extends Animal{
+	public String nickName;
+	static String kind = "move faster";
+	String name = "dog";
+	private Integer age;
+	
 	Dog(){}
 	Dog(String name){
 		this.name=name;
 	}
-	static String kind = "move faster";
 	
-	public static void setKind(String kind) {
-		Dog.kind = kind;
-	}
-	
-	public static String getKind() {
-		return kind;
-	}
-	
-	String name = "dog";
-	private Integer age;
-	public Dog setName(String name){
-		this.name = name;
+	public Dog setNickName(String nickName) {
+		this.nickName = nickName;
 		return this;
 	}
-	public String getName(){
-		return name;
-	}
+	
 	
 	@Override
 	public String toString() {
 		final StringBuilder sb = new StringBuilder("Dog{");
-		sb.append("name='").append(name).append('\'');
+		sb.append("nickName='").append(nickName).append('\'');
+		sb.append(", name='").append(name).append('\'');
 		sb.append(", age=").append(age);
 		sb.append('}');
-		sb.append(" & ").append(super.toString());
 		return sb.toString();
 	}
 }
