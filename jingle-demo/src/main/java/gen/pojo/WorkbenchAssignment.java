@@ -3,6 +3,8 @@ package gen.pojo;
 public class WorkbenchAssignment {
     private Long id;
 
+    private Long tableId;
+
     private Long user;
 
     private Long startTime;
@@ -17,6 +19,14 @@ public class WorkbenchAssignment {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Long getTableId() {
+        return tableId;
+    }
+
+    public void setTableId(Long tableId) {
+        this.tableId = tableId;
     }
 
     public Long getUser() {

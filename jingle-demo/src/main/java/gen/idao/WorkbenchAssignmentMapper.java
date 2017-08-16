@@ -18,23 +18,24 @@ public interface WorkbenchAssignmentMapper {
     int deleteByPrimaryKey(Long id);
 
     @Insert({
-        "insert into workbench_assignment (id, user, ",
-        "start_time, expired_time, ",
+        "insert into workbench_assignment (id, table_id, ",
+        "user, start_time, expired_time, ",
         "remark)",
-        "values (#{id,jdbcType=BIGINT}, #{user,jdbcType=BIGINT}, ",
-        "#{startTime,jdbcType=BIGINT}, #{expiredTime,jdbcType=BIGINT}, ",
+        "values (#{id,jdbcType=BIGINT}, #{tableId,jdbcType=BIGINT}, ",
+        "#{user,jdbcType=BIGINT}, #{startTime,jdbcType=BIGINT}, #{expiredTime,jdbcType=BIGINT}, ",
         "#{remark,jdbcType=VARCHAR})"
     })
     int insert(WorkbenchAssignment record);
 
     @Select({
         "select",
-        "id, user, start_time, expired_time, remark",
+        "id, table_id, user, start_time, expired_time, remark",
         "from workbench_assignment",
         "where id = #{id,jdbcType=BIGINT}"
     })
     @Results({
         @Result(column="id", property="id", jdbcType=JdbcType.BIGINT, id=true),
+        @Result(column="table_id", property="tableId", jdbcType=JdbcType.BIGINT),
         @Result(column="user", property="user", jdbcType=JdbcType.BIGINT),
         @Result(column="start_time", property="startTime", jdbcType=JdbcType.BIGINT),
         @Result(column="expired_time", property="expiredTime", jdbcType=JdbcType.BIGINT),
@@ -44,11 +45,12 @@ public interface WorkbenchAssignmentMapper {
 
     @Select({
         "select",
-        "id, user, start_time, expired_time, remark",
+        "id, table_id, user, start_time, expired_time, remark",
         "from workbench_assignment"
     })
     @Results({
         @Result(column="id", property="id", jdbcType=JdbcType.BIGINT, id=true),
+        @Result(column="table_id", property="tableId", jdbcType=JdbcType.BIGINT),
         @Result(column="user", property="user", jdbcType=JdbcType.BIGINT),
         @Result(column="start_time", property="startTime", jdbcType=JdbcType.BIGINT),
         @Result(column="expired_time", property="expiredTime", jdbcType=JdbcType.BIGINT),
@@ -58,7 +60,8 @@ public interface WorkbenchAssignmentMapper {
 
     @Update({
         "update workbench_assignment",
-        "set user = #{user,jdbcType=BIGINT},",
+        "set table_id = #{tableId,jdbcType=BIGINT},",
+          "user = #{user,jdbcType=BIGINT},",
           "start_time = #{startTime,jdbcType=BIGINT},",
           "expired_time = #{expiredTime,jdbcType=BIGINT},",
           "remark = #{remark,jdbcType=VARCHAR}",
