@@ -7,6 +7,7 @@ public class BaseRecord {
 	private Long createTime;
 	private Long updateTime;
 	private Long id;
+	private String status;
 	
 	public Long getId() {
 		return id;
@@ -32,6 +33,14 @@ public class BaseRecord {
 		this.updateTime = updateTime;
 	}
 	
+	public String getStatus() {
+		return status;
+	}
+	
+	public BaseRecord setStatus(String status) {
+		this.status = status;
+		return this;
+	}
 	
 	@Override
 	public String toString() {

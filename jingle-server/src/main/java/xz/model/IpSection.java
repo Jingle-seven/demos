@@ -1,18 +1,16 @@
 package xz.model;
 
-public class PoolNetwork extends BaseRecord{
+public class IpSection extends BaseRecord{
 
     private String ip;
 
-    private Long assetId;
-
-    private Long userId;
+    private Long user;
 
     private Long startTime;
 
     private Long expiredTime;
 
-    private Byte isExpired;
+    private String remark;
 
     public String getIp() {
         return ip;
@@ -22,20 +20,12 @@ public class PoolNetwork extends BaseRecord{
         this.ip = ip;
     }
 
-    public Long getAssetId() {
-        return assetId;
+    public Long getUser() {
+        return user;
     }
 
-    public void setAssetId(Long assetId) {
-        this.assetId = assetId;
-    }
-
-    public Long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Long userId) {
-        this.userId = userId;
+    public void setUser(Long user) {
+        this.user = user;
     }
 
     public Long getStartTime() {
@@ -54,13 +44,12 @@ public class PoolNetwork extends BaseRecord{
         this.expiredTime = expiredTime;
     }
 
-
-    public Byte getIsExpired() {
-        return isExpired;
+    public String getRemark() {
+        return remark;
     }
 
-    public void setIsExpired(Byte isExpired) {
-        this.isExpired = isExpired;
+    public void setRemark(String remark) {
+        this.remark = remark;
     }
 
 }

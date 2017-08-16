@@ -6,9 +6,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import xz.dao.UserMapper;
-import xz.model.TUser;
-import xz.util.Util;
+import xz.idao.UserDao;
+import xz.idao.mapper.AssetUserMapper;
+import xz.model.AssetUser;
+import xz.model.wrapper.UserWrapper;
+import xz.util.XKit;
 
 import java.util.logging.Logger;
 
@@ -19,12 +21,12 @@ import java.util.logging.Logger;
 @RequestMapping("/")
 public class UserController {
 	@Autowired
-	UserMapper userDao;
+	AssetUserMapper userDao;
 	
 	@RequestMapping(value="user",method =  RequestMethod.GET)
 	public String findUser(ModelMap map) {
 		map.addAttribute("allUser", userDao.selectAll());
-		map.addAttribute("loggedUser", Util.getLoggedOnUser());
+		map.addAttribute("loggedUser", XKit.getLoggedOnUser());
 		return "user_list";
 	}
 	
@@ -34,11 +36,11 @@ public class UserController {
 	}
 	@RequestMapping(value="user/modify",method =  RequestMethod.GET)
 	public String addUserPages(ModelMap map) {
-		map.put("user", Util.getLoggedOnUser());
+		map.put("user", XKit.getLoggedOnUser());
 		return "user_modify";
 	}
 	@RequestMapping(value="admin/user/add",method =  RequestMethod.POST)
-	public String addUser(TUser user, ModelMap map) {
+	public String addUser(UserWrapper user, ModelMap map) {
 		user.setId(System.currentTimeMillis());
 		try{
 			Logger.getAnonymousLogger().info("受影响记录:" + userDao.insert(user));
@@ -47,16 +49,16 @@ public class UserController {
 			return "user_add";
 		}
 		map.addAttribute("allUser", userDao.selectAll());
-		map.addAttribute("loggedUser", Util.getLoggedOnUser());
+		map.addAttribute("loggedUser", XKit.getLoggedOnUser());
 		return "user_list";
 	}
 	@RequestMapping(value="user/modify",method =  RequestMethod.POST)
-	public String modifyUser(TUser user,ModelMap map) {
-		TUser loggedUser = Util.getLoggedOnUser();
-		loggedUser.setAccount(user.getAccount())
-				.setPassword(user.getPassword())
-				.setName(user.getName());
-		int resCode = userDao.updateById(loggedUser);
+	public String modifyUser(UserWrapper user, ModelMap map) {
+		AssetUser loggedUser = XKit.getLoggedOnUser();
+		loggedUser.setAccount(user.getAccount());
+		loggedUser.setPassword(user.getPassword());
+		loggedUser.setName(user.getName());
+		int resCode = userDao.updateByPrimaryKey(loggedUser);
 		map.put("user", loggedUser);
 		if(resCode==1) {
 			map.put("msg", "修改成功");
@@ -66,10 +68,10 @@ public class UserController {
 		return "user_modify";
 	}
 	@RequestMapping(value="admin/user/delete",method =  RequestMethod.POST)
-	public String deleteUser(TUser user,ModelMap map) {
+	public String deleteUser(UserWrapper user,ModelMap map) {
 		userDao.deleteByPrimaryKey(user.getId());
 		map.addAttribute("allUser", userDao.selectAll());
-		map.addAttribute("loggedUser",Util.getLoggedOnUser());
+		map.addAttribute("loggedUser",XKit.getLoggedOnUser());
 		return "user_list";
 	}
 }

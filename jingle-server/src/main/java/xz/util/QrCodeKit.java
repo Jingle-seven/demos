@@ -45,11 +45,11 @@ public class QrCodeKit {
 		Map<DecodeHintType, Object> hints = new HashMap<>();
 		hints.put(DecodeHintType.CHARACTER_SET, "UTF-8");
 		Result result = new MultiFormatReader().decode(binaryBitmap, hints);// 对图像进行解码
-		System.out.println("图片中内容：  ");
-		System.out.println(result);
+//		System.out.println("图片中内容：  ");
+//		System.out.println(result);
 	}
 	
-	public static void main(String[] args) {
-		System.out.println(createQrcode("http://www.baidu.com", 0L, ""));
-	}
+//	public static void main(String[] args) {
+//		System.out.println(createQrcode("http://www.baidu.com", 0L, ""));
+//	}
 }

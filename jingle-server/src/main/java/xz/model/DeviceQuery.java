@@ -11,12 +11,62 @@ import java.util.Map;
  * Created by Jinhua on 2017/6/14 10:31.
  */
 public class DeviceQuery {
-	Long id;
-	Long sn;
-	Long number;
-	String ip;
-	String owner;
-	String type;
+	private Long id;
+	private Long sn;
+	private Long number;
+	private Long expiredTime;
+	private String ip;
+	private String owner;
+	private String user;
+	private String type;
+	private String status;
+	private String assetType;
+	private String cabinetId;
+	
+	public Long getExpiredTime() {
+		return expiredTime;
+	}
+	
+	public DeviceQuery setExpiredTime(Long expiredTime) {
+		this.expiredTime = expiredTime;
+		return this;
+	}
+	
+	public String getStatus() {
+		return status;
+	}
+	
+	public DeviceQuery setStatus(String status) {
+		this.status = status;
+		return this;
+	}
+	
+	public String getAssetType() {
+		return assetType;
+	}
+	
+	public DeviceQuery setAssetType(String assetType) {
+		this.assetType = assetType;
+		return this;
+	}
+	
+	public String getCabinetId() {
+		return cabinetId;
+	}
+	
+	public DeviceQuery setCabinetId(String cabinetId) {
+		this.cabinetId = cabinetId;
+		return this;
+	}
+	
+	public String getUser() {
+		return user;
+	}
+	
+	public DeviceQuery setUser(String user) {
+		this.user = user;
+		return this;
+	}
 	
 	public Long getNumber() {
 		return number;

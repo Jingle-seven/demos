@@ -1,24 +1,10 @@
-/**
- * Copyright 2015-2016 The OpenZipkin Authors
- *
- * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
- * in compliance with the License. You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software distributed under the License
- * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
- * or implied. See the License for the specific language governing permissions and limitations under
- * the License.
- */
 package xz.util;
-
 import org.springframework.http.CacheControl;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import xz.controller.security.ButlerUserDetail;
+import xz.model.AssetUser;
 import xz.model.BaseRecord;
-import xz.model.TUser;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
@@ -26,6 +12,8 @@ import java.util.*;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import static xz.util.LogKit.butlerLogger;
 
 
 public class XKit {
@@ -39,7 +27,7 @@ public class XKit {
 	public static ResponseEntity<?> cacheColumnAffected(String resStatus) {
 		return cacheColumnAffected(resStatus,null);
 	}
-	public static ResponseEntity<?> cacheColumnAffected(String resStatus, Object data) {
+	public static ResponseEntity<?> cacheColumnAffected(String resStatus,Object data) {
 		return cache(makeResMap(data,"columns:"+resStatus));
 	}
 	public static<E> ResponseEntity<Map<String,Object>> cacheMap(E data, String... meta) {
@@ -95,9 +83,9 @@ public class XKit {
 		data[pos + 1] = HEX_DIGITS[b & 0xf];
 	}
 	
-	public static TUser getLoggedOnUser(){
+	public static AssetUser getLoggedOnUser(){
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		TUser user = null;
+		AssetUser user = null;
 		if(principal instanceof ButlerUserDetail) {
 			user = ((ButlerUserDetail) principal).castToUser();
 		}
@@ -161,15 +149,18 @@ public class XKit {
 	public static long getTs(){
 		return System.currentTimeMillis();
 	}
+	
 	public static BaseRecord initRecord(BaseRecord rcd){
 		rcd.setId(genUniqueId());
 		rcd.setCreateTime(getTs());
 		rcd.setUpdateTime(getTs());
+		checkStatus(rcd);
 		return rcd;
 	}
 	public static void setUpdateTs(BaseRecord old,BaseRecord newOne){
 		newOne.setCreateTime(old.getCreateTime());
 		newOne.setUpdateTime(getTs());
+		checkStatus(newOne);
 	}
 	public static String killUnkindChar(String e) {return e.replace("\'","").replace("`","");}
 	public static boolean isNotEmpty(String... strs){
@@ -188,7 +179,6 @@ public class XKit {
 	public static<T> void  intoInnerList(Map<String, List<T>> map, String key, T obj) {
 		map.computeIfAbsent(key, e -> new ArrayList<>());
 		map.computeIfPresent(key,(k,v)->{
-			System.out.println(k);
 			v.add(obj);
 			return v;
 		});
@@ -198,4 +188,65 @@ public class XKit {
 		Matcher m= Pattern.compile(regex).matcher(numStr);
 		return m.find();
 	}
+	public static void checkStatus(BaseRecord rcd){
+		if(!isNotEmpty(rcd.getStatus()))
+			rcd.setStatus("0");
+	}
+	public static String handleEx(Exception e) {
+		butlerLogger.severe(e.toString());
+		Throwable throwable = getRootCase(e);
+		String msg = throwable.toString();
+		String regex1 = "Column '.+' cannot be null";
+		String regex2="Duplicate entry '.+' ";
+		Matcher m1 = Pattern.compile(regex1).matcher(msg);
+		Matcher m2 = Pattern.compile(regex2).matcher(msg);
+		if(m1.find()) {
+			String info = m1.group();
+			return "列不允许为空: " + info.substring(8,info.length()-16);
+		}
+		if(m2.find()) {
+			String info = m2.group();
+			return "已经存在的值不允许重复: " + info.substring(16,info.length());
+		}
+		return e.getMessage();
+	}
+	
+	private static Throwable getRootCase(Throwable e) {
+		Throwable theCase = e.getCause();
+		if(theCase==null)
+			return e;
+		return getRootCase(theCase);
+	}
+	
+	
+	public static String longToIp(long ipInt) {
+		return new StringBuilder().append(((ipInt >> 24) & 0xff)).append('.').append((ipInt >> 16) & 0xff).append('.')
+				.append((ipInt >> 8) & 0xff).append('.').append((ipInt & 0xff)).toString();
+	}
+	public static long ipToLong(String ip) {
+		try{
+			String[] ipArray = ip.split("\\.");
+			int sum = Integer.parseInt(ipArray[0]) << 8 << 8 << 8;
+			sum += Long.parseLong(ipArray[1]) << 8 << 8;
+			sum += Long.parseLong(ipArray[2]) << 8 ;
+			sum += Long.parseLong(ipArray[3]);
+			return sum;
+		}catch (Exception e){
+			return -1;
+		}
+	}
+	public static Long getDayBegin() {
+		Calendar cal = Calendar.getInstance();
+		cal.set(Calendar.HOUR_OF_DAY, 0);
+		cal.set(Calendar.SECOND, 0);
+		cal.set(Calendar.MINUTE, 0);
+		cal.set(Calendar.MILLISECOND, 0);
+		return cal.getTimeInMillis();
+	}
+	public static long tsToTimeNum(long ts){
+		String time = new Date(ts).toInstant().toString();
+		time = time.replaceAll("\\D","");
+		return Long.parseLong(time);
+	}
+	
 }

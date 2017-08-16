@@ -1,31 +1,48 @@
 package xz.model;
 
 public class Asset extends BaseRecord{
-
     private String sn;
 
-    private Long number;
+    private String number;
 
-    private String type;
+    private Long typeId;
 
-    private String assetType;
+    private Long assetTypeId;
 
-    private String brand;
+    private Long brandId;
 
     private String model;
 
     private String info;
 
+    private Long power;
+
+    private String manageInfo;
+
     private String remark;
 
-    private String user;
+    private Long userId;
 
-    private String owner;
+    private Long ownerId;
 
     private Long cabinetId;
 
-    private String status;
+    private Long startTime;
 
+    private Long expiredTime;
+    
+    //设置默认值是为了在sqlProvider中不报错,
+    private Byte isExpired = 0;
+    
+    public Byte getIsExpired() {
+        return isExpired;
+    }
+    
+    public Asset setIsExpired(Byte isExpired) {
+        this.isExpired = isExpired;
+        return this;
+    }
+    
     public String getSn() {
         return sn;
     }
@@ -34,36 +51,36 @@ public class Asset extends BaseRecord{
         this.sn = sn;
     }
 
-    public Long getNumber() {
+    public String getNumber() {
         return number;
     }
 
-    public void setNumber(Long number) {
+    public void setNumber(String number) {
         this.number = number;
     }
 
-    public String getType() {
-        return type;
+    public Long getTypeId() {
+        return typeId;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setTypeId(Long typeId) {
+        this.typeId = typeId;
     }
 
-    public String getAssetType() {
-        return assetType;
+    public Long getAssetTypeId() {
+        return assetTypeId;
     }
 
-    public void setAssetType(String assetType) {
-        this.assetType = assetType;
+    public void setAssetTypeId(Long assetTypeId) {
+        this.assetTypeId = assetTypeId;
     }
 
-    public String getBrand() {
-        return brand;
+    public Long getBrandId() {
+        return brandId;
     }
 
-    public void setBrand(String brand) {
-        this.brand = brand;
+    public void setBrandId(Long brandId) {
+        this.brandId = brandId;
     }
 
     public String getModel() {
@@ -82,6 +99,22 @@ public class Asset extends BaseRecord{
         this.info = info;
     }
 
+    public Long getPower() {
+        return power;
+    }
+
+    public void setPower(Long power) {
+        this.power = power;
+    }
+
+    public String getManageInfo() {
+        return manageInfo;
+    }
+
+    public void setManageInfo(String manageInfo) {
+        this.manageInfo = manageInfo;
+    }
+
     public String getRemark() {
         return remark;
     }
@@ -90,20 +123,20 @@ public class Asset extends BaseRecord{
         this.remark = remark;
     }
 
-    public String getUser() {
-        return user;
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setUser(String user) {
-        this.user = user;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
-    public String getOwner() {
-        return owner;
+    public Long getOwnerId() {
+        return ownerId;
     }
 
-    public void setOwner(String owner) {
-        this.owner = owner;
+    public void setOwnerId(Long ownerId) {
+        this.ownerId = ownerId;
     }
 
     public Long getCabinetId() {
@@ -114,11 +147,21 @@ public class Asset extends BaseRecord{
         this.cabinetId = cabinetId;
     }
 
-    public String getStatus() {
-        return status;
+
+    public Long getStartTime() {
+        return startTime;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setStartTime(Long startTime) {
+        this.startTime = startTime;
     }
+
+    public Long getExpiredTime() {
+        return expiredTime;
+    }
+
+    public void setExpiredTime(Long expiredTime) {
+        this.expiredTime = expiredTime;
+    }
+
 }

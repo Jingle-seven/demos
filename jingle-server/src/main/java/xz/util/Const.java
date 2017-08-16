@@ -7,10 +7,6 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class Const {
-//	@Value("${butler.QRCodeDir}")
-//	public static String QR_CODE_DIR = "xx-qr-code";
-	
-//	@Value("${butler.deviceInfoUrl}")
-//	public static String DEVICE_INFO_URL = "http://localhost:5972/api/v1/device/";
-	
+    public static final long NOT_EXIST_ID = -1L;
+    public static final String BLANK_STRING = "";
 }

@@ -1,5 +1,8 @@
 package xz.model;
 
+
+import xz.util.XKit;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,10 +48,10 @@ public class PageSize {
         return this;
     }
     
-    public String[] toMeta(){
+    public String[] concatMeta(String... meta){
         if(all!=null && all)
-            return new String[0];
-        return new String[]{"page:"+resPage,"size:"+resSize};
+            return meta;
+        return XKit.concat(meta,new String[]{"page:"+resPage,"size:"+resSize});
     }
     
     @Override

@@ -8,8 +8,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Component;
-import xz.dao.UserMapper;
-import xz.model.TUser;
+import xz.idao.UserDao;
+import xz.model.AssetUser;
 
 import java.util.Collection;
 
@@ -20,14 +20,14 @@ import java.util.Collection;
 public class ButlerAuthProvider implements AuthenticationProvider {
 	
 	@Autowired
-	UserMapper userDao;
+	UserDao userDao;
 	
 	@Override
 	public Authentication authenticate(Authentication authentication) throws AuthenticationException {
 		String username = authentication.getName();
 		String password = (String)authentication.getCredentials();
 		
-		TUser user = userDao.selectByAccount(username);
+		AssetUser user = userDao.selectByAccount(username);
 //		if(users.size()==0) {
 //			users = userDao.fetchByStr(username);
 //		}

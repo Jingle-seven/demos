@@ -1,6 +1,11 @@
 package xz.model;
 
+
+import xz.util.WrapperFactory;
+
 public class ItemType extends BaseRecord{
+
+    private Long number;
 
     private String tableName;
 
@@ -9,8 +14,25 @@ public class ItemType extends BaseRecord{
     private String title;
 
     private String comment;
+    
+    private Byte deletable = 0;
+    
+    public Byte getDeletable() {
+        return deletable;
+    }
+    
+    public ItemType setDeletable(Byte deletable) {
+        this.deletable = deletable;
+        return this;
+    }
+    
+    public Long getNumber() {
+        return number;
+    }
 
-    private String status;
+    public void setNumber(Long number) {
+        this.number = number;
+    }
 
     public String getTableName() {
         return tableName;
@@ -43,12 +65,10 @@ public class ItemType extends BaseRecord{
     public void setComment(String comment) {
         this.comment = comment;
     }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
+    
+    
+    @Override
+    public String toString() {
+        return WrapperFactory.toStr(this);
     }
 }

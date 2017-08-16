@@ -33,6 +33,7 @@ public class ButlerSecurity extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
+				.antMatchers("/","/**/*").permitAll()
 				.antMatchers("/js/*", "/img/*").permitAll()
 				.antMatchers("/admin/*").hasAnyAuthority(ADMIN_AUTH)
 				.anyRequest().authenticated()

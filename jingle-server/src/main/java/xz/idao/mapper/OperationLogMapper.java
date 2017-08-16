@@ -30,12 +30,12 @@ public interface OperationLogMapper {
         "where id = #{id,jdbcType=BIGINT}"
     })
     @Results({
-        @Result(column="id", property="id", jdbcType= JdbcType.BIGINT, id=true),
-        @Result(column="datetime", property="datetime", jdbcType= JdbcType.TIMESTAMP),
-        @Result(column="user", property="user", jdbcType= JdbcType.VARCHAR),
-        @Result(column="operation", property="operation", jdbcType= JdbcType.VARCHAR),
-        @Result(column="operation_sql", property="operationSql", jdbcType= JdbcType.VARCHAR),
-        @Result(column="status", property="status", jdbcType= JdbcType.VARCHAR)
+        @Result(column="id", property="id", jdbcType=JdbcType.BIGINT, id=true),
+        @Result(column="datetime", property="datetime", jdbcType=JdbcType.TIMESTAMP),
+        @Result(column="user", property="user", jdbcType=JdbcType.VARCHAR),
+        @Result(column="operation", property="operation", jdbcType=JdbcType.VARCHAR),
+        @Result(column="operation_sql", property="operationSql", jdbcType=JdbcType.VARCHAR),
+        @Result(column="status", property="status", jdbcType=JdbcType.VARCHAR)
     })
     OperationLog selectByPrimaryKey(Long id);
 
@@ -45,12 +45,12 @@ public interface OperationLogMapper {
         "from operation_log"
     })
     @Results({
-        @Result(column="id", property="id", jdbcType= JdbcType.BIGINT, id=true),
-        @Result(column="datetime", property="datetime", jdbcType= JdbcType.TIMESTAMP),
-        @Result(column="user", property="user", jdbcType= JdbcType.VARCHAR),
-        @Result(column="operation", property="operation", jdbcType= JdbcType.VARCHAR),
-        @Result(column="operation_sql", property="operationSql", jdbcType= JdbcType.VARCHAR),
-        @Result(column="status", property="status", jdbcType= JdbcType.VARCHAR)
+        @Result(column="id", property="id", jdbcType=JdbcType.BIGINT, id=true),
+        @Result(column="datetime", property="datetime", jdbcType=JdbcType.TIMESTAMP),
+        @Result(column="user", property="user", jdbcType=JdbcType.VARCHAR),
+        @Result(column="operation", property="operation", jdbcType=JdbcType.VARCHAR),
+        @Result(column="operation_sql", property="operationSql", jdbcType=JdbcType.VARCHAR),
+        @Result(column="status", property="status", jdbcType=JdbcType.VARCHAR)
     })
     List<OperationLog> selectAll();
 

@@ -1,79 +1,56 @@
 package xz.idao;
 
-import org.apache.ibatis.annotations.*;
-import org.apache.ibatis.type.JdbcType;
-import xz.model.TUser;
+import org.apache.ibatis.annotations.DeleteProvider;
+import org.apache.ibatis.annotations.InsertProvider;
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
+import xz.idao.provider.AdvanceSqlProvider;
+import xz.idao.provider.BaseSqlProvider;
+import xz.model.AssetUser;
+import xz.model.wrapper.UserWrapper;
 
 import java.util.List;
 
 public interface UserDao {
-    @Delete({
-        "delete from butler_user",
-        "where id = #{id,jdbcType=BIGINT}"
-    })
-    int deleteByPrimaryKey(Long id);
-
-    @Insert({
-        "insert into butler_user (id, name, ",
-        "account, password, ",
-        "authority)",
-        "values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, ",
-        "#{account,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, ",
-        "#{authority,jdbcType=TINYINT})"
-    })
-    int insert(TUser record);
-
-    @Select({
-        "select",
-        "id, name, account, password, authority",
-        "from butler_user",
-        "where id = #{id,jdbcType=BIGINT}"
-    })
-    @Results({
-        @Result(column="id", property="id", jdbcType= JdbcType.BIGINT, id=true),
-        @Result(column="name", property="name", jdbcType= JdbcType.VARCHAR),
-        @Result(column="account", property="account", jdbcType= JdbcType.VARCHAR),
-        @Result(column="password", property="password", jdbcType= JdbcType.VARCHAR),
-        @Result(column="authority", property="authority", jdbcType= JdbcType.TINYINT)
-    })
-    TUser selectById(Long id);
     
     @Select({
             "select",
-            "id, name, account, password, authority",
-            "from butler_user",
+            "id, name, account, password, authority, department, create_time, update_time, ",
+            "status",
+            "from asset_user",
             "where account = #{str}"
     })
-    @Results({
-            @Result(column="id", property="id", jdbcType= JdbcType.BIGINT, id=true),
-            @Result(column="name", property="name", jdbcType= JdbcType.VARCHAR),
-            @Result(column="account", property="account", jdbcType= JdbcType.VARCHAR),
-            @Result(column="password", property="password", jdbcType= JdbcType.VARCHAR),
-            @Result(column="authority", property="authority", jdbcType= JdbcType.TINYINT)
-    })
-    TUser selectByAccount(String str);
-
+    AssetUser selectByAccount(String str);
+    
     @Select({
-        "select",
-        "id, name, account, password, authority",
-        "from butler_user"
+            "select",
+            "id, name, account, password, authority, department, create_time, update_time, ",
+            "status",
+            "from asset_user",
+            "where name like #{str}"
     })
-    @Results({
-        @Result(column="id", property="id", jdbcType= JdbcType.BIGINT, id=true),
-        @Result(column="name", property="name", jdbcType= JdbcType.VARCHAR),
-        @Result(column="account", property="account", jdbcType= JdbcType.VARCHAR),
-        @Result(column="password", property="password", jdbcType= JdbcType.VARCHAR),
-        @Result(column="authority", property="authority", jdbcType= JdbcType.TINYINT)
+    List<UserWrapper> selectLikeName(String str);
+    
+    @Select({
+            "select",
+            "id, name, account, password, authority, department, create_time, update_time, ",
+            "status",
+            "from asset_user",
+            "where id in (${ids})"
     })
-    List<TUser> selectAll();
+    List<AssetUser> selectIdIn(@Param("ids") String ids);
+    
+    @Select({
+            "select",
+            "id, name, account, password, authority, department, create_time, update_time, ",
+            "status",
+            "from asset_user"
+    })
+    List<UserWrapper> selectAll();
+    
+    @InsertProvider(type = AdvanceSqlProvider.class, method = "insertSomeUser")
+    int insertSome(AssetUser... users);
 
-    @Update({
-        "update butler_user",
-        "set name = #{name,jdbcType=VARCHAR},",
-          "account = #{account,jdbcType=VARCHAR},",
-          "password = #{password,jdbcType=VARCHAR},",
-          "authority = #{authority,jdbcType=TINYINT}",
-        "where id = #{id,jdbcType=BIGINT}"
-    })
-    int updateById(TUser record);
+    @DeleteProvider(type = BaseSqlProvider.class,method ="removeIn")
+    int removeInId(String ids);
 }

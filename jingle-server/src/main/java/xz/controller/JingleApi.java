@@ -23,9 +23,11 @@ import xz.dao.ISpanDao;
 import xz.model.Span;
 import xz.model.TopoLink;
 import xz.model.TopoNode;
-import xz.util.Util;
+import xz.util.XKit;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 
@@ -58,10 +60,10 @@ public class JingleApi {
 		Map<String,TopoNode> nodes = new HashMap<>(32);
 		Map<String,TopoLink> links = new HashMap<>(32);
 		for (Span span : spans) {
-			TopoNode child = new TopoNode(Util.longToIp(span.getEndpointIpv4()),span.getEndpointServiceName());
+			TopoNode child = new TopoNode(XKit.longToIp(span.getEndpointIpv4()),span.getEndpointServiceName());
 			addNode(nodes, child);
 			if(span.getParentIp()!=null || span.getParentEndpointName()!=null) {
-				TopoNode parent = new TopoNode(Util.longToIp(span.getParentIp()), span.getParentEndpointName());
+				TopoNode parent = new TopoNode(XKit.longToIp(span.getParentIp()), span.getParentEndpointName());
 //				addNode(nodeNames, parent);
 				nodes.get(child.getToken()).setParent(nodes.get(parent.getToken()));
 				TopoLink link = new TopoLink(parent.token,child.token);

@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 
 @SpringBootApplication
-@MapperScan("xz.dao")
+@MapperScan({"xz.dao","xz.idao"})//扫描多个包
 public class JingleServer {
 	
 	public static void main(String[] args) {
