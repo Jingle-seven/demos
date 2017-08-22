@@ -1,27 +1,33 @@
 package gen.pojo;
 
-public class PoolNetwork {
+public class VmHistory {
     private Long id;
-
-    private String ip;
-
-    private Long assetId;
 
     private Long vmId;
 
+    private String name;
+
+    private Long assetId;
+
     private Long userId;
 
-    private Long startTime;
+    private String info;
 
-    private Long expiredTime;
+    private String remark;
 
     private Long createTime;
 
     private Long updateTime;
 
+    private Long startTime;
+
+    private Long expiredTime;
+
     private Byte isExpired;
 
     private String status;
+
+    private String operation;
 
     public Long getId() {
         return id;
@@ -29,22 +35,6 @@ public class PoolNetwork {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getIp() {
-        return ip;
-    }
-
-    public void setIp(String ip) {
-        this.ip = ip;
-    }
-
-    public Long getAssetId() {
-        return assetId;
-    }
-
-    public void setAssetId(Long assetId) {
-        this.assetId = assetId;
     }
 
     public Long getVmId() {
@@ -55,6 +45,22 @@ public class PoolNetwork {
         this.vmId = vmId;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Long getAssetId() {
+        return assetId;
+    }
+
+    public void setAssetId(Long assetId) {
+        this.assetId = assetId;
+    }
+
     public Long getUserId() {
         return userId;
     }
@@ -63,20 +69,20 @@ public class PoolNetwork {
         this.userId = userId;
     }
 
-    public Long getStartTime() {
-        return startTime;
+    public String getInfo() {
+        return info;
     }
 
-    public void setStartTime(Long startTime) {
-        this.startTime = startTime;
+    public void setInfo(String info) {
+        this.info = info;
     }
 
-    public Long getExpiredTime() {
-        return expiredTime;
+    public String getRemark() {
+        return remark;
     }
 
-    public void setExpiredTime(Long expiredTime) {
-        this.expiredTime = expiredTime;
+    public void setRemark(String remark) {
+        this.remark = remark;
     }
 
     public Long getCreateTime() {
@@ -95,6 +101,22 @@ public class PoolNetwork {
         this.updateTime = updateTime;
     }
 
+    public Long getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(Long startTime) {
+        this.startTime = startTime;
+    }
+
+    public Long getExpiredTime() {
+        return expiredTime;
+    }
+
+    public void setExpiredTime(Long expiredTime) {
+        this.expiredTime = expiredTime;
+    }
+
     public Byte getIsExpired() {
         return isExpired;
     }
@@ -109,5 +131,13 @@ public class PoolNetwork {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getOperation() {
+        return operation;
+    }
+
+    public void setOperation(String operation) {
+        this.operation = operation;
     }
 }

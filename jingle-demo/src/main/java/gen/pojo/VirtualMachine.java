@@ -1,23 +1,25 @@
 package gen.pojo;
 
-public class PoolNetwork {
+public class VirtualMachine {
     private Long id;
 
-    private String ip;
+    private String name;
 
     private Long assetId;
 
-    private Long vmId;
-
     private Long userId;
 
-    private Long startTime;
+    private String info;
 
-    private Long expiredTime;
+    private String remark;
 
     private Long createTime;
 
     private Long updateTime;
+
+    private Long startTime;
+
+    private Long expiredTime;
 
     private Byte isExpired;
 
@@ -31,12 +33,12 @@ public class PoolNetwork {
         this.id = id;
     }
 
-    public String getIp() {
-        return ip;
+    public String getName() {
+        return name;
     }
 
-    public void setIp(String ip) {
-        this.ip = ip;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Long getAssetId() {
@@ -47,14 +49,6 @@ public class PoolNetwork {
         this.assetId = assetId;
     }
 
-    public Long getVmId() {
-        return vmId;
-    }
-
-    public void setVmId(Long vmId) {
-        this.vmId = vmId;
-    }
-
     public Long getUserId() {
         return userId;
     }
@@ -63,20 +57,20 @@ public class PoolNetwork {
         this.userId = userId;
     }
 
-    public Long getStartTime() {
-        return startTime;
+    public String getInfo() {
+        return info;
     }
 
-    public void setStartTime(Long startTime) {
-        this.startTime = startTime;
+    public void setInfo(String info) {
+        this.info = info;
     }
 
-    public Long getExpiredTime() {
-        return expiredTime;
+    public String getRemark() {
+        return remark;
     }
 
-    public void setExpiredTime(Long expiredTime) {
-        this.expiredTime = expiredTime;
+    public void setRemark(String remark) {
+        this.remark = remark;
     }
 
     public Long getCreateTime() {
@@ -93,6 +87,22 @@ public class PoolNetwork {
 
     public void setUpdateTime(Long updateTime) {
         this.updateTime = updateTime;
+    }
+
+    public Long getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(Long startTime) {
+        this.startTime = startTime;
+    }
+
+    public Long getExpiredTime() {
+        return expiredTime;
+    }
+
+    public void setExpiredTime(Long expiredTime) {
+        this.expiredTime = expiredTime;
     }
 
     public Byte getIsExpired() {
