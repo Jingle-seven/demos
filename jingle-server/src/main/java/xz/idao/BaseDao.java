@@ -23,7 +23,11 @@ public interface BaseDao {
 	@UpdateProvider(type = BaseSqlProvider.class, method = "updateInId")
 	int updateInId(@Param("t") String table, @Param("k") String column, @Param("v") String value, @Param("ids") String ids);
 	
-	@UpdateProvider(type = BaseSqlProvider.class, method = "update")
-	int update(@Param("t") String table, @Param("k") String column, @Param("v") String value,
-               @Param("ok") String oldKey, @Param("ov") String oldValue);
+	@UpdateProvider(type = BaseSqlProvider.class, method = "updateBy")
+	int updateBy(@Param("t") String table, @Param("k") String column, @Param("v") String value,
+                 @Param("ok") String oldKey, @Param("ov") String oldValue);
+	
+	@UpdateProvider(type = BaseSqlProvider.class, method = "updateIn")
+	int updateIn(@Param("t") String table, @Param("k") String column, @Param("v") String value,
+                 @Param("ok") String oldKey, @Param("ov") String oldValue);
 }

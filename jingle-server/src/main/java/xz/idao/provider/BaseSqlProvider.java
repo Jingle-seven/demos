@@ -11,15 +11,6 @@ import java.util.Map;
 public class BaseSqlProvider {
 	
 	
-	public String findBy(Map<String, Object> para) {
-		String s = new SQL()
-				.SELECT("*")
-				.FROM(para.get("t").toString())
-				.WHERE(String.format("%s = '%s'", para.get("k"), para.get("v")))
-				.toString();
-		return s;
-	}
-	
 	public String findIn(Map<String, Object> para) {
 		String s = new SQL()
 				.SELECT("*")
@@ -44,7 +35,24 @@ public class BaseSqlProvider {
 		return sql.toString();
 	}
 	
-	public String update(Map<String, Object> para) {
+	public String updateIn(Map<String, Object> para) {
+		SQL sql = new SQL()
+				.UPDATE(para.get("t").toString())
+				.SET(String.format("%s = '%s'", para.get("k"), para.get("v")))
+				.WHERE(String.format("%s in (%s)", para.get("ok"),para.get("ov")));
+		return sql.toString();
+	}
+	
+	public String findBy(Map<String, Object> para) {
+		String s = new SQL()
+				.SELECT("*")
+				.FROM(para.get("t").toString())
+				.WHERE(String.format("%s = '%s'", para.get("k"), para.get("v")))
+				.toString();
+		return s;
+	}
+	
+	public String updateBy(Map<String, Object> para) {
 		SQL sql = new SQL()
 				.UPDATE(para.get("t").toString())
 				.SET(String.format("%s = '%s'", para.get("k"), para.get("v")))
