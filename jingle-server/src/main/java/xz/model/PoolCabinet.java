@@ -1,5 +1,7 @@
 package xz.model;
 
+import xz.model.abst.BaseRecord;
+
 public class PoolCabinet extends BaseRecord {
     
     private String number;

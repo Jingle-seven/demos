@@ -1,7 +1,7 @@
 package xz.util;
 
 
-import xz.model.BaseRecord;
+import xz.model.abst.BaseRecord;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;

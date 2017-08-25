@@ -1,4 +1,4 @@
-package xz.model;
+package xz.model.abst;
 
 /**
  * Created by Jinhua on 2017/6/9 17:31.

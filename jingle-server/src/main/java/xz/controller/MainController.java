@@ -13,7 +13,8 @@ import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.util.Map;
 
-import static xz.util.XKit.cacheColumnAffected;
+import static xz.util.ButlerKit.cacheColumnAffected;
+
 
 @Controller
 @RequestMapping("/")

@@ -1,6 +1,8 @@
 package xz.model;
 
-public class PoolNetwork extends BaseRecord{
+import xz.model.abst.BaseRecord;
+
+public class PoolNetwork extends BaseRecord {
 
     private String ip;
 

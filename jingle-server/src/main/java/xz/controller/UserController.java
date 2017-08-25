@@ -10,6 +10,7 @@ import xz.idao.UserDao;
 import xz.idao.mapper.AssetUserMapper;
 import xz.model.AssetUser;
 import xz.model.wrapper.UserWrapper;
+import xz.util.ButlerKit;
 import xz.util.XKit;
 
 import java.util.logging.Logger;
@@ -26,7 +27,7 @@ public class UserController {
 	@RequestMapping(value="user",method =  RequestMethod.GET)
 	public String findUser(ModelMap map) {
 		map.addAttribute("allUser", userDao.selectAll());
-		map.addAttribute("loggedUser", XKit.getLoggedOnUser());
+		map.addAttribute("loggedUser",ButlerKit.getLoggedOnUser());
 		return "user_list";
 	}
 	
@@ -36,7 +37,7 @@ public class UserController {
 	}
 	@RequestMapping(value="user/modify",method =  RequestMethod.GET)
 	public String addUserPages(ModelMap map) {
-		map.put("user", XKit.getLoggedOnUser());
+		map.put("user",ButlerKit.getLoggedOnUser());
 		return "user_modify";
 	}
 	@RequestMapping(value="admin/user/add",method =  RequestMethod.POST)
@@ -49,12 +50,12 @@ public class UserController {
 			return "user_add";
 		}
 		map.addAttribute("allUser", userDao.selectAll());
-		map.addAttribute("loggedUser", XKit.getLoggedOnUser());
+		map.addAttribute("loggedUser", ButlerKit.getLoggedOnUser());
 		return "user_list";
 	}
 	@RequestMapping(value="user/modify",method =  RequestMethod.POST)
 	public String modifyUser(UserWrapper user, ModelMap map) {
-		AssetUser loggedUser = XKit.getLoggedOnUser();
+		AssetUser loggedUser =ButlerKit.getLoggedOnUser();
 		loggedUser.setAccount(user.getAccount());
 		loggedUser.setPassword(user.getPassword());
 		loggedUser.setName(user.getName());
@@ -71,7 +72,7 @@ public class UserController {
 	public String deleteUser(UserWrapper user,ModelMap map) {
 		userDao.deleteByPrimaryKey(user.getId());
 		map.addAttribute("allUser", userDao.selectAll());
-		map.addAttribute("loggedUser",XKit.getLoggedOnUser());
+		map.addAttribute("loggedUser",ButlerKit.getLoggedOnUser());
 		return "user_list";
 	}
 }

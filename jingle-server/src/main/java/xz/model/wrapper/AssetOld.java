@@ -1,7 +1,7 @@
 package xz.model.wrapper;
 
 
-import xz.model.BaseRecord;
+import xz.model.abst.BaseRecord;
 
 public class AssetOld extends BaseRecord {
 

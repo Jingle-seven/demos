@@ -1,9 +1,10 @@
 package xz.model;
 
 
+import xz.model.abst.BaseRecord;
 import xz.util.WrapperFactory;
 
-public class ItemType extends BaseRecord{
+public class ItemType extends BaseRecord {
 
     private Long number;
 

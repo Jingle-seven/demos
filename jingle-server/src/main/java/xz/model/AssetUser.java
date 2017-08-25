@@ -1,6 +1,8 @@
 package xz.model;
 
-public class AssetUser extends BaseRecord{
+import xz.model.abst.BaseRecord;
+
+public class AssetUser extends BaseRecord {
     private String name;
 
     private String account;

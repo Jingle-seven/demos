@@ -1,6 +1,8 @@
 package xz.model;
 
-public class Workbench extends BaseRecord{
+import xz.model.abst.BaseRecord;
+
+public class Workbench extends BaseRecord {
 
     private String number;
 

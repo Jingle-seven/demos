@@ -1,6 +1,8 @@
 package xz.model;
 
-public class IpSection extends BaseRecord{
+import xz.model.abst.BaseRecord;
+
+public class IpSection extends BaseRecord {
 
     private String ip;
 

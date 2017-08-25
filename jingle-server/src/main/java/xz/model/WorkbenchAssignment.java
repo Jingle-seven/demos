@@ -1,6 +1,8 @@
 package xz.model;
 
-public class WorkbenchAssignment extends BaseRecord{
+import xz.model.abst.BaseRecord;
+
+public class WorkbenchAssignment extends BaseRecord {
     
     private Long tableId;
     
