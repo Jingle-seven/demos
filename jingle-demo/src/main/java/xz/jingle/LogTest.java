@@ -1,4 +1,4 @@
-package xz.mybatislog;
+package xz.jingle;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
