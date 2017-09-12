@@ -9,7 +9,13 @@ public class IpHistory {
 
     private Long assetId;
 
+    private Long vmId;
+
     private Long userId;
+
+    private Long floor;
+
+    private String remark;
 
     private Long createTime;
 
@@ -57,12 +63,36 @@ public class IpHistory {
         this.assetId = assetId;
     }
 
+    public Long getVmId() {
+        return vmId;
+    }
+
+    public void setVmId(Long vmId) {
+        this.vmId = vmId;
+    }
+
     public Long getUserId() {
         return userId;
     }
 
     public void setUserId(Long userId) {
         this.userId = userId;
+    }
+
+    public Long getFloor() {
+        return floor;
+    }
+
+    public void setFloor(Long floor) {
+        this.floor = floor;
+    }
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
     }
 
     public Long getCreateTime() {

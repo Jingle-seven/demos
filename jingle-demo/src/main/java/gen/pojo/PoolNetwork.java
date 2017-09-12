@@ -11,6 +11,10 @@ public class PoolNetwork {
 
     private Long userId;
 
+    private Long floor;
+
+    private String remark;
+
     private Long startTime;
 
     private Long expiredTime;
@@ -61,6 +65,22 @@ public class PoolNetwork {
 
     public void setUserId(Long userId) {
         this.userId = userId;
+    }
+
+    public Long getFloor() {
+        return floor;
+    }
+
+    public void setFloor(Long floor) {
+        this.floor = floor;
+    }
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
     }
 
     public Long getStartTime() {

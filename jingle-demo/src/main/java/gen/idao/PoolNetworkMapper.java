@@ -19,12 +19,14 @@ public interface PoolNetworkMapper {
 
     @Insert({
         "insert into pool_network (id, ip, asset_id, ",
-        "vm_id, user_id, start_time, ",
+        "vm_id, user_id, floor, ",
+        "remark, start_time, ",
         "expired_time, create_time, ",
         "update_time, is_expired, ",
         "status)",
         "values (#{id,jdbcType=BIGINT}, #{ip,jdbcType=VARCHAR}, #{assetId,jdbcType=BIGINT}, ",
-        "#{vmId,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, #{startTime,jdbcType=BIGINT}, ",
+        "#{vmId,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, #{floor,jdbcType=BIGINT}, ",
+        "#{remark,jdbcType=VARCHAR}, #{startTime,jdbcType=BIGINT}, ",
         "#{expiredTime,jdbcType=BIGINT}, #{createTime,jdbcType=BIGINT}, ",
         "#{updateTime,jdbcType=BIGINT}, #{isExpired,jdbcType=TINYINT}, ",
         "#{status,jdbcType=VARCHAR})"
@@ -33,8 +35,8 @@ public interface PoolNetworkMapper {
 
     @Select({
         "select",
-        "id, ip, asset_id, vm_id, user_id, start_time, expired_time, create_time, update_time, ",
-        "is_expired, status",
+        "id, ip, asset_id, vm_id, user_id, floor, remark, start_time, expired_time, create_time, ",
+        "update_time, is_expired, status",
         "from pool_network",
         "where id = #{id,jdbcType=BIGINT}"
     })
@@ -44,6 +46,8 @@ public interface PoolNetworkMapper {
         @Result(column="asset_id", property="assetId", jdbcType=JdbcType.BIGINT),
         @Result(column="vm_id", property="vmId", jdbcType=JdbcType.BIGINT),
         @Result(column="user_id", property="userId", jdbcType=JdbcType.BIGINT),
+        @Result(column="floor", property="floor", jdbcType=JdbcType.BIGINT),
+        @Result(column="remark", property="remark", jdbcType=JdbcType.VARCHAR),
         @Result(column="start_time", property="startTime", jdbcType=JdbcType.BIGINT),
         @Result(column="expired_time", property="expiredTime", jdbcType=JdbcType.BIGINT),
         @Result(column="create_time", property="createTime", jdbcType=JdbcType.BIGINT),
@@ -55,8 +59,8 @@ public interface PoolNetworkMapper {
 
     @Select({
         "select",
-        "id, ip, asset_id, vm_id, user_id, start_time, expired_time, create_time, update_time, ",
-        "is_expired, status",
+        "id, ip, asset_id, vm_id, user_id, floor, remark, start_time, expired_time, create_time, ",
+        "update_time, is_expired, status",
         "from pool_network"
     })
     @Results({
@@ -65,6 +69,8 @@ public interface PoolNetworkMapper {
         @Result(column="asset_id", property="assetId", jdbcType=JdbcType.BIGINT),
         @Result(column="vm_id", property="vmId", jdbcType=JdbcType.BIGINT),
         @Result(column="user_id", property="userId", jdbcType=JdbcType.BIGINT),
+        @Result(column="floor", property="floor", jdbcType=JdbcType.BIGINT),
+        @Result(column="remark", property="remark", jdbcType=JdbcType.VARCHAR),
         @Result(column="start_time", property="startTime", jdbcType=JdbcType.BIGINT),
         @Result(column="expired_time", property="expiredTime", jdbcType=JdbcType.BIGINT),
         @Result(column="create_time", property="createTime", jdbcType=JdbcType.BIGINT),
@@ -80,6 +86,8 @@ public interface PoolNetworkMapper {
           "asset_id = #{assetId,jdbcType=BIGINT},",
           "vm_id = #{vmId,jdbcType=BIGINT},",
           "user_id = #{userId,jdbcType=BIGINT},",
+          "floor = #{floor,jdbcType=BIGINT},",
+          "remark = #{remark,jdbcType=VARCHAR},",
           "start_time = #{startTime,jdbcType=BIGINT},",
           "expired_time = #{expiredTime,jdbcType=BIGINT},",
           "create_time = #{createTime,jdbcType=BIGINT},",
