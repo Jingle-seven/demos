@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml" >
+<head lang="en">
+    <meta charset="UTF-8"/>
+    <title>修改信息</title>
+</head>
+<body>
+<span th:text="${msg}"></span>
+<form th:action="@{/user/modify}"  method="post">
+    <!--用户名：<input type="text" th:field="*{name}" /><br/>-->
+    姓名：<input th:value="${user.name}" type="text" name="name" /><br/>
+    账户：<input th:value="${user.account}" type="text" name="account" /><br/>
+    密码：<input th:value="${user.password}" type="text" name="password" /><br/>
+    <input type="submit" id="btn_user_modify"  value="修改"/>
+</form>
+<br/>
+<a th:href="@{/logout}">注销</a>
+</body>
+</html>

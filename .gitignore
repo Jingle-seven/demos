@@ -1,0 +1,10 @@
+bin/
+target/
+*.iml
+*.pyc
+.idea/
+.settings/
+.classpath
+.project
+.pydevproject
+

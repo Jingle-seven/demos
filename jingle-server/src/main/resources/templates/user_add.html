@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml" >
+<head lang="en">
+    <meta charset="UTF-8"/>
+    <title>新增用户</title>
+</head>
+<body>
+<span th:text="${msg}"></span>
+<form th:action="@{/admin/user/add}"  method="post">
+    <!--用户名：<input type="text" th:field="*{name}" /><br/>-->
+    用户名：<input type="text" name="name" /><br/>
+    账户号：<input type="text" name="account" /><br/>
+    初始密码：<input type="text" name="password" /><br/>
+    用户权限:
+    <select  name="authority"><br/>
+        <option value="0" selected="selected">普通用户</option>
+        <option value="1">管理员</option>
+    </select>
+    <input type="submit" id="btn_user_add"  value="创建"/>
+</form>
+
+</body>
+</html>
