@@ -1,89 +1,74 @@
 package xz.jingle;
+
 import java.util.Random;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
-//An exception can end a thread.Catching it and the thread will go on. and you can throw a RuntimeException to end the thread
+/**
+ * Created by admin on 2018/1/6.
+ */
 public class ThreadTest {
+    public static void main(String[] args) {
+        Thread.currentThread().getState();
+        ThreadTestNumber value = new ThreadTestNumber();
+        for (int i = 0; i < 10; i++) {
+            ThreadTestB r = new ThreadTestB();
+            r.number = value;
+            new Thread(r).start();
 
-	public static void main(String[] args) {
-        Killer killer = new Killer();
-        killer.action();
-    }
-}
-class Killer{
-    ExecutorService catchingMachines = Executors.newSingleThreadExecutor();
-    ExecutorService killingMachines = Executors.newSingleThreadExecutor();
-    private void catchMan(){
-        while (true) {
-            catchingMachines.execute(new CatchingMachine(this));
-        }
-    }
-    public void killMan(String name){
-        killingMachines.execute(new KillingMachine(this,name));
-    }
-    public void action(){
-        catchMan();
-    }
-}
-class CatchingMachine implements Runnable{
-    Killer killer;
-    public CatchingMachine(Killer killer) {
-        this.killer = killer;
-    }
-
-    public void run() {
-        int j = 0;
-        try {
-            Thread.sleep(500);
-            int i = new Random().nextInt(3);
-            System.out.println(i);
-            j = 2/i;
-			String name = j + " people";
-			System.out.println(name +" was catched");
-			killer.killMan(name);
-        } catch (Exception e) {
-            System.out.println("An exception occured and killer catch no one ");
-            //throw a RuntimeException to end the thread
-//            throw new RuntimeException("NO！NO！NO！！！I don't go to prison");
         }
     }
 }
-class KillingMachine implements Runnable{
-    Killer killer;
-    String name;
-    public KillingMachine(Killer killer,String name) {
-        this.killer = killer;
-        this.name = name;
-    }
+class ThreadTestA implements Runnable{
+
+    @Override
     public void run() {
-        System.out.println(name +" was killed !!!");
+        for (int i = 0; i < 100; i++) {
+            System.out.println(Thread.currentThread().getName()+" sleeping "+i);
+            try {
+                Thread.sleep(5000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            System.out.println(Thread.currentThread().getName()+" wake up "+i);
+        }
     }
 }
+class ThreadTestB implements Runnable{
+    public ThreadTestNumber number;
 
+    public void action() throws InterruptedException {
+        for (int j = 0; j < 10; j++) {
+            synchronized (number) {
+                number.plusOne();
+                System.out.println(Thread.currentThread().getName() + "-" + number.getValue());
+                if (number.getValue() % 50 == 0) {
+                    System.out.println(Thread.currentThread().getName() + " notify!");
+//                    number.notifyAll();
+                }
+                if (number.getValue() % 10 == 0) {
+                    System.out.println(Thread.currentThread().getName() + " waiting!");
+                    number.wait(100);
+                }
+            }
+            int sleepTime = new Random().nextInt(100) + 100;
+            System.out.println(Thread.currentThread().getName() + " sleep " + sleepTime);
+            Thread.sleep(sleepTime);
 
-class Mr implements Runnable{
-	
-	long sleepTime = 500;
-	
-	public Mr(long sleepTime) {
-		this.sleepTime = sleepTime;
-	}
+        }
+    }
 
-	public void run() {
-		for (int i = 0; i <100; i++) {
-			System.out.println(Thread.currentThread()+" print: "+i);
-			try {
-				Thread.sleep(sleepTime);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-			if(i == 10){
-				System.out.println(Thread.currentThread()+" :线程退出 "+i);
-				System.exit(1);
-			}
-		}
-		
-	}
-	
+    @Override
+    public void run() {
+        try {action();} catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+}
+class ThreadTestNumber{
+    public int value = 0;
+    public synchronized int getValue(){
+        return value;
+    }
+    public synchronized void plusOne(){
+        value++;
+    }
 }
