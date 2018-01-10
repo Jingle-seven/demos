@@ -106,6 +106,16 @@ public class XKit {
 	public static long getTs(){
 		return System.currentTimeMillis();
 	}
+	public static long getRandInt(int min,int max){
+		if(max==min) {
+			return min;
+		} else if(max<min){
+			int temp = max;
+			max = min;
+			min = temp;
+		}
+		return new Random().nextInt(max-min) + min;
+	}
 	
 	public static String killUnkindChar(String e) {return e.replace("\'","").replace("`","");}
 	public static boolean isNotEmpty(String... strs){
@@ -183,5 +193,10 @@ public class XKit {
 		time = time.replaceAll("\\D","");
 		return Long.parseLong(time);
 	}
-	
+
+	public static void main(String[] args) {
+		for (int i = 0; i < 100; i++) {
+			System.out.println(getRandInt(200,150));
+		}
+	}
 }
