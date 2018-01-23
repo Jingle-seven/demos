@@ -1,6 +1,6 @@
-package gen.pojo;
+package xz.model;
 
-public class ButlerUser {
+public class TUser {
     private Long id;
 
     private String name;
@@ -10,12 +10,6 @@ public class ButlerUser {
     private String password;
 
     private Byte authority;
-
-    private Long createTime;
-
-    private Long updateTime;
-
-    private String status;
 
     public Long getId() {
         return id;
@@ -55,29 +49,5 @@ public class ButlerUser {
 
     public void setAuthority(Byte authority) {
         this.authority = authority;
-    }
-
-    public Long getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(Long createTime) {
-        this.createTime = createTime;
-    }
-
-    public Long getUpdateTime() {
-        return updateTime;
-    }
-
-    public void setUpdateTime(Long updateTime) {
-        this.updateTime = updateTime;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
     }
 }

@@ -9,13 +9,15 @@ public class ClassInitOrderTest {
 	}
 }
 class ClassA{
-	static{System.out.println("A static");}
+	static int a = 1;
+	static{System.out.println("A static "+a);}
 	{System.out.println("A block");}
 	ClassA(){System.out.println("A constructor");}
 	ClassA(int a){System.out.println("A3 constructor has paramter");}
 }
 class ClassB extends ClassA {
-	static{System.out.println("B static");}
+	static int b = 1;
+	static{System.out.println("B static "+b);}
 	{System.out.println("B block");}
 	//invoke super class's none-param constructor
 	ClassB(){System.out.println("B constructor");}

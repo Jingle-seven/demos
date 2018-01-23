@@ -2,7 +2,8 @@
 <!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
         "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
 <generatorConfiguration>
-    <classPathEntry location="D:\workspace\mvn_repo\mysql\mysql-connector-java\5.1.40\mysql-connector-java-5.1.40.jar"/>
+    <classPathEntry location="./lib/mysql-connector-java-5.1.40.jar"/>
+    <!--<classPathEntry location="D:\workspace\mvn_repo\mysql\mysql-connector-java\5.1.40\mysql-connector-java-5.1.40.jar"/>-->
     <!--生成provide和example-->
     <!--<context defaultModelType="flat" id="context1" targetRuntime="MyBatis3">-->
     <context id="Mysql" targetRuntime="MyBatis3Simple" defaultModelType="flat">
@@ -12,11 +13,11 @@
             <property name="suppressAllComments" value="true"/>
         </commentGenerator>
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://127.0.0.1:3306/butler?
+                        connectionURL="jdbc:mysql://127.0.0.1:3306/world?
                             useUnicode=true&amp;
                             characterEncoding=UTF-8&amp;
                             useSSL=false"
-                        userId="root" password="123456"/>
+                        userId="root" password="root"/>
         <javaModelGenerator targetPackage="gen.pojo" targetProject="src/main/java"/>
         <sqlMapGenerator targetPackage="gen.mapper" targetProject="src/main/java"/>
         <javaClientGenerator targetPackage="gen.idao" targetProject="src/main/java" type="ANNOTATEDMAPPER"/>

@@ -2,55 +2,53 @@ package xz.jingle;
 
 import org.junit.Test;
 
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by Jinhua on 2016/8/25.
  */
 public class MapTest {
-	public static void main(String[] args) {
-		Map<String,Integer> resMap = new HashMap<>();
-		resMap.put("job_total_num",0);
-		resMap.put("job_critical_num",0);
-		resMap.put("job_severe_num",0);
-		resMap.put("job_moderate_num",0);
-		resMap.put("job_normal_num",0);
-		resMap.put("job_measure_num",0);
-		resMap.put("user_num",0);
-		
-//		testPutAdd(resMap);
-//		testRemove(resMap);
-//		testGetAdd(resMap);
-		
-		testGetChange();
-	}
-	
-	private static void testGetChange() {
-		Map<String,XzInt> strToInt = new HashMap<>();
-		strToInt.put("1",new XzInt());
-		strToInt.get("1").value=10;
-		System.out.println(strToInt);
-		XzInt xint = strToInt.get("1");
-		xint = new XzInt();
-		System.out.println(strToInt);
-	}
-	
 	static class XzInt{
 		int value = 0;
-		public String toString() {
-			return "XzInt{" + "value=" + value + '}';
-		}
+		public XzInt(int value) {this.value = value;}
+
+		@Override
+		public int hashCode() {return 0;}
+
+		@Override
+		public boolean equals(Object obj) {return true;}
+
+		@Override
+		public String toString() {return "XzInt:" + value;}
 	}
-	private static void testRemove(Map<String, Integer> resMap) {
-		//ConcurrentModificationException
+	@Test
+	//如果元素equals和hashcode一样，放入hashmap会当做同一个东西
+	public void testElementHash() {
+		Map<XzInt,Integer> resMap = new HashMap<>();
+		resMap.put(new XzInt(1),1);
+		resMap.put(new XzInt(2),2);
+		System.out.println(resMap);
+	}
+	@Test
+	//如果元素要放入treeMap，要么元素类实现comparable接口，要么treeMap传入comparator参数，否则报错
+	public void testTreeMap() {
+		Map<XzInt,Integer> resMap = new TreeMap<>((o1, o2) -> o2.value-o1.value);
+		resMap.put(new XzInt(1),1);
+		resMap.put(new XzInt(2),2);
+		System.out.println(resMap);
+	}
+	@Test
+	//前两种方法删除会出现ConcurrentModificationException，要使用iterator
+	public void testRemove() {
+		Map<String,Integer> resMap = new HashMap<>();
+		resMap.put("job_total_num",0);
+		resMap.put("job_severe_num",0);
 		for(Map.Entry<String,Integer> en: resMap.entrySet()){
 			if("job_total_num".equals(en.getKey()))
 				resMap.remove(en.getKey());
 		}
 		for(String k: resMap.keySet()){
-			if("job_total_num".equals(k));
+			if("job_total_num".equals(k))
 				resMap.remove(k);
 		}
 		Iterator<String> it = resMap.keySet().iterator();
@@ -60,16 +58,6 @@ public class MapTest {
 				it.remove();
 		}
 		resMap.remove("hahaha");
-	}
-	
-	private static void testPutAdd(Map<String, Integer> resMap) {
-		resMap.put("job_total_num",resMap.get("job_total_num")+10);
-		resMap.put("job_total_num",resMap.get("job_total_num")+10);
-		System.out.println(resMap.get("job_total_num"));
-	}
-	private static void testGetAdd(Map<String, Integer> resMap) {
-		Integer value = resMap.get("job_total_num");
-		value = value + 10;
 		System.out.println(resMap);
 	}
 	
