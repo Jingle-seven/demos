@@ -540,5 +540,5 @@ public class ImgAdapter extends BaseAdapter {
 }
 ```
 
-图片命名参考下面这个图
+图片命名参考下面这个图  
 ![name](https://github.com/Jingle-seven/demos/blob/master/support/article/img/6630309102677570779.png)   
