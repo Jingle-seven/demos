@@ -7,7 +7,8 @@
 
 
 官网更推荐的是这样的形式,用以隔离不同app的资源文件:  
-	project_dir/app_dir/static/app_dir/xxx.css  
+```project_dir/app_dir/static/app_dir/xxx.css  ```  
+  
 在页面访问:  
 ```
 {% load staticfiles %}
