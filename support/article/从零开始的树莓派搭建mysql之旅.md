@@ -61,4 +61,4 @@ sudo mysql -u root -p 				    #登录mysql查看是否安装成功
 sudo /etc/mysql/my.cnf  				#修改/etc/mysql/my.cnf文件，把bind-address一行注释掉  
 sudo service mysql restart 			#重启mysql服务器  
 
-此时, 已经可以重远端连接树莓派上的mysql服务器
+此时, 已经可以从远端连接树莓派上的mysql服务器
