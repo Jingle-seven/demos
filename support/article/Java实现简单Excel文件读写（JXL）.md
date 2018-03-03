@@ -1,4 +1,4 @@
-###Java实现简单Excel文件读写（POI）  
+## Java实现简单Excel文件读写（POI）  
 
 Java并未提供读取Excel的工具类，所以一般要导入外部Jar包。目前主流有两个包，JXL和POI，本文使用JXL包。
 下面的代码只提供了基本读写方法，样式之类并未涉及。

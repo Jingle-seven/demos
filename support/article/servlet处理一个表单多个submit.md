@@ -1,4 +1,4 @@
-### JSP:servlet处理一个表单多个submit  
+## JSP:servlet处理一个表单多个submit  
  页面代码：
  ```
  <td>

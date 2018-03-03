@@ -1,4 +1,4 @@
-### Java 实现简单聊天室  
+## Java 实现简单聊天室  
 用Java实现一个简单的多人聊天室，效果如下：
 
 ![Java 实现简单聊天室 - 便利贴 - 便利贴墙](https://github.com/Jingle-seven/demos/blob/master/support/article/img/6631237090489855574.jpg)
