@@ -1,4 +1,2 @@
-### JSP:servlet处理一个表单多个submit  
-函数初始化实例  
-
-Java用反射简单构建工厂，以及调用有参构造函数初始化实例JSP:servlet处理一个表单多个submit
+### JSP:servlet处理一个表单多个submit  ```
+![几种分层模型比较](https://github.com/Jingle-seven/demos/blob/master/support/article/img/20180303160057.png)   
