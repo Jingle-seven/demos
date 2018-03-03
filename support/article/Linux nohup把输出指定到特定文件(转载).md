@@ -23,7 +23,6 @@ Linux下还有一个特殊的文件/dev/null，它就像一个无底洞，当我
 `\# ls >/dev/null 2>&1`    
   
 注意：此处的顺序不能更改，否则达不到想要的效果，此时先将标准输出重定向到 /dev/null，然后将标准错误重定向到标准输出，由于标准输出已经重定向到了/dev/null，因此标准错误也会重定向到/dev/null
-
 由于使用nohup时，会自动将输出写入nohup.out文件中，如果文件很大的话，nohup.out就会不停的增大，可以利用/dev/null来解决这个问题。  
 `nohup ./program >/dev/null 2>log &`    
   
