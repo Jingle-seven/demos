@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 
-git add ./*
+git add ./support/article/*
 git commit -m "add article"
 git push
