@@ -18,7 +18,7 @@
 ### 第二步: 通过ssh配置wifi连接
 1.下载x-shell作为ssh连接工具
 2.用网线连接树莓派和PC
-3.互联PC上的本地连接和无线连接(似乎这样才能开启dhcp给树莓派分配地址?或许是不必要的一步)
+3.互联PC上的本地连接和无线连接(似乎这样才能开启dhcp给树莓派分配地址?或许是不必要的一步)  
 ![photo](https://github.com/Jingle-seven/demos/blob/master/support/article/img/6632256337768606213.png) 
 
 
@@ -37,28 +37,28 @@
 ![photo](https://github.com/Jingle-seven/demos/blob/master/support/article/img/6631922086236438262.png) 
 ![photo](https://github.com/Jingle-seven/demos/blob/master/support/article/img/6631948474515504444.png) 
 
-7. 关机:
+7. 关机:  
 sudo shutdownd -h now  
- sudo halt  
- sudo power off  
- sudo init 0  
+sudo halt  
+sudo power off  
+sudo init 0  
 重启方法:  
- sudo   reboot  
- shutdown -r now 
- shutdownd -r 18:23:52  #定时重启在18点23分52秒关闭 
+sudo   reboot  
+shutdown -r now 
+shutdownd -r 18:23:52  #定时重启在18点23分52秒关闭 
  
 ### 第三步:安装mysql
 
-sudo apt-get update 				#更新软件库
-sudo apt-get install mysql-server 		#安装mysql,期间要求输入两次密码
-sudo mysql -u root -p 				#登录mysql查看是否安装成功
+sudo apt-get update 				    #更新软件库  
+sudo apt-get install mysql-server 		#安装mysql,期间要求输入两次密码  
+sudo mysql -u root -p 				    #登录mysql查看是否安装成功  
 
 \> show databases; 									#在mysql命令行输入命令查看数据库  
 \> grant all on \*.\* to 'username'@% identified by 'password'; 	#新增用户并允许远程登录  
 \> flush privileges; 									#刷新mysql系统权限表  
 \> quit; 											#退出mysql命令行   
 
-sudo /etc/mysql/my.cnf  				#修改/etc/mysql/my.cnf文件，把bind-address一行注释掉
-sudo service mysql restart 			#重启mysql服务器
+sudo /etc/mysql/my.cnf  				#修改/etc/mysql/my.cnf文件，把bind-address一行注释掉  
+sudo service mysql restart 			#重启mysql服务器  
 
 此时, 已经可以重远端连接树莓派上的mysql服务器
