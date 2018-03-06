@@ -8,7 +8,7 @@ import java.lang.ref.SoftReference;
 public class ReferenceTest {
 	public static void main(String[] args) {
 		SoftReference sr = new SoftReference(new Object());
-		Dog Jimmy = new Dog("Jimmy");
+		Dog Jimmy = new Dog();
 		Dog Tom = null;
 		DogHandle me = new DogHandle(Jimmy);
 		me.walkTheDog();
