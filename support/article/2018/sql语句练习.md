@@ -105,6 +105,7 @@ commit;
 43、查询和“李军”同性别的所有同学的Sname。  
 44、查询和“李军”同性别并同班的同学Sname。  
 45、查询所有选修“计算机导论”课程的“男”同学的成绩表。  
+  
 ----
 1.查询Student表中的所有记录的Sname、Ssex和Class列。  
 SELECT Sname,Ssex,Class
