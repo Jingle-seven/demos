@@ -22,6 +22,8 @@
 
     <properties>
         <main.basedir>${project.basedir}/../..</main.basedir>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
         <main.java.version>1.8</main.java.version>
         <main.signature.artifact>java18</main.signature.artifact>
     </properties>
@@ -58,6 +60,12 @@
             <artifactId>mysql-connector-java</artifactId>
             <version>5.1.40</version>
         </dependency>
+        <dependency>
+            <groupId>org.codehaus.groovy</groupId>
+            <artifactId>groovy-all</artifactId>
+            <version>2.4.15</version>
+        </dependency>
+
     </dependencies>
 
 
