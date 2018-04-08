@@ -16,3 +16,14 @@ $ git add .
 $ git commit -m "add ignore"  
 上传  
 $ git push  
+  
+同样的思路，删除部分缓存
+git rm --cached logs/xx.log，  
+更新 .gitignore 忽略掉目标文件，  
+最后 git commit -m "We really don't want Git to track this anymore!"
+
+### 我的IDEA常用插件
+.gitignore  
+bash  
+python  
+scala  
