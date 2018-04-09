@@ -12,6 +12,7 @@
         <module>jingle-server</module>
         <module>jingle-app</module>
         <module>jingle-demo</module>
+        <module>jingle-jpa</module>
     </modules>
 
     <parent>

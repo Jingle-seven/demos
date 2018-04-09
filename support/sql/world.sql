@@ -1,4 +1,6 @@
-﻿
+﻿CREATE DATABASE `world` /*!40100 COLLATE 'utf8_general_ci' */;
+USE `world`;
+
 CREATE TABLE `book` (
   `id` char(50) NOT NULL DEFAULT '',
   `order_id` smallint(6) NOT NULL DEFAULT '0',
