@@ -1,0 +1,3 @@
+entity-packages: xz.model
+transactional-packages: xz
+querybean-packages: none

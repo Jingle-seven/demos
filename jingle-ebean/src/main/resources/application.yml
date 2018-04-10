@@ -1,5 +1,4 @@
 jingle:
-  #这一段是为了方便从命令行启动时带参数
   storage:
     host: ${HOST:127.0.0.1}
     database: ${DB_NAME:world}
@@ -11,15 +10,13 @@ server:
   port: 10010
 
 spring:
-  thymeleaf:
-    prefix: classpath:/templates/
-    suffix: .html
-    cache: false
   datasource:
     driverClassName: com.mysql.jdbc.Driver
     url: jdbc:mysql://localhost:3306/world?useUnicode=true&characterEncoding=utf-8&useSSL=false
     username: root
     password: root
-
-mybatis:
-  type-aliases-package: xz.dao
+  jpa:
+    hibernate:
+      #自动更新
+      ddl-auto: update
+    show-sql: true

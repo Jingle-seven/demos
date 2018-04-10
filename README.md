@@ -1,7 +1,8 @@
 # demos
-demos是个maven多模块项目，包含三个子模块  
-jingle-app 原本计划用做手机app的后台，但计划一直只是计划  
-jingle-demo 是在开发过程中的练手小程序  
+demos是个maven多模块项目，包含几个子模块  
+jingle-demo 是在开发过程中的练手小程序   
+jingle-ebean测试了简单使用ebean orm框架的情况  
+jingle-jpa测试了简单使用jpa-hibernate orm框架的情况   
 jingle-sever 是开发过程中累积的代码片段  
 support 文件夹包含程序要用到的建表SQL语句、平时积累的小脚本、技术笔记备份
 

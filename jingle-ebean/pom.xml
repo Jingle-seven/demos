@@ -13,7 +13,7 @@
     <properties>
         <spring-boot.version>1.4.1.RELEASE?</spring-boot.version>
     </properties>
-    <artifactId>jingle-jpa</artifactId>
+    <artifactId>jingle-ebean</artifactId>
 
     <dependencies>
         <dependency>
@@ -25,11 +25,15 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+        <!--Ebean在IDEA直接启动时会报错 is not enhanced? 解决方法有：-->
+        <!--1.mvn spring-boot:run 启动-->
+        <!--1.IDEA安装Ebean Enhancement插件并在build选项卡中启用，重新build-->
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-jpa</artifactId>
+            <groupId>io.ebean</groupId>
+            <artifactId>ebean</artifactId>
+            <version>11.11.1</version>
         </dependency>
-        <dependency><!--这个包用来@Setter，之类自动生成对应方法-->
+        <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>1.16.20</version>
@@ -44,8 +48,21 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration>
+                <configuration><!--可执行jar包后缀-->
                     <classifier>exec</classifier>
+                </configuration>
+            </plugin>
+            <!--这个鬼插件似乎用于ebean代码增强,也没搜到什么资料-->
+            <plugin>
+                <groupId>io.repaint.maven</groupId>
+                <artifactId>tiles-maven-plugin</artifactId>
+                <version>2.10</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <tiles>
+                        <tile>org.avaje.tile:java-compile:1.1</tile>
+                        <tile>io.ebean.tile:enhancement:5.2</tile>
+                    </tiles>
                 </configuration>
             </plugin>
         </plugins>
