@@ -1,9 +1,11 @@
 package xz.controller;
 
 import io.ebean.Ebean;
+import io.ebean.ExpressionList;
 import org.springframework.web.bind.annotation.*;
 import xz.model.User;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -26,9 +28,15 @@ public class MainController {
         return user;
     }
 
-    @RequestMapping(value = "find-by-no-id", method = RequestMethod.GET,produces = "application/json")
-    public List<User> test3(@RequestParam Long id){
-
-        return Ebean.find(User.class).where().ne("id",id).findList();
+    @RequestMapping(value = "find-by-name-auth", method = RequestMethod.GET,produces = "application/json")
+    public List<Object> test3(String name,Integer auth){
+        ExpressionList<User> query = Ebean.find(User.class).where();
+        query.eq("name",name);
+        query.eq("authority",auth);
+        List resList = new ArrayList();
+        resList.addAll(query.findList());
+        resList.addAll(query.findIds());
+        resList.add(query.toString());//不知道该如何打印对应的sql
+        return resList;
     }
 }
