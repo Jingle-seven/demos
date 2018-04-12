@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>ebean + react</title>
+    <script src="js/react.min.js"></script>
+    <script src="js/react-dom.min.js"></script>
+    <script src="js/babel.min.js"></script>
+</head>
+<body>
+<div id = example></div>
+<script type="text/babel">
+    ReactDOM.render(
+            <h1>Hello, react!</h1>,
+        document.getElementById('example')
+    );
+    var HelloComponet = React.createClass({
+        render:function(){
+            // 不支持if-else,支持三元表达式和二元表达式如&& ||
+            name = this.props.r?this.props.r:'noone';
+            return  <h1>Hello, {name}</h1>;
+        }
+    });
+    ReactDOM.render(
+            <HelloComponet r="蓉"/>,
+        document.getElementById('example2')
+    );
+</script>
+<div id = example2></div>
+</body>
+</html>

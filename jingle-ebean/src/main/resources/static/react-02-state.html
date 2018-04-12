@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>ebean + react</title>
+    <script src="js/react.min.js"></script>
+    <script src="js/react-dom.min.js"></script>
+    <script src="js/babel.min.js"></script>
+    <script src="https://cdn.bootcss.com/babel-core/5.8.38/browser.js"></script>
+
+</head>
+<body>
+<div id=example></div>
+<div id=example2></div>
+<script type="text/babel">
+    var HelloComponet = React.createClass({
+        getInitialState: function() {
+            return {symbol: false};
+        },
+        handleClick: function(event) {
+            //取反
+            this.setState({symbol:!this.state.symbol});
+        },
+        render: function() {
+            let text = this.state.symbol ? '天才' : '辣鸡';
+            return (
+                    <p>
+                        <input type="text" value={text}/>
+                        <button type="button" onClick={this.handleClick}>change</button>
+                    </p>
+            );
+        }
+    });
+    ReactDOM.render(
+            <HelloComponet/>,
+        document.getElementById('example2')
+    );
+</script>
+</body>
+</html>
