@@ -11,6 +11,10 @@ CREATE TABLE `t_user` (
   UNIQUE KEY `account` (`account`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
-
-
 INSERT INTO `t_user` VALUES (0,'tom','tom','tom',1),(1495852626527,'nancysss','nancy','nancy',0),(1496215868322,'jim','jim','jim',0);
+
+create table `t_dept`(
+	`id` bigint(20) primary key not null default 0,
+	`name` varchar(50) not null default ''
+);
+alter table t_user add column dept_id bigint(20)  after id;

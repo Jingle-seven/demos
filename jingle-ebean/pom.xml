@@ -40,7 +40,13 @@
             <!--provide表明该包只在编译和测试的时候用-->
             <scope>provided</scope>
         </dependency>
-
+        <!--h2数据库,用于ebean生成建表语句-->
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>1.4.197</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <build>
