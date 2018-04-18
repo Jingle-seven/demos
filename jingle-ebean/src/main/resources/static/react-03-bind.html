@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>ebean + react</title>
+    <script src="js/react.min.js"></script>
+    <script src="js/react-dom.min.js"></script>
+    <script src="js/babel.min.js"></script>
+
+</head>
+<body>
+<div id=example></div>
+<div id=example2></div>
+<script type="text/babel">
+    let HelloComponet = React.createClass({
+        getInitialState: function() {
+            return {subText:''};
+        },
+        handleChange: function(name,event) {
+            this.state.subText = event.target.value;
+            this.setState({subText:event.target.value})
+            console.log(event.target.value);
+        },
+        render: function() {
+            return (
+                    <p>
+                        输入: <input type="text" id="primary" onChange={this.handleChange.bind(this,"primary")} /><br/>
+                        同步: <input type="text" id="sub" value={this.state.subText}/><br/>
+                        同步: {this.state.subText}
+                    </p>
+            );
+        }
+    });
+    ReactDOM.render(
+            <HelloComponet/>,
+        document.getElementById('example2')
+    );
+</script>
+</body>
+</html>
