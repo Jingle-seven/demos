@@ -12,20 +12,22 @@
 <div id=example></div>
 <div id=example2></div>
 <script type="text/babel">
-    var HelloComponet = React.createClass({
+    // 通过调用函数主动改变组件状态
+    // 用户:我点这个按钮,就是要砍你.EX咖喱棒!!!!!!!
+    let HelloComponet = React.createClass({
         getInitialState: function() {
-            return {symbol: false};
+            return {symbol: true};
         },
         handleClick: function(event) {
             //取反
             this.setState({symbol:!this.state.symbol});
         },
         render: function() {
-            let text = this.state.symbol ? '天才' : '辣鸡';
+            let text = this.state.symbol ? '金闪闪' : '被轰杀至渣的金闪闪';
             return (
                     <p>
                         <input type="text" value={text}/>
-                        <button type="button" onClick={this.handleClick}>change</button>
+                        <button type="button" onClick={this.handleClick}>切换风王结界</button>
                     </p>
             );
         }

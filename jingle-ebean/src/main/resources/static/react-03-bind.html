@@ -12,21 +12,27 @@
 <div id=example></div>
 <div id=example2></div>
 <script type="text/babel">
+    // 通过A组件绑定状态,监控A组件变化,被动改变B组件状态
+    // 用户:我在这里输入...嗯?怎么那里也变了?我不是 我没有 你别胡说啊
     let HelloComponet = React.createClass({
         getInitialState: function() {
             return {subText:''};
         },
         handleChange: function(name,event) {
+            //可以通过事件获取组件(基础文本框)的值变化,然后设置到状态,再经由状态反映到次文本框
             this.state.subText = event.target.value;
-            this.setState({subText:event.target.value})
-            console.log(event.target.value);
+            this.setState({subText:event.target.value});
+            //也可以通过ref属性获取虚拟dom节点进行查询更新操作
+            console.log(this.refs.pri);
+            console.log(this.refs.pri.value);
+            this.refs.third.innerHTML = this.refs.pri.value;
         },
         render: function() {
             return (
                     <p>
-                        输入: <input type="text" id="primary" onChange={this.handleChange.bind(this,"primary")} /><br/>
-                        同步: <input type="text" id="sub" value={this.state.subText}/><br/>
-                        同步: {this.state.subText}
+                        用户在这里进行输入: <input type="text" id="primary" ref="pri" onChange={this.handleChange.bind(this,"primary")} /><br/>
+                        用状态间接更新组件: <input type="text" id="sub" value={this.state.subText}/><br/>
+                        获取到组件直接更新: <p ref="third"></p>
                     </p>
             );
         }
