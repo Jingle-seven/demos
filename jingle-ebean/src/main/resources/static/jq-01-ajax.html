@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" Content="text/html; charset=utf-8"/>
+    <title>jquery ajax</title>
+    <script src="js/lib/jquery-3.3.1.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("button#bt").click(function(){
+//                console.log($.get('http://localhost:5974/users'));
+                $.get('http://localhost:5974/users',function(data,status){
+                    console.log(JSON.stringify(data));
+                    for(let i in data){
+                        let user = data[i];
+                        //es6支持字符模板,终于可以抛弃加号连接字符串了.要注意此时是反引号
+                        t1.after(`<p>${user.name} ${user.id}</p>`)
+                    }
+                }); //默认异步
+                let t1 = $("#t1");
+//                t1.text('user');
+
+            });
+        });
+    </script>
+</head>
+<body>
+    <span id="t1">There is nothing</span>
+    <button id="bt">ajax !</button>
+
+</body>
+</html>

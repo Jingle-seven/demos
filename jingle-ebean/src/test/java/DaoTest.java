@@ -6,6 +6,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 import xz.model.Dept;
+import xz.model.User;
 
 import java.util.List;
 
@@ -16,8 +17,10 @@ import java.util.List;
  */
 public class DaoTest {
 	@Test
-	public void testSpanDao() {
-		List list  = Ebean.find(Dept.class).findList();
-		System.out.println(list);
+	public void testForEach() {
+		List<User> data  = Ebean.find(User.class).findList();
+		for (User i :data){
+			System.out.println(i);
+		}
 	}
 }

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>用jq异步加载数据,react渲染</title>
+    <script src="js/lib/react.min.js"></script>
+    <script src="js/lib/react-dom.min.js"></script>
+    <script src="js/lib/babel.min.js"></script>
+    <script src="js/lib/jquery-3.3.1.js"></script>
+</head>
+<body>
+<div id=example></div>
+<div id=example2></div>
+<script type="text/babel">
+    let HelloComponet = React.createClass({
+        getInitialState:()=>{
+           return {users:[]}
+        },
+        handleClick: function(event) {
+            $.get('http://localhost:5974/users',(data,status) =>{//如果这里不使用箭头语法,内部的this.setState会出错
+                this.setState({users:data,dept:data});//也可新增状态属性
+            });
+        },
+        render: function() {
+            let theUsers = this.state.users;
+            console.log(JSON.stringify(this.state.dept));
+            return (
+                    <p>
+                        <button type="button" onClick={this.handleClick}>加载用户</button>
+                        {theUsers.map((user)=><p>{user.name} {user.id}</p>)}
+                    </p>
+            );
+        }
+    });
+    ReactDOM.render(
+            <HelloComponet/>,
+        document.getElementById('example2')
+    );
+</script>
+</body>
+</html>

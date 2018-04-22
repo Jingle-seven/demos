@@ -1,5 +1,3 @@
-package xz;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mybatis.spring.annotation.MapperScan;
@@ -14,17 +12,8 @@ import xz.model.Span;
 
 import java.util.List;
 
-@RunWith(SpringRunner.class)
-@TestPropertySource(properties = {"spring.config.name=jingle-conf"})
-@SpringBootTest
 public class DaoTest {
-	@Autowired
-	ISpanDao spanDao;
 	@Test
 	public void testSpanDao() {
-		List<Span> spans =  spanDao.findAll();
-		List<Span> spans2 =  spanDao.findByTraceId(12L);
-		System.out.println(spans);
-		System.out.println(spans2);
 	}
 }

@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" Content="text/html; charset=utf-8"/>
+    <title>jquery ajax</title>
+    <script src="js/lib/jquery-3.3.1.js"></script>
+    <script>
+        $(document).ready(function(){
+            let clickCounter = 0;
+            $("button#bt").click(function(){//选择id为bt的butto
+                let t1 = $("#t1");//选择id为t1的节点
+                let divH = $("div.h");//选择class为h的div
+
+                if(divH.is(':visible') || divH.css('display')!=='none'){
+                    divH.css("display","none");//改变css属性隐藏元素
+                    divH.hide();//jq自带的隐藏方法,toggle()方法也可切换元素的可见状态
+                 }else{
+                    divH.css("display","block");
+                    divH.show();
+                }
+                console.log(t1);
+                console.log('val '+t1.val());
+                console.log('text '+t1.text());
+                console.log('html '+t1.html());
+                ++clickCounter;
+                t1.text('you click '+ clickCounter+' times')//选中了多个元素赋值到t1,jq就把这几个元素拼接了起来
+            });
+        });
+    </script>
+</head>
+<body>
+    <span id="t1">There is 1</span>
+    <button id="bt">改变文本状态</button>
+    <div class="h" id="t2">There is 2</div>
+    <div class="h" id="t3">There is 3</div>
+
+</body>
+</html>

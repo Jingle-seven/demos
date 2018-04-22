@@ -14,7 +14,8 @@ public class User {
     }
 
     @Id
-    @GeneratedValue
+    @GeneratedValue//主键生成策略.四个生成策略分别对应mysql,oracle,所有数据库(用一个表保存主键),自动选择
+    //垃圾,我提莫要自己控制主键生成策略,居然不给设置?
     public Long id;
     @Column
     public String name;

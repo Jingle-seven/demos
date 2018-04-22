@@ -17,10 +17,10 @@ public class Dept {
     }
 
     @Id
-    @GeneratedValue
+//    @GeneratedValue
     public Long id;
     @Column
     public String name;
-    @OneToMany(cascade={ CascadeType.ALL },mappedBy = "dept")
-    public List<User> users = new ArrayList<>();
+//    @OneToMany(cascade={ CascadeType.ALL },mappedBy = "dept")
+//    public List<User> users = new ArrayList<>();
 }
