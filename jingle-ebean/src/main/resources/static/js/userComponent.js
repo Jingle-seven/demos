@@ -15,8 +15,8 @@ require.config({//所以使用requirejs,和本文件同一目录的js可以直�
         },
 
         'jquery': {
-            deps: ['', ''],
-            exports: '$'
+            // deps: ['', ''],
+            exports: 'JQuery'
         }
 
     }
@@ -24,7 +24,7 @@ require.config({//所以使用requirejs,和本文件同一目录的js可以直�
 require(['test', 'jquery'], function (test,js){
     // 加载完所有模块后执行此函数,参数为加载的模块
 });
-console.log(test.say('fine'));
+// console.log(test.say('fine'));
 JQuery.get('http://localhost:5974/users',function(data,status) {
     console.log(JSON.stringify(data));
 });

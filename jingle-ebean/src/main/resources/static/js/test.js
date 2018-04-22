@@ -3,7 +3,7 @@
  */
 
 function say(name) {
- // alert('Hello ' + name);
+ alert('Hello ' + name);
  return name;
 }
 //es5
@@ -42,4 +42,5 @@ function test2() {
     console.log(moreColor);
 }
 // document.write(words3(say('战神4')));
-
+export {say,words1};
+export function f() {alert('Hello f');};
