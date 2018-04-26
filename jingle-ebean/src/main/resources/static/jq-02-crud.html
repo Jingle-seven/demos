@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" Content="text/html; charset=utf-8"/>
+    <title>jquery crud</title>
+    <script src="js/lib/jquery-3.3.1.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("button.bt").click(function(e){
+
+                let ta = $("#text3");
+//                let theUrl = window.location.host + $("#text1").val();
+                let theUrl = $("#text1").val();
+                let param = $("#text2").text();
+                let method = $(e.target).text();
+                console.log(theUrl);
+                $.ajax({
+                    type: method,
+                    url: theUrl,
+                    data: param,
+                    success: function(data){
+                        ta.text(JSON.stringify(data));
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <input id ="text1" type="text"  size="80" value="http://localhost:5974/users"/>
+    <button class="bt" id="get">get</button>
+    <button class="bt" id="post">post</button>
+    <button class="bt" id="fuck">put</button>
+    <button class="bt" id="delete">delete</button><br>
+    <textarea id ="text2" rows="20" cols="100"></textarea><br>
+    <textarea id="text3" rows="30" cols="100">result</textarea><br>
+    <input type="date"/>
+
+</body>
+</html>
