@@ -13,6 +13,7 @@
         <module>jingle-demo</module>
         <module>jingle-jpa</module>
         <module>jingle-ebean</module>
+        <module>jingle-common</module>
     </modules>
 
     <parent>

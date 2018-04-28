@@ -17,25 +17,45 @@ public class ArrTest {
 			System.out.println(Long.parseLong(s));
 		}
 	}
-	
+
+	//修改没问题,增删会出错
 	@Test
 	public void modifyInForEach(){
-		List list = new ArrayList(){{
-			add(1);
-			add(2);
-			add(3);
-		}};
+		List<Integer> list = new ArrayList<>();
+		list.add(1);
+		list.add(2);
+		list.add(3);
 		System.out.println(list);
-//		list.forEach(e -> e = (int)e+1);
-		for (Object o : list) {
-			o = 0;
+		list.forEach(e -> e = e+1);//一个副本,修改无效
+		for (int e : list) {
+			e = 0;//一个副本,修改无效
 		}
-//		for (int i = 0; i < list.size(); i++) {
-//			list.set(i,(int)list.get(i)+1);
-//		}
+		for (int i = 0; i < list.size(); i++) {
+			int e = list.get(i);
+			e = 0;//一个副本,修改无效
+			list.set(i,list.get(i)+1);
+		}
 		System.out.println(list);
 	}
-	
+
+	@Test
+	public void deleteInForEach(){
+		List<Integer> list = new ArrayList<>();
+		list.add(1);
+		list.add(2);
+		list.add(3);
+		list.add(4);
+		list.add(5);
+		for (int i = 0; i < list.size(); i++) {
+			int e = list.get(i);
+			System.out.println(i+" "+ e +" "+e%2);
+			if(e%2==0){
+				list.remove(e);
+				i--;
+			}
+			System.out.println(list);
+		}
+	}
 	@Test
 	public void subList(){
 		List list = new ArrayList(){{
