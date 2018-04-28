@@ -5,14 +5,14 @@ import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
+import xz.JingleEbeanServer;
 import xz.model.User;
 
 import java.util.List;
 
 
 @RunWith(SpringRunner.class)
-@SpringBootTest
-@TestPropertySource(properties = {"application.yml"})
+@SpringBootTest(classes = JingleEbeanServer.class)
 public class UserControllerTest {
 	@Test
 	public void testForEach() {
