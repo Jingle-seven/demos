@@ -6,12 +6,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import xz.idao.UserDao;
 import xz.idao.mapper.AssetUserMapper;
 import xz.model.AssetUser;
 import xz.model.wrapper.UserWrapper;
 import xz.util.ButlerKit;
-import xz.util.XKit;
 
 import java.util.logging.Logger;
 
@@ -27,7 +25,7 @@ public class UserController {
 	@RequestMapping(value="user",method =  RequestMethod.GET)
 	public String findUser(ModelMap map) {
 		map.addAttribute("allUser", userDao.selectAll());
-		map.addAttribute("loggedUser",ButlerKit.getLoggedOnUser());
+		map.addAttribute("loggedUser", ButlerKit.getLoggedOnUser());
 		return "user_list";
 	}
 	

@@ -15,7 +15,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by Jinhua on 2017/6/7 9:27.
+ * Created by xjh on 2017/6/7 9:27.
+ *
  */
 public class QrCodeKit {
 	

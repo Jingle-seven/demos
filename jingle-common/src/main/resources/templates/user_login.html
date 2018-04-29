@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head lang="en">
+    <meta charset="UTF-8"/>
+    <title></title>
+</head>
+<body>
+<h1>Hello</h1>
+<h1 th:text="${servant}">servant</h1>
+
+<span th:each="user:${allServant}">
+    <span th:text="${user}">user</span>
+</span>
+
+<table border="1">
+    <tr>
+        <th>用户名</th>
+        <th>状态变量index</th>
+        <th>状态变量count</th>
+        <th>状态变量size</th>
+        <th>状态变量current</th>
+        <th>状态变量even</th>
+        <th>状态变量odd</th>
+        <th>状态变量first</th>
+        <th>状态变量last</th>
+    </tr>
+    <tr  th:each="user,userStat:${allServant}">
+        <td th:text="${user}">user</td>
+        <th th:text="${userStat.index}">状态变量：index</th>
+        <th th:text="${userStat.count}">状态变量：count</th>
+        <th th:text="${userStat.size}">状态变量：size</th>
+        <th th:text="${userStat.current}">状态变量：current</th>
+        <th th:text="${userStat.even}">状态变量：even****</th>
+        <th th:text="${userStat.odd}">状态变量：odd</th>
+        <th th:text="${userStat.first}">状态变量：first</th>
+        <th th:text="${userStat.last}">状态变量：last</th>
+    </tr>
+</table>
+</body>
+</html>

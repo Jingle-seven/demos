@@ -1,5 +1,6 @@
 package xz.model;
 
+import io.ebean.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -17,10 +18,15 @@ public class Dept {
     }
 
     @Id
-//    @GeneratedValue
     public Long id;
     @Column
     public String name;
-//    @OneToMany(cascade={ CascadeType.ALL },mappedBy = "dept")
-//    public List<User> users = new ArrayList<>();
+    @JsonIgnore
+    @OneToMany(cascade={ CascadeType.ALL },mappedBy = "dept")
+    public List<User> users = new ArrayList<>();
+
+    public Dept addUser(User user){
+        users.add(user);
+        return this;
+    }
 }

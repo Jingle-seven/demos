@@ -6,11 +6,12 @@
     <script src="js/lib/jquery-3.3.1.js"></script>
     <script>
         $(document).ready(function(){
+            //想要做个简单的postman,还有跨域问题需要研究
+            //指望play的服务端开放跨域访问是不可能的,只能自己拿cookie跨域伪造请求了
+            let ta = $("#text3");
             $("button.bt").click(function(e){
-
-                let ta = $("#text3");
 //                let theUrl = window.location.host + $("#text1").val();
-                let theUrl = $("#text1").val();
+                let theUrl = $("#text1").val() + "?ts=" + new Date().getTime();
                 let param = $("#text2").text();
                 let method = $(e.target).text();
                 console.log(theUrl);
@@ -19,9 +20,13 @@
                     url: theUrl,
                     data: param,
                     success: function(data){
+                        console.log(JSON.stringify(data));
                         ta.text(JSON.stringify(data));
                     }
                 });
+            });
+            $("button#clear").click(function(e){
+                ta.text("");
             });
         });
     </script>
@@ -31,7 +36,11 @@
     <button class="bt" id="get">get</button>
     <button class="bt" id="post">post</button>
     <button class="bt" id="fuck">put</button>
-    <button class="bt" id="delete">delete</button><br>
+    <button class="bt" id="delete">delete</button>
+    <button class="bt">options</button>
+    <button class="bt">head</button>
+    <button class="bt">trace</button>
+    <button id="clear">clear</button><br>
     <textarea id ="text2" rows="20" cols="100"></textarea><br>
     <textarea id="text3" rows="30" cols="100">result</textarea><br>
     <input type="date"/>

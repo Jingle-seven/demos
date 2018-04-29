@@ -16,21 +16,9 @@ package xz.controller;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.CacheControl;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import xz.biz.TUserBiz;
-import xz.dao.ISpanDao;
-import xz.model.Span;
-import xz.model.TUser;
-import xz.model.TopoLink;
-import xz.model.TopoNode;
-import xz.util.XKit;
-
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.concurrent.TimeUnit;
 
 import static xz.util.ButlerKit.cache;
 
