@@ -1,5 +1,6 @@
 # demos
 demos是个maven多模块项目，包含几个子模块  
+jingle-common 是一些各个模块都可能用到的工具  
 jingle-demo 是在开发过程中的练手小程序   
 jingle-ebean测试了简单使用ebean orm框架的情况  
 jingle-jpa测试了简单使用jpa-hibernate orm框架的情况   

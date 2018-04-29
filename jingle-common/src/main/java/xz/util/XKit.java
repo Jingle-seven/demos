@@ -240,4 +240,21 @@ public class XKit {
             System.out.println(getRandInt(200, 150));
         }
     }
+    public static String toStr(Object obj) {
+        List<Field> list = Arrays.asList(obj.getClass().getDeclaredFields());
+        final StringBuilder sb = new StringBuilder(obj.getClass().getSimpleName()+"{");
+        for (Field f: list) {
+            f.setAccessible(true);
+            try {
+                sb.append(f.getName()).append(":").append(f.get(obj)).append(",");
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+                throw new RuntimeException("error occurred when cast field ["+f+"] in Entity: "+ obj);
+            }
+        }
+        sb.deleteCharAt(sb.lastIndexOf(","));
+        sb.append('}');
+
+        return sb.toString();
+    }
 }

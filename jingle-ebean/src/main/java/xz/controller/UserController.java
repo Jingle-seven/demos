@@ -56,10 +56,8 @@ public class UserController {
     public Map<String,Object> allUser(HttpServletRequest req) throws InvocationTargetException, IllegalAccessException {
         Map<String,Object> resMap = new HashMap<>();
         Map<String,Object> reqMap = new HashMap<>();
-        BeanUtils.populate(req,reqMap);
-        reqMap = XKit.castToMap(req,true);
         List<User> users = Ebean.find(User.class).findList();
-        System.out.println("fuck"+reqMap);
+        System.out.println(req.getHeaderNames());
         resMap.put("data",users);
         resMap.put("req",reqMap);
         return resMap;
