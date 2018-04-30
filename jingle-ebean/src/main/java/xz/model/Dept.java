@@ -28,7 +28,7 @@ public class Dept {
     //据说mappedBy可以防止重复更新,但以我对ebean的测试结果来看,不配置也没有重复更新
     //cascade的理解是:我单方面断绝或者建立关系会不会影响我们的关系,似乎与mappedBy毫无关系
     //so,如果想维护自己的外键,那就自己配置cascade,想别人维护就让别人配置cascade,而与mappedBy没关系
-    @OneToMany(mappedBy = "dept")
+    @OneToMany(cascade = CascadeType.PERSIST,mappedBy = "dept")
     public List<User> users = new ArrayList<>();
 
     public Dept addUser(User user){

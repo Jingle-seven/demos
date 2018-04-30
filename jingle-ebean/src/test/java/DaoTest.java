@@ -1,8 +1,12 @@
 
 import io.ebean.Ebean;
+import io.ebean.Expr;
 import io.ebean.annotation.Transactional;
 import org.junit.Test;
 import xz.model.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
@@ -12,7 +16,7 @@ import static org.junit.Assert.assertEquals;
  * 所以建议在test-ebean.properties中配置h2数据库
  */
 public class DaoTest {
-	private User user1 = new User("Tom","Tom@qq.com");
+	private User user1 = new User("Tony","Tom@qq.com");
 	private User user2 = new User("Nancy","Nancy@qq.com");
 	private Dept dept1 = new Dept("英雄科");
 	private Dept dept2 = new Dept("支援科");
@@ -83,6 +87,40 @@ public class DaoTest {
 		System.out.println(user1.anAssert.compareTo(Assert.FUND));//比较序号而已
 		System.out.println(user1.anAssert.getName());
 	}
+
+	@Test
+	public void testQuery() {
+		Ebean.save(user1.setDept(dept1));
+		Ebean.save(user2);
+
+		List<User> users = Ebean.find(User.class)
+				//只查询name,其他为空
+				.select("name")
+				//只查询dept的name?怎么不太对
+				.fetch("dept","name")
+				//用Expr创建复杂语句like还要自己定义通配符
+				.where(Expr.ilike("name","%n%"))
+				.orderBy("name desc")
+				.findList();
+		users.forEach(u-> System.out.println(u.allToString()));
+	}
+
+	@Test
+	public void testOnePlusN() {
+		List<User> us = new ArrayList<>();
+		for (int i = 0; i < 1000; i++) {
+			User user = new User(""+i,""+i);
+			us.add(user);
+			user.setDept(dept1);
+//			dept1.addUser(user);
+		}
+		//就算是这种方式,还是一条条插入
+		Ebean.saveAll(us);
+
+		Dept dept = Ebean.find(Dept.class,1);
+		dept.users.forEach(System.out::println);
+	}
+
 
 
 
