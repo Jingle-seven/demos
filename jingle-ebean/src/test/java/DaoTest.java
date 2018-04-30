@@ -2,10 +2,7 @@
 import io.ebean.Ebean;
 import io.ebean.annotation.Transactional;
 import org.junit.Test;
-import xz.model.Address;
-import xz.model.Dept;
-import xz.model.User;
-import xz.model.UserTag;
+import xz.model.*;
 
 import static org.junit.Assert.assertEquals;
 
@@ -64,14 +61,27 @@ public class DaoTest {
 	}
 
 	@Test
-//	@Transactional
 	public void testManyToMany() {
-		user1.addUserTag(ut1);
-		user1.addUserTag(ut2);
-		user2.addUserTag(ut1);
+//		user1.addUserTag(ut1);
+//		user1.addUserTag(ut2);
+//		user2.addUserTag(ut1);
+//
+//		Ebean.save(user1);
+//		Ebean.save(user2);
+	}
+	@Test
+	public void testEnum() {
+		user1.anAssert = Assert.FUND;
+		user2.anAssert = Assert.SHARE;
 
 		Ebean.save(user1);
 		Ebean.save(user2);
+
+		System.out.println(user1.anAssert);
+		System.out.println(user1.anAssert.name());
+		System.out.println(user1.anAssert.ordinal());
+		System.out.println(user1.anAssert.compareTo(Assert.FUND));//比较序号而已
+		System.out.println(user1.anAssert.getName());
 	}
 
 

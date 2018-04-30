@@ -43,11 +43,15 @@ public class User {
     public Address address;
 
     // 想manyTOMany?洗洗睡吧,辣鸡框架没人用是有原因的
-    @ManyToMany
-    @JoinTable(name="tb_user_tag",
-            joinColumns={@JoinColumn(name="user_id",referencedColumnName = "tag_id")},
-            inverseJoinColumns={@JoinColumn(name="tag_id",referencedColumnName = "user_id")})
-    public List<UserTag> userTags;
+//    @ManyToMany
+//    @JoinTable(name="tb_user_tag",
+//            joinColumns={@JoinColumn(name="user_id",referencedColumnName = "tag_id")},
+//            inverseJoinColumns={@JoinColumn(name="tag_id",referencedColumnName = "user_id")})
+//    public List<UserTag> userTags;
+
+    //在数据库中以值(大写字母)而非序号来保存,默认序号
+    @Enumerated(EnumType.STRING)
+    public Assert anAssert;
 
     public User setId(Long id) {
         this.id = id;
@@ -71,11 +75,6 @@ public class User {
 
     public User setAddress(Address address) {
         this.address = address;
-        return this;
-    }
-
-    public User addUserTag(UserTag userTag) {
-        this.userTags.add(userTag);
         return this;
     }
 
