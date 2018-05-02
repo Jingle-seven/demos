@@ -1,7 +1,6 @@
 
 import io.ebean.Ebean;
 import io.ebean.Expr;
-import io.ebean.annotation.Transactional;
 import org.junit.Test;
 import xz.model.*;
 
@@ -72,6 +71,10 @@ public class DaoTest {
 //
 //		Ebean.save(user1);
 //		Ebean.save(user2);
+
+		ut1.addUser(user1);
+		ut1.addUser(user2);
+		Ebean.save(ut1);
 	}
 	@Test
 	public void testEnum() {

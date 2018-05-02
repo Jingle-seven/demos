@@ -4,7 +4,6 @@ import lombok.*;
 import xz.util.XKit;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Table(name="tb_user")
 @Entity
@@ -27,7 +26,7 @@ public class User {
     //如果(cascade=CascadeType.ALL),user的保存会影响到自己的外键,还会影响到dept表保存数据
     @ManyToOne(cascade=CascadeType.PERSIST)
     //@JoinColumn referencedColumnName 不赋值的话,默认选择对方的主键
-    //name不赋值的话,默认数据库字段名称为 属性名_对方主键名
+    //name不赋值的话,默认数据库字段名称为 [属性名_对方主键名]
     public Dept dept;
 
     /**
@@ -47,7 +46,8 @@ public class User {
 //    @JoinTable(name="tb_user_tag",
 //            joinColumns={@JoinColumn(name="user_id",referencedColumnName = "tag_id")},
 //            inverseJoinColumns={@JoinColumn(name="tag_id",referencedColumnName = "user_id")})
-//    public List<UserTag> userTags;
+//    @ManyToOne(cascade=CascadeType.ALL)
+//    public UserTag userTag;
 
     //在数据库中以值(大写字母)而非序号来保存,默认序号
     @Enumerated(EnumType.STRING)
