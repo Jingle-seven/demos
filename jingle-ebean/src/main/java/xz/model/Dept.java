@@ -43,7 +43,7 @@ public class Dept {
         return "Dept{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", users=" + l +
+                ", children=" + l +
                 '}';
     }
 }
