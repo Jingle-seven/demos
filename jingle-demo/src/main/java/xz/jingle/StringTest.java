@@ -62,4 +62,10 @@ public class StringTest {
         String s4 = "hello";
         System.out.println(s4==s3);
     }
+    @Test
+    public void testParseLong(){
+        //空和空白字符串都会报错
+        System.out.println(Long.parseLong(""));
+        System.out.println(Long.parseLong(null));
+    }
 }
