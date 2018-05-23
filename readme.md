@@ -33,3 +33,8 @@ git rm --cached logs/xx.log，
 bash  
 python  
 scala  
+
+### 变色命令  
+time activator clean compile exit
+echo -e "\e[32m=====================java compile finished===================================\e[0m\n"
+activator -mem 1536 -jvm-debug 9999 '~ run'
