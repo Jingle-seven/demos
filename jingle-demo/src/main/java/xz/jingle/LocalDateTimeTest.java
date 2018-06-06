@@ -6,6 +6,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.YearMonth;
 import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.TemporalField;
@@ -51,7 +52,9 @@ public class LocalDateTimeTest {
         System.out.println("SimpleDateFormat.parse(:String)  "+oldDate);
         System.out.println("LocalDateTime.parse(:String,:DateTimeFormatter)  "+parsedDateTime);
         System.out.println("dateTime.format(:DateTimeFormatter) "+parsedDateTime.format(df));
-        System.out.println("符合格式可直接转不用Formatter"+LocalDateTime.parse(dateTimeStr2));
-        System.out.println("符合格式可直接转不用Formatter"+LocalDate.parse(dateStr));
+        System.out.println("符合格式可直接转不用Formatter "+LocalDateTime.parse(dateTimeStr2));
+        System.out.println("符合格式可直接转不用Formatter "+LocalDate.parse(dateStr).atStartOfDay());
+        System.out.println("月份天数LocalDate.lengthOfMonth: "+parsedDateTime.toLocalDate().lengthOfMonth());
+        System.out.println("月份是1-12,和js中参考了java1.1的残缺月份不同 "+parsedDateTime.withMonth(1).getMonthValue());
     }
 }
