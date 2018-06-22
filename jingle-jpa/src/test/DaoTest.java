@@ -7,9 +7,9 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
 
-@RunWith(SpringRunner.class)
-@TestPropertySource(properties = {"spring.config.name=jingle-conf"})
-@SpringBootTest
+//@RunWith(SpringRunner.class)
+//@TestPropertySource(properties = {"spring.config.name=jingle-conf"})
+//@SpringBootTest
 public class DaoTest {
 	@Test
 	public void testSpanDao() {

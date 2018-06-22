@@ -2,17 +2,20 @@ package xz.model;
 
 import java.util.Collection;
 
-public class JsonResp<E> {
+public class JsonResp <E>{
     private Status statusEnum;
     private String message;
     public int count;
     public Collection<E> data;
-    public JsonResp(){
+    public static <E>JsonResp<E> create(int count,Collection<E> data){
+        return new JsonResp<E>().setCount(count).setData(data);
+    }
+    private JsonResp(){
         statusEnum = Status.SUCCESS;
         message = statusEnum.message;
     }
 
-    public Integer getCode() {
+    public int getCode() {
         return statusEnum.statusCode;
     }
 

@@ -1,6 +1,7 @@
 
 import io.ebean.Ebean;
 import io.ebean.Expr;
+import org.junit.Ignore;
 import org.junit.Test;
 import xz.model.*;
 
@@ -14,6 +15,7 @@ import static org.junit.Assert.assertEquals;
  * 跑任意一个测试ebean会自动生成建表语句,并清空原有数据.
  * 所以建议在test-ebean.properties中配置h2数据库
  */
+@Ignore
 public class DaoTest {
 	private User user1 = new User("Tony","Tom@qq.com");
 	private User user2 = new User("Nancy","Nancy@qq.com");
