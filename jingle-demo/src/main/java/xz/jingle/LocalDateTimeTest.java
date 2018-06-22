@@ -38,7 +38,6 @@ public class LocalDateTimeTest {
         System.out.println("date.atTime  今日零时 " + date.atStartOfDay());
         System.out.println("date.atTime  今日零时 " + date.atTime(0,0,0,0));
         System.out.println("date.atTime  今日零时ts " + date.atTime(0,0,0,0).toInstant(ZoneOffset.UTC).toEpochMilli());
-
     }
 	@Test
 	public void TestFormatter() throws ParseException {
@@ -56,5 +55,25 @@ public class LocalDateTimeTest {
         System.out.println("符合格式可直接转不用Formatter "+LocalDate.parse(dateStr).atStartOfDay());
         System.out.println("月份天数LocalDate.lengthOfMonth: "+parsedDateTime.toLocalDate().lengthOfMonth());
         System.out.println("月份是1-12,和js中参考了java1.1的残缺月份不同 "+parsedDateTime.withMonth(1).getMonthValue());
+        System.out.println(LocalDate.parse(dateStr).equals(LocalDate.parse(dateStr)));
+    }
+
+    @Test
+    public void testLenOfMonth() {
+        LocalDate rawDate = LocalDate.parse("2018-03-01");
+        //打印上月的今天
+        System.out.println(rawDate.plusMonths(-1));//这个方法是很好的,但还是要试试手动判断
+        for (int i = 0; i <31; i++) {
+            LocalDate date = rawDate.plusDays(i);
+            int lenOfLastMonth = date.plusMonths(-1).lengthOfMonth();
+            if(date.getDayOfMonth() > lenOfLastMonth) {
+//                System.out.println(date.plusDays(-31));
+                System.out.println(date.withMonth(2).withDayOfMonth(lenOfLastMonth));//这个可以移植到js
+                System.out.println(date.withMonth(2).withDayOfMonth(1));
+            }else {
+                System.out.println(date.plusDays(-28));
+            }
+        }
+
     }
 }

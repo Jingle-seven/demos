@@ -1,6 +1,9 @@
 package xz.jingle;
 
+import org.junit.Test;
+
 import java.io.*;
+import java.time.LocalDateTime;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -10,33 +13,30 @@ import java.util.concurrent.TimeUnit;
  * Created by Jinhua on 2016/11/24.
  */
 public class ThreadPoolTest {
-	public static void main(String[] args) throws FileNotFoundException {
-//		ScheduledExecutorService pool = Executors.newScheduledThreadPool(2);
-//		pool.scheduleAtFixedRate(new WaitNDoSomething(),2L,2L, TimeUnit.SECONDS);
+//	@Test
+	public void testWhat(){
 		ExecutorService pool2 = Executors.newSingleThreadScheduledExecutor();
 		ExecutorService pool3 = Executors.newFixedThreadPool(2);
 		while (true) {
-//			pool2.execute(new WaitNDoSomething());
-			pool3.execute(new PrintPerSecond());
-			try {
-				Thread.sleep(100);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
+			pool2.execute(new WaitDoSomething());
+			pool3.execute(()->System.out.println("HA HA HA"));
 		}
 	}
-	
-	private static class PrintPerSecond implements Runnable {
-		public void run(){
-			System.out.println("HA HA HA");
-			try {
-				Thread.sleep(1000);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-		}
-	}
-	private static class WaitNDoSomething implements Runnable {
+//    @Test//定时线程池不能用junit来测试
+    public void testScheduledThreadPool(){
+        ScheduledExecutorService pool = Executors.newSingleThreadScheduledExecutor();
+        pool.scheduleAtFixedRate(()->System.out.println("HA HA HA"),0,2, TimeUnit.SECONDS);
+    }
+
+    public static void main(String[] args) {
+        ScheduledExecutorService pool = Executors.newSingleThreadScheduledExecutor();
+        //任务开始就计间隔时间
+        pool.scheduleAtFixedRate(()->System.out.println(LocalDateTime.now()+" HA HA HA"),
+                0,2, TimeUnit.MINUTES);
+        //任务完成才计间隔时间
+//        pool.scheduleWithFixedDelay(()->System.out.println("HA HA HA"),0,2, TimeUnit.SECONDS);
+    }
+	private class WaitDoSomething implements Runnable {
 		int count = 0;
 		private int byZero(int x, int y) {
 			int i = 0;
@@ -49,7 +49,7 @@ public class ThreadPoolTest {
 					e1.printStackTrace();
 				}
 				System.out.println(count);
-				if(count++<3){
+				if(count++<3){// 失败三次再输出异常,然后退出?
 					byZero(x,y);
 				}else {
 					System.out.println("Failed");
