@@ -1,3 +1,7 @@
+
+[<img src="https://img.shields.io/travis/Jingle-seven/demos.svg"/>](https://travis-ci.org/Jingle-seven/demos)
+
+
 # demos
 demos是个maven多模块项目，包含几个子模块  
 jingle-common 是一些各个模块都可能用到的工具  
@@ -29,3 +33,8 @@ git rm --cached logs/xx.log，
 bash  
 python  
 scala  
+
+### 变色命令  
+time activator clean compile exit
+echo -e "\e[32m=====================java compile finished===================================\e[0m\n"
+activator -mem 1536 -jvm-debug 9999 '~ run'

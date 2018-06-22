@@ -23,8 +23,9 @@ public class DaoTest {
 	private Dept dept2 = new Dept("支援科");
 	private Address ad1 = new Address().setLocation("妖都");
 	private Address ad2 = new Address().setLocation("魔都");
-	private UserTag ut1 = new UserTag().setTagName("三和大神");
-	private UserTag ut2 = new UserTag().setTagName("四有青年");
+	private UserTag ut2 = new UserTag().setTagName("二逼青年");
+	private UserTag ut3 = new UserTag().setTagName("三和大神");
+	private UserTag ut4 = new UserTag().setTagName("四有青年");
 
 	@Test
 	public void testOneToOne() {
@@ -53,7 +54,7 @@ public class DaoTest {
 		Ebean.refresh(user);
 		System.out.println(user);
 
-//		dept2.addUser(user2);
+//		dept2.addChild(user2);
 	}
 
 	@Test
@@ -74,9 +75,9 @@ public class DaoTest {
 //		Ebean.save(user1);
 //		Ebean.save(user2);
 
-		ut1.addUser(user1);
-		ut1.addUser(user2);
-		Ebean.save(ut1);
+		ut2.addChild(ut3);
+		ut2.addChild(ut4);
+		Ebean.save(ut2);
 	}
 	@Test
 	public void testEnum() {
@@ -117,7 +118,7 @@ public class DaoTest {
 			User user = new User(""+i,""+i);
 			us.add(user);
 			user.setDept(dept1);
-//			dept1.addUser(user);
+//			dept1.addChild(user);
 		}
 		//就算是这种方式,还是一条条插入
 		Ebean.saveAll(us);

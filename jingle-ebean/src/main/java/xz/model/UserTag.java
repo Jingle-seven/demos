@@ -21,7 +21,7 @@ public class UserTag {
     //一对多,多方外键名是name,默认为[本表_本表主键],这与多对一不同,详见user.dept
     //referencedColumnName不写默认为本表主键,写也必须写本表主键
 //    @JoinColumn(name="user_tag_id",referencedColumnName = "id")
-    public List<User> users;
+    public List<UserTag> children;
 
     public UserTag setTagName(String tagName) {
         this.tagName = tagName;
@@ -33,10 +33,10 @@ public class UserTag {
         return this;
     }
 
-    public UserTag addUser(User user) {
-        if(users==null)
-            users  = new ArrayList<>();
-        this.users.add(user);
+    public UserTag addChild(UserTag user) {
+        if(children ==null)
+            children = new ArrayList<>();
+        this.children.add(user);
         return this;
     }
 
