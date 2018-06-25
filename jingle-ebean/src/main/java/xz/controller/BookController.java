@@ -3,15 +3,22 @@ package xz.controller;
 import io.ebean.Ebean;
 import io.ebean.Query;
 import io.ebean.SqlRow;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import xz.model.Book;
 import xz.model.JsonResp;
 import xz.model.PageSize;
 
 import java.util.List;
-import java.util.NoSuchElementException;
 
+import static org.springframework.web.bind.annotation.RequestMethod.GET;
+
+@RestController
+@RequestMapping("/book")
 public class BookController {
 
+    @RequestMapping(value = "user", method = GET,produces = "application/json")
     public Object listBook(Long userId) {
         Query<Book> query = Ebean.find(Book.class);
         if (userId >0) {
@@ -26,7 +33,8 @@ public class BookController {
         return JsonResp.create(count,books);
     }
 
-    public Object listUserBook(Long userId) {
+    @RequestMapping(value = "count", method = GET)
+    public Object listUserBook(@RequestParam(required = false,defaultValue = "0") Long userId) {
         String sql = "select user_id, user_name,count(*) from book where 1=1 %s group by user_id";
         String countSql = "select count(*) count from (%s) t_user_book";
         if (userId >0) {
