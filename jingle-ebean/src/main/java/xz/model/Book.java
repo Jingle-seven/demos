@@ -1,10 +1,12 @@
 package xz.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 @Entity
 public class Book {
@@ -12,7 +14,8 @@ public class Book {
     private String id;
     private Integer orderNumber;
     private String name;
-    @JsonFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(timezone = "GMT+8",pattern = "yyyy-MM-dd")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate date;
     private String operation;
     private Integer UserId;
@@ -45,8 +48,8 @@ public class Book {
         return this;
     }
 
-    public LocalDate getDate() {
-        return date;
+    public String getDate() {
+        return DateTimeFormatter.ISO_LOCAL_DATE.format(date);
     }
 
     public Book setDate(LocalDate date) {

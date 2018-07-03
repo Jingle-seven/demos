@@ -30,6 +30,11 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency><!-- 热部署,用mvn spring-boot:run启动,开启idea自动编译,可实现热更新,但亲测无效 -->
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <optional>true</optional> <!-- 这个需要为 true 热部署才有效 -->
+        </dependency>
         <!--Ebean在IDEA直接启动时会报错 is not enhanced? 解决方法有：-->
         <!--1.mvn spring-boot:run 启动-->
         <!--1.IDEA安装Ebean Enhancement插件并在build选项卡中启用，重新build-->
@@ -63,6 +68,7 @@
             <artifactId>commons-beanutils</artifactId>
             <version>1.9.3</version>
         </dependency>
+
     </dependencies>
 
     <build>

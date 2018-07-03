@@ -3,10 +3,10 @@ USE `book`;
 
 CREATE TABLE `book` (
   `id` char(50) NOT NULL DEFAULT '',
-  `order_id` smallint(6) NOT NULL DEFAULT '0',
+  `order_number` smallint(6) NOT NULL DEFAULT '0',
   `name` varchar(255) DEFAULT NULL,
-  `time` date DEFAULT '0000-00-00',
-  `remark` varchar(255) DEFAULT NULL,
+  `date` date DEFAULT '0000-00-00',
+  `operation` varchar(255) DEFAULT NULL,
   `user_id` int(11) NOT NULL DEFAULT '0',
   `user_name` char(5) DEFAULT NULL,
   PRIMARY KEY (`id`)

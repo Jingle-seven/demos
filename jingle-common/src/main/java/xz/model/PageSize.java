@@ -10,7 +10,8 @@ public class PageSize {
     }
 
     public PageSize setPage(int page) {
-        offset = size*page;
+        if(page<0) page=0;
+        offset = offset==0?page:size*page;
         this.page = page;
         return this;
     }
@@ -20,7 +21,8 @@ public class PageSize {
     }
 
     public PageSize setSize(int size) {
-        offset = size * page;
+        if(size<0) size=0;
+        offset = offset==0?size:size * page;
         this.size = size;
         return this;
     }
