@@ -71,14 +71,22 @@
 <script src="../bootstrap-4.1.1/js/bootstrap.bundle.js"></script>
 <script type="text/javascript">
     let page = 0;
+    let maxPage = 0;
     $(document).ready(()=>{
         fetch('/api/book/count')
             .then(resp=>resp.json())
             .then(result=>{
                 console.log(result);
+                //分页按钮
                 for(let i=1;(i-1)*10<result.count;i++){
+                    maxPage = i;
                     $('#lastPageBtn').before(`<li class="page-item"><a class="page-link">${i}</a></li>`);
                 }
+                //第一页按钮高亮
+                $($('.page-item')[1]).attr('class','page-item active');
+                //如果数据量小, 不显示分页
+                if(result.count<10) $('.page-item').remove();
+                //表格内容
                 result.data.forEach(e=>{$('#tbody').append(`<tr><td>${e.user_id}</td><td>${e.user_name}</td>` +
                     `<td><a href="/api/book/user?userId=${e.user_id}">${e['count(*)']}</a></td></tr>`)
                 })
@@ -86,14 +94,20 @@
     });
     //因为要监听动态加载的元素, 所以一般的click绑定方法不行
     $(document).on('click','.page-link',(e)=>{
-        let pageNum = e.target.innerHTML;
-        if('Previous'==pageNum){
-            fetchData(page-1);
-        }else if('Next'==pageNum){
-            fetchData(page+1);
+        let pageStr = e.target.innerHTML;
+        if('Previous'==pageStr){
+            fetchData(page);
+        }else if('Next'==pageStr){
+            page = page+2;
+            fetchData(page);
         }else {
-            fetchData(pageNum);
+            fetchData(pageStr);
         }
+    });
+    fetchData=(pageNum)=>{
+        console.log(pageNum);
+        if(pageNum<1) pageNum=1;
+        if(pageNum>maxPage) pageNum=maxPage;
         //设置页码高亮
         $('.page-item').each((i,e)=>{
             if(pageNum == $(e).children()[0].innerHTML){
@@ -102,8 +116,6 @@
                 $(e).attr('class','page-item');
             }
         });
-    });
-    fetchData=(pageNum)=>{
         //清除现有内容,并获取数据填充新内容
         let tbody = $('#tbody');
         tbody.empty();
