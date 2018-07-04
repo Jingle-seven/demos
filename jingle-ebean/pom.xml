@@ -35,6 +35,10 @@
             <artifactId>spring-boot-devtools</artifactId>
             <optional>true</optional> <!-- 这个需要为 true 热部署才有效 -->
         </dependency>
+        <dependency><!--用于监控和管理,类似apm-->
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
         <!--Ebean在IDEA直接启动时会报错 is not enhanced? 解决方法有：-->
         <!--1.mvn spring-boot:run 启动-->
         <!--1.IDEA安装Ebean Enhancement插件并在build选项卡中启用，重新build-->
