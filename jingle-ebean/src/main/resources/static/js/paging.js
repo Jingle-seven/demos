@@ -1,18 +1,23 @@
 
 let page = 0;
 let maxPage = 0;
+let pageBtnArr =[];
 function initData(dataUrl,rowFunc){
     fetch(dataUrl)
         .then(resp=>resp.json())
         .then(result=>{
-            console.log(result);
             //分页按钮
             for(let i=1;(i-1)*10<result.count;i++){//TODO 页码过多时添加省略号
                 maxPage = i;
-                $('#lastPageBtn').before(`<li class="page-item"><a class="page-link">${i}</a></li>`);
+                pageBtnArr [i-1] = i;
+                //$('#lastPageBtn').before(`<li class="page-item"><a class="page-link">${i}</a></li>`);
             }
+            //page-num用来方便删除节点
+            getEllipsisPageArr(pageBtnArr,1,4).forEach(e=>
+                $('#lastPageBtn').before(`<li class="page-item page-num"><a class="page-link">${e}</a></li>`)
+            );
             //第一页按钮高亮
-            $($('.page-item')[1]).attr('class','page-item active');
+            $($('.page-item')[1]).attr('class','page-item page-num active');
             //如果数据量小, 不显示分页
             if(result.count<10) $('.page-item').remove();
             //表格内容
@@ -25,21 +30,50 @@ function bindPageClick(pageStr,func){
         page --;
     }else if('Next'==pageStr){
         page ++;
-    }else {
+    }else if(!isNaN(pageStr)){
         page = pageStr - 1;
     }
-    //设置页码高亮
-    $('.page-item').each((i,e)=>{
-        if(checkPageNum(page)+1 == $(e).children()[0].innerHTML){
-            $(e).attr('class','page-item active');
-        }else {
-            $(e).attr('class','page-item');
-        }
-    });
+    page = checkPageNum(page);
+    console.log(page);
+    $('.page-num').remove();
+    getEllipsisPageArr(pageBtnArr,page+1,4).forEach(e=>
+        $('#lastPageBtn').before(`<li class="page-item page-num"><a class="page-link">${e}</a></li>`)
+    );
+    // console.log($('li.active a')[0]);//选择父元素为li,父元素类为active的a元素
+    // console.log($('.page-item:eq(2)')[0]);//选择类为.page-item的第二个元素
+    // $(`.page-item:eq(${page + 1})`).attr('class', 'page-item page-num active');
+    if(page>=0 || page<maxPage) {//防止preview被高亮
+        //取消原页码高亮, 设置现页码高亮
+        $('li.active').attr('class','page-item page-num');
+        $('.page-item').each((i,e)=>{
+            if(checkPageNum(page)+1 == $(e).children()[0].innerHTML){
+                $(e).attr('class','page-item active');
+            }
+        });
+    }
     func();//发请求获取数据
 }
 function checkPageNum(pageNum){
     if(pageNum<1) page = 0;
     if(pageNum>maxPage) page = maxPage-1;
     return page
+}
+function getEllipsisPageArr(arr,cur,range){
+    arr = JSON.parse(JSON.stringify(arr));//复制一份
+    // let cur = 7;
+    // let range = 5;
+    for(let idx=0;idx<arr.length;idx++){
+        if(arr[idx]==1 || idx==arr.length-1) continue;
+        if(arr[idx]==cur-range || arr[idx]==cur+range){
+            arr[idx]='...';continue;
+        }
+        if(arr[idx]>cur-range && arr[idx]<cur+range) continue;
+        arr.splice(idx,1);
+        idx--;
+        //delete arr[idx];
+    }
+    //arr.forEach(e=>console.log(e))
+    //for(let idx=0;idx<arr.length;idx++){ console.log(arr[idx]); }
+    // console.log(arr);
+    return arr;
 }
