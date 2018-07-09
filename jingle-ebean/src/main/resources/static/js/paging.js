@@ -7,12 +7,12 @@ function initData(dataUrl,rowFunc){
         .then(resp=>resp.json())
         .then(result=>{
             //分页按钮
-            for(let i=1;(i-1)*10<result.count;i++){//TODO 页码过多时添加省略号
-                maxPage = i;
-                pageBtnArr [i-1] = i;
+            for(let i=1;(i-1)*10<result.count;i++){
+                maxPage = i-1;
+                pageBtnArr [i-1] = i;//按钮显示的数字,以1开始
                 //$('#lastPageBtn').before(`<li class="page-item"><a class="page-link">${i}</a></li>`);
             }
-            //page-num用来方便删除节点
+            //page-num用来方便选择要删除的节点
             getEllipsisPageArr(pageBtnArr,1,4).forEach(e=>
                 $('#lastPageBtn').before(`<li class="page-item page-num"><a class="page-link">${e}</a></li>`)
             );
@@ -24,7 +24,7 @@ function initData(dataUrl,rowFunc){
             result.data.forEach(rowFunc)
         });
 }
-//因为要监听动态加载的元素, 所以一般的click绑定方法不行
+//绑定页面按钮事件,因为按钮是动态加载的, 所以一般的click绑定方法不行
 function bindPageClick(pageStr,func){
     if('Previous'==pageStr){
         page --;
@@ -34,8 +34,8 @@ function bindPageClick(pageStr,func){
         page = pageStr - 1;
     }
     page = checkPageNum(page);
-    console.log(page);
-    $('.page-num').remove();
+    $('.page-num').remove();//移除点击之前的页码
+    // console.log(page);
     getEllipsisPageArr(pageBtnArr,page+1,4).forEach(e=>
         $('#lastPageBtn').before(`<li class="page-item page-num"><a class="page-link">${e}</a></li>`)
     );
@@ -46,18 +46,19 @@ function bindPageClick(pageStr,func){
         //取消原页码高亮, 设置现页码高亮
         $('li.active').attr('class','page-item page-num');
         $('.page-item').each((i,e)=>{
-            if(checkPageNum(page)+1 == $(e).children()[0].innerHTML){
-                $(e).attr('class','page-item active');
+            if(page+1 == $(e).children()[0].innerHTML){
+                $(e).attr('class','page-item page-num active');
             }
         });
     }
-    func();//发请求获取数据
+    func(page);//发请求获取数据
 }
 function checkPageNum(pageNum){
     if(pageNum<1) page = 0;
-    if(pageNum>maxPage) page = maxPage-1;
+    if(pageNum>maxPage) page = maxPage;
     return page
 }
+//获取带省略号的页码数组,arr原数组,cur当前页码,range当前页码到省略号的范围
 function getEllipsisPageArr(arr,cur,range){
     arr = JSON.parse(JSON.stringify(arr));//复制一份
     // let cur = 7;
@@ -72,7 +73,7 @@ function getEllipsisPageArr(arr,cur,range){
         idx--;
         //delete arr[idx];
     }
-    //arr.forEach(e=>console.log(e))
+    //arr.forEach(e=>console.log(e))//会跳过null元素
     //for(let idx=0;idx<arr.length;idx++){ console.log(arr[idx]); }
     // console.log(arr);
     return arr;

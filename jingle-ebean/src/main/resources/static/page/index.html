@@ -77,11 +77,11 @@
         initData('/api/book/count',e=>tableBody.append(eval(rowBody)));
     });
     $(document).on('click','.page-link',e=>{
-        //绑定页数按钮,传入页码由paging.js控制
-        bindPageClick(e.target.innerHTML,()=>{
+        //绑定页数按钮,回调函数参数是当前页码
+        bindPageClick(e.target.innerHTML,(currentPage)=>{
             //清除现有内容,并获取数据填充新内容
             tableBody.empty();
-            fetch(`/api/book/count?page=${page}`)
+            fetch(`/api/book/count?page=${currentPage}`)
                 .then(resp=>resp.json())
                 .then(result=>result.data.forEach(
                     e=>tableBody.append(eval(rowBody))
