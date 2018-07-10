@@ -30,7 +30,7 @@ public class BookController {
             query.where().eq("user_id", userId);
         }
         int count = query.findCount();
-        List<Book> books = query.orderBy("date asc")
+        List<Book> books = query.orderBy("date,name")
                 .setFirstRow(pageSize.getOffset())
                 .setMaxRows(pageSize.getSize())
                 .findList();

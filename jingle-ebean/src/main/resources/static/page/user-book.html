@@ -49,7 +49,7 @@
             <table class="table table-striped table-bordered table-hover " >
                 <thead>
                 <tr>
-                    <th>书籍</th><th>日期</th><th>借阅时长</th>
+                    <th>书籍</th><th>借阅日期</th><th>借阅时长(天)</th>
                 </tr>
                 </thead>
                 <tbody id="tbody">
@@ -70,8 +70,9 @@
 <!-- bootstrap.bundle.js 包含了 popper 内容. -->
 <script src="../bootstrap-4.1.1/js/bootstrap.bundle.js"></script>
 <script type="text/javascript">
-    let rowBody = '`<tr><td>${e.name}</td><td>${e.date}</td>' + //这里用了单引号和反引号
-        '<td> </td></tr>`';
+    let rowBody = '`<tr><td><a href="https://www.douban.com/search?cat=1001&q=${e.name.split(\':\')[0]}" target="_blank">${e.name}</a></td>'+
+        '<td>${e.date}</td>' +
+        '<td>${e.period}</td></tr>`';//这里用了单引号和反引号
     let tableBody = $('#tbody');
     let userId,userName;
     $(document).ready(()=>{

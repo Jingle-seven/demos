@@ -2,22 +2,23 @@ package xz.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.format.annotation.DateTimeFormat;
+import xz.util.XKit;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.time.LocalDate;
+import java.time.Period;
 import java.time.format.DateTimeFormatter;
 
 @Entity
 public class Book {
     @Id
     private String id;
-    private Integer orderNumber;
     private String name;
     @JsonFormat(timezone = "GMT+8",pattern = "yyyy-MM-dd")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate date;
-    private String operation;
+    private LocalDate returnDate;
     private Integer UserId;
     private String userName;
 
@@ -27,15 +28,6 @@ public class Book {
 
     public Book setId(String id) {
         this.id = id;
-        return this;
-    }
-
-    public Integer getOrderNumber() {
-        return orderNumber;
-    }
-
-    public Book setOrderNumber(Integer orderNumber) {
-        this.orderNumber = orderNumber;
         return this;
     }
 
@@ -51,18 +43,16 @@ public class Book {
     public String getDate() {
         return DateTimeFormatter.ISO_LOCAL_DATE.format(date);
     }
+    public String getReturnDate() {
+        return DateTimeFormatter.ISO_LOCAL_DATE.format(returnDate);
+    }
+    public int getPeriod() {
+        Period range = Period.between(date,returnDate);
+        return range.getDays();
+    }
 
     public Book setDate(LocalDate date) {
         this.date = date;
-        return this;
-    }
-
-    public String getOperation() {
-        return operation;
-    }
-
-    public Book setOperation(String operation) {
-        this.operation = operation;
         return this;
     }
 
@@ -86,13 +76,6 @@ public class Book {
 
     @Override
     public String toString() {
-        return "Book: {" +
-                "id: '" + id + '\'' +
-                ", orderNumber: " + orderNumber +
-                ", name: '" + name + '\'' +
-                ", operation: '" + operation + '\'' +
-                ", UserId: " + UserId +
-                ", userName: '" + userName + '\'' +
-                '}';
+        return XKit.toStr(this);
     }
 }
