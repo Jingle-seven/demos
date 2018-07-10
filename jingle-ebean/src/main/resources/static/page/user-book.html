@@ -7,41 +7,10 @@
     <title>详细</title>
 </head>
 <body>
-<div class="jumbotron text-center" style="margin-bottom:0">
-    <h1>封面</h1>
-</div>
-<ul class="nav" style="font-size: x-large">
-    <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link disabled" href="#">Disabled</a>
-    </li>
-</ul>
+<div id="header"></div>
 <div class="container">
     <div class="row">
-        <div class="col-sm-4">
-            <div><img src="https://fakeimg.pl/300x200/"></div>
-            <p>说明文本</p>
-            <h3>一些链接</h3>
-            <ul class="nav nav-pills flex-column" style="font-size: large">
-                <li class="nav-item">
-                    <a class="nav-link active" href="#">激活状态</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">链接</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">链接</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link disabled" href="#">禁用</a>
-                </li>
-            </ul>
-        </div>
+        <div class="col-sm-4" id="sidebar"></div>
         <div class="col-sm-8" >
 
             <h2 id="title"></h2>
@@ -63,13 +32,15 @@
         </div>
     </div>
 </div>
-<div class="jumbotron text-center" style="margin-bottom:0">
-    <p>底部内容</p>
-</div>
+<div id="footer"></div>
 <script src="../js/lib/jquery-3.3.1.js"></script>
 <!-- bootstrap.bundle.js 包含了 popper 内容. -->
 <script src="../bootstrap-4.1.1/js/bootstrap.bundle.js"></script>
 <script type="text/javascript">
+    //加载公用组件
+    $('#header').load('page/template.html #header');
+    $('#sidebar').load('page/template.html #sidebar');
+    $('#footer').load('page/template.html #footer');
     let rowBody = '`<tr><td><a href="https://www.douban.com/search?cat=1001&q=${e.name.split(\':\')[0]}" target="_blank">${e.name}</a></td>'+
         '<td>${e.date}</td>' +
         '<td>${e.period}</td></tr>`';//这里用了单引号和反引号
