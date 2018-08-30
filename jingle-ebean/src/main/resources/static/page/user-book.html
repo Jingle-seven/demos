@@ -36,6 +36,8 @@
 <script src="../js/lib/jquery-3.3.1.js"></script>
 <!-- bootstrap.bundle.js 包含了 popper 内容. -->
 <script src="../bootstrap-4.1.1/js/bootstrap.bundle.js"></script>
+<script src="../js/paging.js"></script>
+<script src="../js/route.js"></script>
 <script type="text/javascript">
     //加载公用组件
     $('#header').load('page/template.html #header');
@@ -53,8 +55,8 @@
             console.log(kv);
             if('userId'==kv[0]) userId=kv[1];
         }
-        initData(`/api/book/user/${userId}`,(e,i)=>{
-            tableBody.append(eval(rowBody));
+        initData(`${ROUTER.API.userBook}/${userId}`,(e,i)=>{
+            tableBody.append(eval(rowBody));//构建表格
             if(i==1){//只在第一次渲染姓名
                 userName = e.userName;
                 $('#title').html(userName+' '+ userId);
@@ -67,7 +69,7 @@
         bindPageClick(e.target.innerHTML,()=>{
             //清除现有内容,并获取数据填充新内容
             tableBody.empty();
-            fetch(`/api/book/user/${userId}?page=${page}`)
+            fetch(`${ROUTER.API.userBook}/${userId}?page=${page}`)
                 .then(resp=>resp.json())
                 .then(result=>result.data.forEach(
                     e=>tableBody.append(eval(rowBody))
@@ -76,6 +78,5 @@
     });
 
 </script>
-<script src="../js/paging.js"></script>
 </body>
 </html>
