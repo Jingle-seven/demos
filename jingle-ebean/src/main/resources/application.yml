@@ -20,6 +20,9 @@ spring:
       #自动更新
       ddl-auto: update
     show-sql: true
+#  mvc:
+#    favicon:
+#      enabled: false
 # 关闭查看actuator需要的验证
 management:
   security:
