@@ -8,10 +8,10 @@
 </head>
 <body>
 <div id="header"></div>
-<div class="container">
+<div class="container-fluid" style="width: 90%">
     <div class="row">
-        <div class="col-sm-4" id="sidebar"></div>
-        <div class="col-sm-8" >
+        <div class="col-sm-3" id="sidebar"></div>
+        <div class="col-sm-9" >
 
             <h2 id="title"></h2>
             <div style="min-height:550px">
@@ -25,7 +25,12 @@
                 </tbody>
             </table>
             </div>
-            <div id="bookLendPeriodChart" style="width: 100%;height: 300px;padding-bottom: 20px"></div>
+            <div class="row">
+                <div id="bookLendPeriodChart" class="col"
+                     style="width: 400px; height: 300px;padding-bottom: 20px; "></div>
+                <div id="termBookCountChart" class="col"
+                     style="width: 400px; height: 300px;padding-bottom: 20px; "></div>
+            </div>
             <ul class="pagination">
                 <li class="page-item"><a class="page-link">Previous</a></li>
                 <li class="page-item" id="lastPageBtn"><a class="page-link">Next</a></li>
@@ -68,6 +73,11 @@
             });
             genBookChart(res);
         });
+        fetch(`${ROUTER.API.userTermCount.replace('{userId}',userId)}`)
+            .then(resp=>resp.json())
+            .then(res=>{
+                genTermBookChart(res);
+            });
     });
     $(document).on('click','.page-link',e=>{
         //绑定页数按钮,传入页码由paging.js控制
@@ -82,6 +92,14 @@
                 });
         })
     });
+    genTermBookChart=(res)=>{
+        let chartData = res.data.reduce((sum,e)=>{
+            sum.push({key: e.term, value: e.count});
+            return sum;
+        },[]);
+        genBarChart(echarts,'termBookCountChart','每学期书籍借阅数量','借阅数量',chartData)
+
+    };
     genBookChart=(res)=>{
         let chartData = [];
         res.data.forEach((e,i)=> {

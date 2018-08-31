@@ -1,6 +1,6 @@
 package xz.model;
 
-import java.util.Collection;
+import java.util.*;
 
 public class JsonResp <E>{
     private Status statusEnum;
@@ -9,6 +9,9 @@ public class JsonResp <E>{
     public Collection<E> data;
     public static <E>JsonResp<E> create(int count,Collection<E> data){
         return new JsonResp<E>().setCount(count).setData(data);
+    }
+    public static <E>JsonResp<E> create(int count,E data){
+        return new JsonResp<E>().setCount(count).setData(Collections.singletonList(data));
     }
     private JsonResp(){
         statusEnum = Status.SUCCESS;

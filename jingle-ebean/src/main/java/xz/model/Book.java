@@ -40,12 +40,10 @@ public class Book {
         return this;
     }
 
-    public String getDate() {
-        return DateTimeFormatter.ISO_LOCAL_DATE.format(date);
-    }
-    public String getReturnDate() {
-        return DateTimeFormatter.ISO_LOCAL_DATE.format(returnDate);
-    }
+    public LocalDate date() { return date; }
+    public LocalDate returnDate() { return returnDate; }
+    public String getDate() { return DateTimeFormatter.ISO_LOCAL_DATE.format(date); }
+    public String getReturnDate() { return DateTimeFormatter.ISO_LOCAL_DATE.format(returnDate); }
     public int getPeriod() {
         Period range = Period.between(date,returnDate);
         return range.getDays();

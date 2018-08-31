@@ -4,20 +4,10 @@ function genBarChart(echart,elementId,title,legend,kvArr){
     let values = kvArr.reduce(getKV('value'),[]);
     let myChart = echart.init(document.getElementById(elementId),'light');
     let option = {
-        title: {
-            text: title
-        },
-        grid: {
-            left: '5%',
-            right: '5%',
-            bottom: '30%',
-            top: '20%',
-            // containLabel: true
-        },
+        title: {text: title},
+        grid: {left: '15%',right: '10%',bottom: '30%',top: '20%',containLabel: false},
         tooltip: {},
-        legend: {
-            data:[legend]
-        },
+        legend: {data:[legend]},
         xAxis: {
             type: 'category',
             data: keys,
@@ -25,10 +15,7 @@ function genBarChart(echart,elementId,title,legend,kvArr){
                 rotate:-60
             }
         },
-        yAxis: {
-            name: legend,
-            type: 'value'
-        },
+        yAxis: {name: legend,type: 'value'},
         series: [{
             name: legend,
             type: 'bar',
