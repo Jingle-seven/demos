@@ -2,7 +2,7 @@
 let page = 0;
 let maxPage = 0;
 let pageBtnArr =[];
-function initData(dataUrl,rowFunc){
+function initData(dataUrl,resFunc){
     fetch(dataUrl)
         .then(resp=>resp.json())
         .then(result=>{
@@ -20,8 +20,9 @@ function initData(dataUrl,rowFunc){
             $($('.page-item')[1]).attr('class','page-item page-num active');
             //如果数据量小, 不显示分页
             if(result.count<10) $('.page-item').remove();
-            //表格内容
-            result.data.forEach(rowFunc)
+            //调用回调函数
+            // result.data.forEach(resFunc);
+            resFunc(result);
         });
 }
 //绑定页面按钮事件,因为按钮是动态加载的, 所以一般的click绑定方法不行

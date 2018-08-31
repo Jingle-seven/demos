@@ -25,6 +25,7 @@
                 </tbody>
             </table>
             </div>
+            <div id="bookLendPeriodChart" style="width: 100%;height: 300px;padding-bottom: 20px"></div>
             <ul class="pagination">
                 <li class="page-item"><a class="page-link">Previous</a></li>
                 <li class="page-item" id="lastPageBtn"><a class="page-link">Next</a></li>
@@ -34,10 +35,12 @@
 </div>
 <div id="footer"></div>
 <script src="../js/lib/jquery-3.3.1.js"></script>
+<script src="../js/lib/echarts.js"></script>
 <!-- bootstrap.bundle.js 包含了 popper 内容. -->
 <script src="../bootstrap-4.1.1/js/bootstrap.bundle.js"></script>
 <script src="../js/paging.js"></script>
 <script src="../js/route.js"></script>
+<script src="../js/basicBarChart.js"></script>
 <script type="text/javascript">
     //加载公用组件
     $('#header').load('page/template.html #header');
@@ -55,13 +58,15 @@
             console.log(kv);
             if('userId'==kv[0]) userId=kv[1];
         }
-        initData(`${ROUTER.API.userBook}/${userId}`,(e,i)=>{
-            tableBody.append(eval(rowBody));//构建表格
-            if(i==1){//只在第一次渲染姓名
-                userName = e.userName;
-                $('#title').html(userName+' '+ userId);
-            }
-
+        initData(`${ROUTER.API.userBook}/${userId}`,(res)=>{
+            res.data.forEach((e,i)=> {
+                tableBody.append(eval(rowBody));//构建表格
+                if (i == 1) {//只在第一次渲染姓名
+                    userName = e.userName;
+                    $('#title').html(userName + ' ' + userId);
+                }
+            });
+            genBookChart(res);
         });
     });
     $(document).on('click','.page-link',e=>{
@@ -71,12 +76,19 @@
             tableBody.empty();
             fetch(`${ROUTER.API.userBook}/${userId}?page=${page}`)
                 .then(resp=>resp.json())
-                .then(result=>result.data.forEach(
-                    e=>tableBody.append(eval(rowBody))
-                ));
+                .then(result=>{
+                    result.data.forEach(e=>tableBody.append(eval(rowBody)));
+                    genBookChart(result);
+                });
         })
     });
-
+    genBookChart=(res)=>{
+        let chartData = [];
+        res.data.forEach((e,i)=> {
+            chartData.push({key: e.name, value: e.period});
+        });
+        genBarChart(echarts,'bookLendPeriodChart','书籍借阅时长','借阅时长(天)',chartData)
+    }
 </script>
 </body>
 </html>

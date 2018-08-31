@@ -48,7 +48,11 @@
         '<td><a href="/user-book?userId=${e.user_id}">${e["count(*)"]}</a></td></tr>`';
     let tableBody = $('#tbody');
     $(document).ready(()=>{//回调函数是result.data.forEach回调函数
-        initData(ROUTER.API.bookCount,e=>tableBody.append(eval(rowBody)));
+        initData(ROUTER.API.bookCount,res=>{
+            res.data.forEach((e)=>{
+                tableBody.append(eval(rowBody));
+            })
+        });
     });
     $(document).on('click','.page-link',e=>{
         //绑定页数按钮,回调函数参数是当前页码
