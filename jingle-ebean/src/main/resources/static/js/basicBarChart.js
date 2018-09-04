@@ -1,8 +1,11 @@
 
 function genBarChart(echart,elementId,title,legend,kvArr){
+    let myChart = echart.init(document.getElementById(elementId),'light');
+    myChart.setOption(getBasicBarOption(title,legend,kvArr));
+}
+function getBasicBarOption(title,legend,kvArr){
     let keys = kvArr.reduce(getKV('key'),[]);
     let values = kvArr.reduce(getKV('value'),[]);
-    let myChart = echart.init(document.getElementById(elementId),'light');
     let option = {
         title: {text: title},
         grid: {left: '15%',right: '10%',bottom: '30%',top: '20%',containLabel: false},
@@ -22,7 +25,7 @@ function genBarChart(echart,elementId,title,legend,kvArr){
             data: values
         }]
     };
-    myChart.setOption(option);
+    return option;
 }
 getKV=(property)=>{
     return (sum,cur)=> {

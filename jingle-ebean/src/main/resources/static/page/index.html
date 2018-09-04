@@ -24,6 +24,8 @@
                 <tbody id="tbody">
                 </tbody>
             </table>
+                <div id="bookCountChart" class="col"
+                     style="width: 100%; height: 300px;padding-bottom: 20px; "></div>
             </div>
             <ul class="pagination">
                 <li class="page-item"><a class="page-link">Previous</a></li>
@@ -36,6 +38,8 @@
 <script src="../js/lib/jquery-3.3.1.js"></script>
 <!-- bootstrap.bundle.js 包含了 popper 内容. -->
 <script src="../bootstrap-4.1.1/js/bootstrap.bundle.js"></script>
+<script src="../js/lib/echarts.js"></script>
+<script src="../js/basicBarChart.js"></script>
 <script src="../js/paging.js"></script>
 <script src="../js/route.js"></script>
 <script type="text/javascript">
@@ -53,7 +57,22 @@
                 tableBody.append(eval(rowBody));
             })
         });
+
+        fetch(`${ROUTER.API.bookCount}?size=1000`)
+            .then(resp=>resp.json())
+            .then(res=>{
+                let chartData = res.data.reduce((sum,e)=>{
+                    sum.push({key: e[user_name], value: e['count(*)']});
+                    return sum;
+                },[]);
+                let option = getBasicBarOption('借阅数量','数量(本)',chartData);
+                option.dataZoom = [{show: true,start: 0,end: 20,handleSize: 20,height:30,}];
+                let myChart = echarts.init(document.getElementById('bookCountChart'),'light');
+                myChart.setOption(option);
+            });
+
     });
+
     $(document).on('click','.page-link',e=>{
         //绑定页数按钮,回调函数参数是当前页码
         bindPageClick(e.target.innerHTML,(currentPage)=>{
@@ -66,7 +85,6 @@
                 ));
         })
     });
-    console.log(ROUTER.API.index,ROUTER.API.userBook);
 </script>
 </body>
 </html>
