@@ -62,7 +62,7 @@
             .then(resp=>resp.json())
             .then(res=>{
                 let chartData = res.data.reduce((sum,e)=>{
-                    sum.push({key: e[user_name], value: e['count(*)']});
+                    sum.push({key: e['user_name'], value: e['count(*)']});
                     return sum;
                 },[]);
                 let option = getBasicBarOption('借阅数量','数量(本)',chartData);
