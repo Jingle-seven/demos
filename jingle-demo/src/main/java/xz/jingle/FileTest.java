@@ -1,12 +1,15 @@
 package xz.jingle;
 
+import org.junit.Test;
+
 import java.io.*;
 
 /**
  * Created by Jinhua on 2016/9/2.
  */
 public class FileTest {
-	public static void main(String[] args) throws IOException {
+//	@Test
+	public  void main() throws IOException {
 //		String path = "G:/temp/0/4.txt";
 //		File dir = new File(path.substring(0,path.lastIndexOf("/")));
 //		File file = new File(path);
@@ -28,15 +31,26 @@ public class FileTest {
 		int MB = 1024 *1024;
 		System.out.println(fileSize.length()/MB);
 	}
-	public static String checkFileName(String str) {
-		if (str != null && !str.isEmpty()) {
-			String[] fbsArr = {":", "?", "*", "<", ">", "|" };
-			for (String key : fbsArr) {
-				if (str.contains(key)) {
-					str = str.replace(key, "");
-				}
-			}
-		}
-		return str;
-	}
+//    @Test
+    public String checkFileName() {
+        String str = "what";
+        if (str != null && !str.isEmpty()) {
+            String[] fbsArr = {":", "?", "*", "<", ">", "|" };
+            for (String key : fbsArr) {
+                if (str.contains(key)) {
+                    str = str.replace(key, "");
+                }
+            }
+        }
+        System.out.println(str);
+        return str;
+    }
+    @Test
+    public  void checkFileExist() {
+	    String s = null;
+//	    File file1 = new File(s);
+//        System.out.println(file1.exists());
+        File file2 = new File("G:\\temp\\zipkin分解\\zipkin-server-1.13.1.jar");
+        System.out.println(file2.exists());
+    }
 }
