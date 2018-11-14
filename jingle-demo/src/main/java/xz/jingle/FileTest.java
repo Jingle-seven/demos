@@ -53,4 +53,15 @@ public class FileTest {
         File file2 = new File("G:\\temp\\zipkin分解\\zipkin-server-1.13.1.jar");
         System.out.println(file2.exists());
     }
+    @Test
+    public  void checkIf() {
+	    int a=1,b=1;
+	    boolean abEqualsZero = a==0 && b==0;
+        System.out.println(abEqualsZero);
+        a=0;b=0;
+        boolean abEqualsZero2 = a==0 && b==0;
+        System.out.println(abEqualsZero);
+        System.out.println(abEqualsZero2);
+        System.out.println(3/4);
+    }
 }
